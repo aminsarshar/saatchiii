@@ -1,316 +1,272 @@
-<ul class="navbar-nav bg-gradient-light sidebar sidebar-dark accordion pr-0" id="accordionSidebar">
-
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home.index')}}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">saatchiii.ir</div>
-    </a>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span> داشبورد </span></a>
-    </li>
-
-        <!-- Heading -->
-        @role('admin')
-
-        <div class="sidebar-heading">
-            کاربران
-        </div>
-        @endrole
-
-        @role('admin')
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
-                aria-controls="collapsePages">
-                <i class="fas fa-fw fa-users"></i>
-                <span> کاربران </span>
-            </a>
-            <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.users.index') }}">لیست کاربران</a>
-                    <a class="collapse-item" href="">گروه های کاربری</a>
-                    <a class="collapse-item" href="">مجوز ها</a>
-
-                </div>
-            </div>
-        </li>
-        @endrole
-
-
-        @role('admin')
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePermissions" aria-expanded="true"
-                aria-controls="collapsePages">
-                <i class="fas fa-fw fa-users"></i>
-                <span> مجوز ها </span>
-            </a>
-            <div id="collapsePermissions" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.permissions.index') }}">لیست مجوز ها</a>
-                    <a class="collapse-item" href="{{ route('admin.permissions.create') }}">ایجاد مجوز</a>
-                    {{-- <a class="collapse-item" href="">مجوز ها</a> --}}
-
-                </div>
-            </div>
-        </li>
-        @endrole
-
-        @role('admin')
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true"
-                aria-controls="collapsePages">
-                <i class="fas fa-fw fa-users"></i>
-                <span>گروه های کاربری</span>
-            </a>
-            <div id="collapseRoles" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.roles.create') }}">ایجاد نقش کاربری</a>
-                    <a class="collapse-item" href="{{ route('admin.roles.index') }}">مشاهده نقش های کاربری</a>
-                    {{-- <a class="collapse-item" href="">مجوز ها</a> --}}
-
-                </div>
-            </div>
-        </li>
-        @endrole
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    @role('admin')
-    <div class="sidebar-heading">
-        فروشگاه
+<div data-active-color="black" data-background-color="white" data-image="" class="app-sidebar">
+    <div class="sidebar-header">
+      <div class="logo clearfix"><a href="index-2.html" class="logo-text float-right">
+          <div class="logo-img"><img src="/admin/img/logo-dark.png" alt="Convex Logo"/></div><span class="text align-middle">CONVEX</span></a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-disc toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-circle"></i></a></div>
     </div>
-    @endrole
+    <div class="sidebar-content">
+      <div class="nav-container">
+        <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+          <li class="nav-item {{ request()->is('admin-panel/dashboard') ? 'active' : '' }}"><a href="{{route('dashboard')}}"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span></a>
+          {{-- <li class="has-sub nav-item "><a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a> --}}
+          </li>
 
-    @role('admin')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true"
-            aria-controls="collapsePages">
-            <i class="fas fa-fw fa-cart-plus"></i>
-            <span> محصولات </span>
-        </a>
-        <div id="collapseProducts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.products.index') }}">مشاهده محصولات</a>
-                <a class="collapse-item" href="{{ route('admin.products.create') }}">ایجاد محصول</a>
-                <a class="collapse-item" href="{{ route('admin.tags.index') }}">تگ ها</a>
-                <a class="collapse-item" href="{{ route('admin.comments.index') }}">کامنت ها</a>
-            </div>
-        </div>
-    </li>
-    @endrole
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">کاربران</span></a>
+            <ul class="menu-content">
+              <li class="{{ request()->is('admin-panel/management/users') ? 'active' : '' }}" ><a href="{{route('admin.users.index')}}" class="menu-item">لیست کاربران</a>
+              </li>
+              <li class="{{ request()->is('admin-panel/management/users/create') ? 'active' : '' }}" ><a href="{{route('admin.users.create')}}" class="menu-item">ایجاد کاربر</a>
+              </li>
+            </ul>
+              </li>
 
-    @role('admin')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBrands" aria-expanded="true"
-            aria-controls="collapsePages">
-            <i class="fas fa-fw fa-cart-plus"></i>
-            <span> برند ها </span>
-        </a>
-        <div id="collapseBrands" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.brands.index') }}">مشاهده برند ها </a>
-                <a class="collapse-item" href="{{ route('admin.brands.create') }}">ایجاد برند</a>
+              <li class="has-sub nav-item"><a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">نقش ها</span></a>
+                <ul class="menu-content">
+                  <li class="{{ request()->is('admin-panel/management/roles') ? 'active' : '' }}" ><a href="{{route('admin.roles.index')}}" class="menu-item">لیست نقش ها</a>
+                  </li>
+                  <li class="{{ request()->is('admin-panel/management/roles/create') ? 'active' : '' }}" ><a href="{{route('admin.roles.create')}}" class="menu-item">ایجاد نقش</a>
+                  </li>
+                </ul>
+                  </li>
 
-            </div>
-        </div>
-    </li>
-    @endrole
+                  <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">مجوز ها</span></a>
+                    <ul class="menu-content">
+                      <li class="{{ request()->is('admin-panel/management/permissions') ? 'active' : '' }}" ><a href="{{route('admin.permissions.index')}}" class="menu-item">لیست مجوز ها</a>
+                      </li>
+                      <li class="{{ request()->is('admin-panel/management/permissions/create') ? 'active' : '' }}" ><a href="{{route('admin.permissions.create')}}" class="menu-item">ایجاد مجوز</a>
+                      </li>
+                    </ul>
+                      </li>
 
+                      <li class="has-sub nav-item"><a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">برند ها</span></a>
+                        <ul class="menu-content">
+                          <li class="{{ request()->is('admin-panel/management/brands') ? 'active' : '' }}" ><a href="{{route('admin.brands.index')}}" class="menu-item">لیست برند ها</a>
+                          </li>
+                          <li class="{{ request()->is('admin-panel/management/brands/create') ? 'active' : '' }}" ><a href="{{route('admin.brands.create')}}" class="menu-item">ایجاد برند</a>
+                          </li>
+                        </ul>
+                          </li>
 
-    @role('admin')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="true"
-            aria-controls="collapsePages">
-            <i class="fas fa-fw fa-cart-plus"></i>
-            <span> دسته بندی ها </span>
-        </a>
-        <div id="collapseCategories" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.categories.index') }}">مشاهده دسته بندی ها </a>
-                <a class="collapse-item" href="{{ route('admin.categories.create') }}">ایجاد  دسته بندی</a>
+                          <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n="" class="menu-title">دسته بندی ها</span></a>
+                            <ul class="menu-content">
+                              <li class="{{ request()->is('admin-panel/management/categories') ? 'active' : '' }}" ><a href="{{route('admin.categories.index')}}" class="menu-item">لیست دسته بندی ها</a>
+                              </li>
+                              <li class="{{ request()->is('admin-panel/management/categories/create') ? 'active' : '' }}" ><a href="{{route('admin.categories.create')}}" class="menu-item">ایجاد دسته بندی</a>
+                              </li>
+                            </ul>
+                              </li>
 
-            </div>
-        </div>
-    </li>
-    @endrole
+                              <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n="" class="menu-title">ویژگی های محصول</span></a>
+                                <ul class="menu-content">
+                                  <li class="{{ request()->is('admin-panel/management/attributes') ? 'active' : '' }}" ><a href="{{route('admin.attributes.index')}}" class="menu-item">لیست ویژگی های محصول</a>
+                                  </li>
+                                  <li class="{{ request()->is('admin-panel/management/attributes/create') ? 'active' : '' }}" ><a href="{{route('admin.attributes.create')}}" class="menu-item">ایجاد ویژگی های محصول</a>
+                                  </li>
+                                </ul>
+                                  </li>
 
-    @role('admin')
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttributes" aria-expanded="true"
-            aria-controls="collapsePages">
-            <i class="fas fa-fw fa-cart-plus"></i>
-            <span>ویژگی های محصول</span>
-        </a>
-        <div id="collapseAttributes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.attributes.index') }}">مشاهده ویژگی</a>
-                <a class="collapse-item" href="{{ route('admin.attributes.create') }}">ایجاد ویژگی</a>
+                                  <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">محصولات</span></a>
+                                    <ul class="menu-content">
+                                      <li class="{{ request()->is('admin-panel/management/attributes') ? 'active' : '' }}" ><a href="{{route('admin.attributes.index')}}" class="menu-item">لیست ویژگی های محصول</a>
+                                      </li>
+                                      <li class="{{ request()->is('admin-panel/management/attributes/create') ? 'active' : '' }}" ><a href="{{route('admin.attributes.create')}}" class="menu-item">ایجاد ویژگی های محصول</a>
+                                      </li>
+                                    </ul>
+                                      </li>
 
-            </div>
-        </div>
-    </li>
-    @endrole
+                                      <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">مقالات</span></a>
+                                        <ul class="menu-content">
+                                          <li class="{{ request()->is('admin-panel/management/blog') ? 'active' : '' }}" ><a href="{{route('admin.blog.index')}}" class="menu-item">لیست مقالات</a>
+                                          </li>
+                                          <li class="{{ request()->is('admin-panel/management/blog/create') ? 'active' : '' }}" ><a href="{{route('admin.blog.create')}}" class="menu-item">ایجاد مقاله</a>
+                                          </li>
+                                        </ul>
+                                          </li>
+          {{-- <li class="has-sub nav-item"><a href="#"><i class="icon-magnet"></i><span data-i18n="" class="menu-title">نقش ها</span></a>
+            <ul class="menu-content">
+              <li class="{{ request()->is('dashboard/roles' , 'dashboard/roles/edit') ? 'active' : '' }}"><a href="{{route('roles.index')}}" class="menu-item">لیست نقش ها</a>
+              </li>
+              <li class="{{ request()->is('dashboard/roles/create') ? 'active' : '' }}"><a href="{{route('roles.create')}}" class="menu-item">ایجاد نقش</a>
+              </li>
+                </ul>
+              </li> --}}
 
-        <!-- Divider -->
-        @role('admin')
-        <hr class="sidebar-divider">
-        @endrole
-
-
-
-        <!-- Heading -->
-        @role('admin')
-        <div class="sidebar-heading">
-            مقالات (وبلاگ)
-        </div>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesBlogs" aria-expanded="true"
-                aria-controls="collapsePages">
-                <i class="fas fa-book"></i>
-                <span> مقالات </span>
-            </a>
-            <div id="collapsesBlogs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-
-                    <a class="collapse-item" href="{{ route('admin.blog.index') }}">لیست مقالات</a>
-                    <a class="collapse-item" href="{{ route('admin.blog.create') }}">ایجاد مقاله</a>
-
-                </div>
-            </div>
-        </li>
-        @endrole
-        @role('writer')
-        <div class="sidebar-heading">
-            مقالات (وبلاگ)
-        </div>
-
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesBlogs" aria-expanded="true"
-                aria-controls="collapsePages">
-                <i class="fas fa-book"></i>
-                <span> مقالات </span>
-            </a>
-            <div id="collapsesBlogs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-
-                    <a class="collapse-item" href="{{ route('admin.blog.index') }}">لیست مقالات</a>
-                    <a class="collapse-item" href="{{ route('admin.blog.create') }}">ایجاد مقاله</a>
-
-                </div>
-            </div>
-        </li>
-        @endrole
-
-
-        @role('admin')
-        <hr class="sidebar-divider">
-        @endrole
-
-        @role('writer')
-        <hr class="sidebar-divider">
-        @endrole
-
-
-        <!-- Heading -->
-        @role('admin')
-        <div class="sidebar-heading">
-            سفارشات
-        </div>
-        @endrole
-
-
-        @role('admin')
-        <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="true"
-            aria-controls="collapsePages">
-            <i class="fas fa-fw fa-folder"></i>
-            <span> سفارشات </span>
-        </a>
-        <div id="collapseOrders" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-
-                <a class="collapse-item" href="{{ route('admin.orders.index') }}">سفارشات</a>
-                <a class="collapse-item" href="{{ route('admin.transactions.index') }}">تراکنش ها</a>
-                <a class="collapse-item" href="{{ route('admin.coupons.index') }}">تخفیفات</a>
-
-            </div>
-        </div>
-        </li>
-        @endrole
-
-        <!-- Divider -->
-        @role('admin')
-        <hr class="sidebar-divider">
-        @endrole
-
-
-        <!-- Heading -->
-        @role('admin')
-        <div class="sidebar-heading">
-         تنظیمات
-        </div>
-        @endrole
-
-
-
-
-            <!-- Nav Item - Brand -->
-            @role('admin')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.banners.index') }}">
-                    <i class="fas fa-store"></i>
-                    <span> بنر ها </span>
-                </a>
-            </li>
-            @endrole
-
-
-            <style>
-                .sidebar-dark .nav-item.active .nav-link{
-                    color: black
-                }
-
-                .sidebar-dark .nav-item.active .nav-link i{
-                    color: black
-                }
-
-                .sidebar-dark .nav-item .nav-link{
-                    color:black
-            }
-
-            .sidebar-dark .nav-item .nav-link i{
-                color: rgba(0, 0, 0, 0.333)
-            }
-
-            .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after{
-                color: rgba(0, 0, 0, 0.333)
-
-            }
-            </style>
-
-
-
-
-
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+              {{-- <li class="has-sub nav-item"><a href="#"><i class="icon-grid"></i><span data-i18n="" class="menu-title">دسته بندی ها</span></a>
+                <ul class="menu-content">
+                  <li class="{{ request()->is('dashboard/categories' , 'dashboard/categories/edit') ? 'active' : '' }}"><a href="{{route('categories.index')}}" class="menu-item">لیست دسته بندی ها</a>
+                  </li>
+                  <li class="{{ request()->is('dashboard/categories/create') ? 'active' : '' }}"><a href="{{route('categories.create')}}" class="menu-item">ایجاد دسته بندی</a>
+                  </li>
+                    </ul>
+                  </li> --}}
+          <li class=" nav-item"><a href="cards.html"><i class="icon-layers"></i><span data-i18n="" class="menu-title">کارت ها</span></a>
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-puzzle"></i><span data-i18n="" class="menu-title">اجزاء</span></a>
+            <ul class="menu-content">
+              <li class="has-sub"><a href="#" class="menu-item">بوت استرپ</a>
+                <ul class="menu-content">
+                  <li><a href="components-lists.html" class="menu-item">لیست</a>
+                  </li>
+                  <li><a href="components-buttons.html" class="menu-item">دکمه</a>
+                  </li>
+                  <li><a href="components-alerts.html" class="menu-item">هشدار</a>
+                  </li>
+                  <li><a href="components-badges.html" class="menu-item">نشان</a>
+                  </li>
+                  <li><a href="components-dropdowns.html" class="menu-item">لیست کشویی</a>
+                  </li>
+                  <li><a href="components-inputgroups.html" class="menu-item">گروه های ورودی</a>
+                  </li>
+                  <li><a href="components-media-objects.html" class="menu-item">اشیاء رسانه ای</a>
+                  </li>
+                  <li><a href="components-pagination.html" class="menu-item">صفحه بندی</a>
+                  </li>
+                  <li><a href="components-progress.html" class="menu-item"> میله پیشرفت</a>
+                  </li>
+                  <li><a href="components-modals.html" class="menu-item">مدال</a>
+                  </li>
+                  <li><a href="components-collapse.html" class="menu-item">سقوط</a>
+                  </li>
+                  <li><a href="components-accordion.html" class="menu-item">آکاردئون</a>
+                  </li>
+                  <li><a href="components-carousel.html" class="menu-item">اسلایدر</a>
+                  </li>
+                  <li><a href="components-datepicker.html" class="menu-item">انتخاب تاریخ و زمان</a>
+                  </li>
+                  <li><a href="components-popover.html" class="menu-item">اعلان</a>
+                  </li>
+                  <li><a href="components-tooltip.html" class="menu-item">راهنمایی</a>
+                  </li>
+                  <li><a href="components-tabs.html" class="menu-item">تب</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-sub"><a href="#" class="menu-item">فوق العاده</a>
+                <ul class="menu-content">
+                  <li><a href="sweet-alerts.html" class="menu-item">هشدار شیرین</a>
+                  </li>
+                  <li><a href="toastr.html" class="menu-item">توستر</a>
+                  </li>
+                  <li><a href="upload.html" class="menu-item">بارگذاری</a>
+                  </li>
+                  <li><a href="editor.html" class="menu-item">ویرایشگر</a>
+                  </li>
+                  <li><a href="dragndrop.html" class="menu-item">کشیدن و انداختن</a>
+                  </li>
+                  <li><a href="tour.html" class="menu-item">تور</a>
+                  </li>
+                  <li><a href="tags-input.html" class="menu-item">برچسب ورودی</a>
+                  </li>
+                  <li><a href="switch.html" class="menu-item">تعویض</a>
+                  </li>
+                  <li><a href="rating.html" class="menu-item">رتبه بندی</a>
+                  </li>
+                  <li><a href="typeahead.html" class="menu-item">تایپ</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-doc"></i><span data-i18n="" class="menu-title">فرم</span><span class="tag badge badge-pill badge-primary mt-1">جدید</span></a>
+            <ul class="menu-content">
+              <li class="has-sub"><a href="#" class="menu-item">عناصر</a>
+                <ul class="menu-content">
+                  <li><a href="inputs.html" class="menu-item">ورودی</a>
+                  </li>
+                  <li><a href="input-groups.html" class="menu-item">گروه های ورودی</a>
+                  </li>
+                  <li><a href="input-grid.html" class="menu-item">شبکه ورودی</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-sub"><a href="#" class="menu-item">پوسته</a>
+                <ul class="menu-content">
+                  <li><a href="basic-forms.html" class="menu-item">فرم های پایه</a>
+                  </li>
+                  <li><a href="horizontal-forms.html" class="menu-item">فرم افقی</a>
+                  </li>
+                  <li><a href="hidden-labels.html" class="menu-item">برچسب های مخفی</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="validation-forms.html" class="menu-item">اعتبار سنجی</a>
+              </li>
+              <li><a href="wizard-forms.html" class="menu-item">جادویی</a>
+              </li>
+            </ul>
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-grid"></i><span data-i18n="" class="menu-title">جدول</span></a>
+            <ul class="menu-content">
+              <li><a href="regular-table.html" class="menu-item">منظم</a>
+              </li>
+              <li><a href="extended-table.html" class="menu-item">گسترده</a>
+              </li>
+            </ul>
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-notebook"></i><span data-i18n="" class="menu-title">جدول داده</span></a>
+            <ul class="menu-content">
+              <li><a href="dt-basic-initialization.html" class="menu-item">آغازگر اولیه</a>
+              </li>
+              <li><a href="dt-advanced-initialization.html" class="menu-item">آغازگر پیشرفته</a>
+              </li>
+              <li><a href="dt-styling.html" class="menu-item">ظاهر طراحی شده</a>
+              </li>
+              <li><a href="dt-data-sources.html" class="menu-item">منابع داده</a>
+              </li>
+              <li><a href="dt-api.html" class="menu-item">رابط‌ نرم‌افزار</a>
+              </li>
+            </ul>
+          </li>
+          <li class=" nav-item"><a href="google-map.html"><i class="icon-map"></i><span data-i18n="" class="menu-title">نقشه گوگل</span></a>
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-pie-chart"></i><span data-i18n="" class="menu-title">نمودار</span><span class="tag badge badge-pill badge-success white mt-1">2</span></a>
+            <ul class="menu-content">
+              <li><a href="chartist.html" class="menu-item">چارتیست</a>
+              </li>
+              <li><a href="chartjs.html" class="menu-item">نمودار با جاوااسکریپت</a>
+              </li>
+            </ul>
+          </li>
+          <li class="has-sub nav-item"><a href="#"><i class="icon-docs"></i><span data-i18n="" class="menu-title">صفحات</span></a>
+            <ul class="menu-content">
+              <li><a href="forgot-password-page.html" class="menu-item">رمز عبور را فراموش کرده اید</a>
+              </li>
+              <li><a href="horizontal-timeline-page.html" class="menu-item">خط زمانی افقی</a>
+              </li>
+              <li><a href="vertical-timeline-page.html" class="menu-item">خط زمانی عمودی</a>
+              </li>
+              <li><a href="login-page.html" class="menu-item">ورود</a>
+              </li>
+              <li><a href="register-page.html" class="menu-item">ثبت نام</a>
+              </li>
+              <li><a href="user-profile-page.html" class="menu-item">مشخصات کاربر</a>
+              </li>
+              <li><a href="lock-screen-page.html" class="menu-item">قفل صفحه</a>
+              </li>
+              <li><a href="invoice-page.html" class="menu-item">فاکتور</a>
+              </li>
+              <li><a href="error-page.html" class="menu-item">خطا</a>
+              </li>
+              <li><a href="coming-soon-page.html" class="menu-item">به زودی</a>
+              </li>
+              <li><a href="maintenance-page.html" class="menu-item">نگهداری</a>
+              </li>
+              <li><a href="gallery-page.html" class="menu-item">گالری</a>
+              </li>
+              <li><a href="search.html" class="menu-item">جستجو</a>
+              </li>
+              <li><a href="faq.html" class="menu-item">سوالات متداول</a>
+              </li>
+              <li><a href="knowledge-base.html" class="menu-item">دانش محور</a>
+              </li>
+            </ul>
+          </li>
+          <li class=" nav-item"><a href="http://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/documentation"><i class="icon-book-open"></i><span data-i18n="" class="menu-title">مستندات</span></a>
+          </li>
+          <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="icon-support"></i><span data-i18n="" class="menu-title">پشتیبانی</span></a>
+          </li>
+        </ul>
+      </div>
     </div>
-
-</ul>
+    <div class="sidebar-background"></div>
+  </div>

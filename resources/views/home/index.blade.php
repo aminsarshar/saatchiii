@@ -1594,7 +1594,7 @@
                                                 class="hint--left"></span>
                                         </div>
                                     </div>
-
+                                    
                                     <a
                                         href="{{ route('home.products.show', ['product' => $product_normal_men->slug]) }}">
                                         <div class="image text-center">

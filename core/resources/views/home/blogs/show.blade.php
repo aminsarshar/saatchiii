@@ -1,0 +1,403 @@
+@extends('home.layouts.home')
+<link
+rel="stylesheet"
+href="{{asset('assets/css/home.css')}}"
+/>
+@section('title')
+    وبلاگ
+@endsection
+@section('content')
+    <!-- bread croumb -->
+    <div class="content">
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb" class="my-lg-0 my-2">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">خانه</a></li>
+                    <li class="breadcrumb-item active main-color-one-color font-14" aria-current="page">وبلاگ</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- start main-data -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row gy-2">
+                <div class="col-lg-3 order-lg-1 order-2">
+                    <div class="item-boxs">
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">جستجو</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxSearch"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBoxSearch">
+                                <form action="">
+                                    <div class="position-relative">
+                                        <input type="text" name="search"
+                                            class="form-control font-14 rounded-pill text-muted py-3 border-muted bg-light"
+                                            placeholder="نام محصول مورد نظر خود را وارد کنید">
+                                        <button type="submit"
+                                            class="position-absolute top-50 translate-middle-y btn rounded-circle border-0"
+                                            style="left: 5px;">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <h6 class="font-14">دسته بندی</h6>
+                            </div>
+                            <div class="desc">
+                                <form action="">
+                                    <a href="">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
+                                                <span>تکنولوژی</span>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold font-16">(3)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
+                                                <span>سرگرمی</span>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold font-16">(3)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
+                                                <span><label for="colorCheck1"
+                                                        class="form-check-label">فروشندگی</label></span>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold font-16">(3)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
+                                                <span>فروشگاهی</span>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold font-16">(3)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
+                                                <span>آموزشی</span>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold font-16">(3)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
+                                                <span>برنامه نویسی</span>
+                                            </div>
+                                            <div>
+                                                <span class="fw-bold font-16">(3)</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <h6 class="font-14">بایگانی</h6>
+                            </div>
+                            <div class="desc">
+                                <div class="blog-archive">
+                                    <a href="">فروردین</a>
+                                </div>
+                                <div class="blog-archive">
+                                    <a href="">اردیبهشت</a>
+                                </div>
+                                <div class="blog-archive">
+                                    <a href="">خرداد</a>
+                                </div>
+                                <div class="blog-archive">
+                                    <a href="">تیر</a>
+                                </div>
+                                <div class="blog-archive">
+                                    <a href="">مرداد</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-box bg-white shadow-box">
+                            <div class="title">
+                                <h6 class="font-14">بایگانی</h6>
+                            </div>
+                            <div class="desc">
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <div class="blog-tag">
+                                        <a href="">تکنولوژی</a>
+                                    </div>
+                                    <div class="blog-tag">
+                                        <a href="">تکنولوژی</a>
+                                    </div>
+                                    <div class="blog-tag">
+                                        <a href="">تکنولوژی</a>
+                                    </div>
+                                    <div class="blog-tag">
+                                        <a href="">تکنولوژی</a>
+                                    </div>
+                                    <div class="blog-tag">
+                                        <a href="">تکنولوژی</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-lg-2 order-1">
+                    <div class="content-box">
+                        <div class="row gy-2">
+                            <div class="col-12">
+                                <div class="blog-detail-title mb-4">
+                                    <h3 class="main-title">{{$blogs->title}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="shadow-box">
+                                    <img src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid rounded-3">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="blog-meta w-100">
+                                    <ul class="navbar-nav flex-row w-100 justify-content-around">
+                                        <li class="nav-item">
+                                            <div class="item">
+                                                <div class="title d-grid gap-2">
+                                                    <h6 class="font-12 text-muted fw-normal">دسته بندی ها</h6>
+                                                    <h6 class="font-16">مقالات و اخبار</h6>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <div class="item">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="icon">
+                                                        <div class="box-icon rounded-circle"
+                                                            style="width: 50px; height:50px ;">
+                                                            <i class="bi bi-person fs-3 main-color-one-color"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="title d-grid gap-2">
+                                                        <h6 class="font-12 text-muted fw-normal">نویسنده</h6>
+                                                        <h6 class="font-16">{{$blogs->user->name}}</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <div class="item">
+                                                <div class="title d-grid gap-2">
+                                                    <div class="d-flex justify-content-center">
+                                                        <h6
+                                                            class="font-12 text-muted badge rounded-pill bg-light fw-normal py-2">
+                                                            زمان مورد نیاز برای مطالعه</h6>
+                                                    </div>
+                                                    <h6 class="font-16 text-center">نامعلوم</h6>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div
+                                    class="blog-desc-short font-14 bg-light p-4 shadow-box text-justify rounded-4 my-3">
+                                    <p>
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                        گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                        برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
+                                        کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
+                                        جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
+                                        ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می
+                                        توان امید داشت که تمام …
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-desc">
+                            <p>
+                                {{print_r($blogs->description)}}
+                            </p>
+
+                        </div>
+                        <div class="blog-desc-foot">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <a href="">
+                                        <div class="item right">
+                                            <div class="card mb-3 shadow-md">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img src="assets/image/blog-5.jpg"
+                                                            class="img-fluid rounded-start h-100"
+                                                            style="object-fit: cover;" alt="">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title font-16">نوشته قبلی</h5>
+                                                            <p class="card-text text-overflow-2 font-14 text-muted">
+                                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                                                چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
+                                                                بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                                برای شرایط فعلی تکنولوژی مورد
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 offset-lg-4">
+                                    <a href="">
+                                        <div class="item left">
+                                            <div class="card mb-3 shadow-md">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img src="assets/image/blog-1.jpg"
+                                                            class="img-fluid rounded-start h-100"
+                                                            style="object-fit: cover;" alt="">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title font-16">نوشته بعدی</h5>
+                                                            <p class="card-text text-overflow-2 font-14 text-muted">
+                                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                                                چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
+                                                                بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                                                                برای شرایط فعلی تکنولوژی مورد
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="blog-desc-tag my-3">
+                            <h3 class="font-16 mb-2"><i class="bi bi-tag me-1"></i> برجسب ها</h3>
+                            <div class="d-flex align-items-center flex-wrap">
+                                <div class="blog-tag">
+                                    <a href="">تکنولوژی</a>
+                                </div>
+                                <div class="blog-tag">
+                                    <a href="">تکنولوژی</a>
+                                </div>
+                                <div class="blog-tag">
+                                    <a href="">تکنولوژی</a>
+                                </div>
+                                <div class="blog-tag">
+                                    <a href="">تکنولوژی</a>
+                                </div>
+                                <div class="blog-tag">
+                                    <a href="">تکنولوژی</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-desc-tag my-3">
+                            <h3 class="font-16 mb-2"><i class="bi bi-folder me-1"></i>دسته بندی</h3>
+                            <div class="d-flex align-items-center flex-wrap">
+                                <div class="blog-tag">
+                                    <a href="">تکنولوژی</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main-data -->
+
+    <!-- start slider -->
+    <div class="content">
+        <div class="product-box blog-box">
+            <div class="container-fluid">
+                <div class="parent" style="height:400px">
+                    <div class="content-title">
+                        <div class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-box-seam" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                            </svg>
+                            <h5 class="title">مطالب مرتبط</h5>
+                        </div>
+                        <div class="item">
+                            <i class="bi bi-box-arrow-in-left"></i>
+                            <a href="">
+                                <h5 class="title">مشاهده همه</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="swiper py-5" id="swiper-box-two">
+
+                        <div class="swiper-wrapper">
+                        @foreach ($blog as $blogs)
+                        <div class="swiper-slide">
+                            <a href="{{ route('home.blogs.show', ['blogs' => $blogs->id]) }}">
+                                <div class="image-blog text-center">
+                                    <img style="max-height: 277px" src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid">
+                                    <div class="blog-desc position-absolute bottom-0">
+                                        <h6 class="font-14">{{ $blogs->title }}</h6>
+                                        <div class="d-flex justify-content-between align-items-center my-2">
+                                            <div class="like">
+                                                <span class="icon">
+                                                    <i class="bi bi-heart"></i>
+                                                </span>
+                                                <span class="counter font-12">25</span>
+                                            </div>
+                                            <div class="date d-flex align-items-center">
+                                                <div class="icon me-1"><i class="bi bi-calendar-event"></i></div>
+                                                <span class="font-12">3 روز پیش</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        @endforeach
+
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next d-sm-flex d-none"></div>
+                        <div class="swiper-button-prev d-sm-flex d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end slider -->
+@endsection

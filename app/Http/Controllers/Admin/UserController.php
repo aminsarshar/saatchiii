@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Permission;
+use App\Http\Requests\Admin\Users\UpdateUsersRequest;
 
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(7);
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index');
     }
 
     public function edit(User $user)
@@ -25,7 +25,7 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles', 'permissions'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUsersRequest $request, User $user)
     {
         try {
             DB::beginTransaction();
@@ -51,5 +51,15 @@ class UserController extends Controller
 
         alert()->success('کاربر مورد نظر ویرایش شد', 'باتشکر');
         return redirect()->route('admin.users.index');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+
+        alert()->success('کاربر مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.users.index');
+
     }
 }

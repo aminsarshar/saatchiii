@@ -99,6 +99,14 @@
                 </tbody>
             </table>
             {{ $users->links() }}
+
+
+            <style>
+                ul.pagination{
+                    display: flex;
+                    justify-content: center
+                }
+            </style>
         </div>
     </div>
 </div>

@@ -58,7 +58,7 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles', 'permissions'));
     }
 
-    public function update(UpdateUsersRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         try {
             DB::beginTransaction();

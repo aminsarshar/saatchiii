@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    edit roles
+    ویرایش نقش
 @endsection
 
 @section('content')
@@ -15,7 +15,6 @@
             </div>
             <hr>
 
-            @include('admin.sections.errors')
 
             <form action="{{ route('admin.roles.update', ['role' => $role->id]) }}" method="POST">
                 @csrf
@@ -62,8 +61,15 @@
                     </div>
                 </div>
 
-                <button class="btn btn-outline-primary mt-5" type="submit">ویرایش</button>
-                <a href="{{ route('admin.roles.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-danger mr-1">
+                        <a class="text-white" href="{{ route('admin.roles.index') }}"><i class="icon-back"></i> بازگشت</a>
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="icon-note"></i> ویرایش
+                    </button>
+                </div>
+
             </form>
         </div>
 

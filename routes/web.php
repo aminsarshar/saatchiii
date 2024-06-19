@@ -1,37 +1,39 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\TagController;
-use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\AttributeController;
-use App\Http\Controllers\Admin\ProductImageController;
-use App\Http\Controllers\Admin\CommentController;
-use App\Http\Controllers\Admin\CouponController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Home\HomeController;
-use App\Http\Controllers\Home\PaymentController;
-use App\Http\Controllers\Home\AddressController;
-use App\Http\Controllers\Home\CartController;
-use App\Http\Controllers\Home\WishlistController;
-use App\Http\Controllers\Home\CompareController;
-use App\Http\Controllers\Home\UserProfileController;
-use App\Http\Controllers\Home\BlogController as HomeBlogController;
-use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
-use App\Http\Controllers\Home\ProductController as HomeProductController;
-use App\Http\Controllers\Home\CommentController as HomeCommentController;
-use App\Http\Controllers\Auth\AuthController;
 use App\Models\User;
 use App\Notifications\OTPSms;
 use Ghasedak\Laravel\GhasedakFacade;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Home\CartController;
+use App\Http\Controllers\Home\HomeController;
+use App\Http\Livewire\Auth\Register\Register;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Livewire\Auth\Register2\Register2;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Home\AddressController;
+use App\Http\Controllers\Home\CompareController;
+use App\Http\Controllers\Home\PaymentController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Home\WishlistController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Home\UserProfileController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Home\BlogController as HomeBlogController;
+use App\Http\Controllers\Home\CommentController as HomeCommentController;
+use App\Http\Controllers\Home\ProductController as HomeProductController;
+use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 
 
 
@@ -127,6 +129,7 @@ Route::get('/payment-verify/{gatewayName}', [PaymentController::class, 'paymentV
 
 Route::get('/payment_ok', [PaymentController::class, 'pay_ok'])->name('home.cart.payment_ok');
 Route::get('/payment_not_ok', [PaymentController::class, 'pay_not_ok'])->name('home.cart.payment_not_ok');
+Route::get('/register2', Register2::class)->name('register2');
 
 
 // برای ورود از طریق گوگل

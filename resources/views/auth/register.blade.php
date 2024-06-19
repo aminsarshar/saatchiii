@@ -45,7 +45,7 @@
                                     <h3>ثبت نام در فروشگاه</h3>
                                     <p class="my-3 text-muted">اگر قبلا ثبت نام کرده اید وارد شوید</p>
                                 </div>
-                                <form action="{{ route('register') }}" method="post">
+                                {{-- <form action="{{ route('register') }}" method="post">
                                 @csrf
                                 <div class="auth-form">
                                         <div class="form-group">
@@ -106,7 +106,7 @@
                                                 <i class="icon-google"></i>
                                                 حساب گوگل
                                               </a> --}}
-                                        </div>
+                                        {{-- </div>
 
                                     <div class="social mt-3">
                                         <a href="{{route('provider.login' , ['provider' => 'google'])}}" class="bi bi-google"></a>
@@ -114,7 +114,8 @@
                                         <a href="" class="bi bi-github"></a>
                                     </div>
                                 </div>
-                                </form>
+                                </form> --}}
+                                {{-- <livewire:auth.register2.register2/>  --}}
                             </div>
                         </div>
                     </div>

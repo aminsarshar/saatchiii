@@ -46,12 +46,14 @@
                                     alt="{{ $brand->name }}" width="90px">
                             </td>
 
-                            <td wire:click="ChangeUserStatus({{ $brand->id }})" style="cursor: pointer">
+                            <td>
                                 <span
+                                wire:click="ChangeUserStatus({{ $brand->id }})" style="cursor: pointer"
                                     class="{{ $brand->getRawOriginal('is_active') ? 'badge badge-success' : 'badge badge-danger' }}">
                                     {{ $brand->is_active }}
                                 </span>
                             </td>
+
 
                             <td>
                                 <span class="badge badge-primary">

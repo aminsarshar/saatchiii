@@ -10,18 +10,33 @@ class Brands extends Component
     public $search;
 
     public function ChangeUserStatus($id) {
-        $brands = Brand::query()->find($id);
-        if($brands->is_active = 1){
-            $brands->update([
+        $brand = Brand::query()->find($id);
+        if($brand->is_active==1){
+            $brand->update([
                 'is_active' => 0
             ]);
         }else{
-            $brands->update([
+            $brand->update([
                 'is_active' => 1
             ]);
-        }
 
+        }
     }
+
+    // public function Changebrandis_active($id) {
+    //     $brands = Brand::query()->find($id);
+    //     if($brands->is_active = 1){
+    //         $brands->update([
+    //             'is_active' => 0
+    //         ]);
+    //     }else{
+    //         $brands->update([
+    //             'is_active' => 1
+    //         ]);
+
+    //     }
+
+    // }
 
     public function render()
     {

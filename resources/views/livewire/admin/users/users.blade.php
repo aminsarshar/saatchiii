@@ -50,6 +50,7 @@
                                 @endif
                             </td>
 
+                            
                             <td wire:click="ChangeUserStatus({{ $user->id }})" style="cursor: pointer">
                                 @if ($user->status == 1)
                                     <div class="badge badge-success text-white">فعال</div>

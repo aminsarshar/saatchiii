@@ -10,13 +10,13 @@ class Brands extends Component
     public $search;
 
     public function ChangeUserStatus($id) {
-        $brand = Brand::query()->find($id);
-        if($brand->is_active==1){
-            $brand->update([
+        $brands = Brand::query()->find($id);
+        if($brands->is_active==1){
+            $brands->update([
                 'is_active' => 0
             ]);
         }else{
-            $brand->update([
+            $brands->update([
                 'is_active' => 1
             ]);
 

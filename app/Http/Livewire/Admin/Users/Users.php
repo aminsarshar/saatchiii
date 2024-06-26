@@ -22,7 +22,7 @@ class Users extends Component
             ]);
         }
     }
-    
+
 
     public function render()
     {

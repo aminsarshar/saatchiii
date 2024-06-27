@@ -1,8 +1,3 @@
-@extends('admin.layouts.admin')
-@section('title')
-    دسته بندی ها
-@endsection
-@section('content')
     <section id="extended">
         <div class="row">
             <div class="col-sm-12">
@@ -64,7 +59,7 @@
                                                 </span>
                                             </td> --}}
 
-                                            <td wire:click="ChangeUserStatus({{ $category->id }})" style="cursor: pointer">
+                                            <td wire:click="ChangeCategoryStatus({{ $category->id }})" style="cursor: pointer">
                                                 @if ($category->status == 1)
                                                     <div class="badge badge-success text-white">فعال</div>
                                                 @else
@@ -100,4 +95,3 @@
             </div>
         </div>
     </section>
-@endsection

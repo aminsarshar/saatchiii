@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Brands extends Component
 {
+
     public $search;
 
     public function ChangeUserStatus($id) {

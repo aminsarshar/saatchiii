@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    show categories
+    نمایش دسته بندی
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
 
                 <div class="form-group col-md-3">
                     <label>والد</label>
-                    <div class="form-control div-disabled">
+                    <div class="form-control div-disabled" disabled>
                         @if ($category->parent_id == 0)
                             {{ $category->name }}
                         @else
@@ -64,7 +64,7 @@
 
                         <div class="col-md-3">
                             <label>ویژگی ها</label>
-                            <div class="form-control div-disabled">
+                            <div class="form-control div-disabled" style="overflow: overlay;">
                                 @foreach ($category->attributes as $attribute)
                                     {{ $attribute->name }}{{ $loop->last ? '' : '،' }}
                                 @endforeach

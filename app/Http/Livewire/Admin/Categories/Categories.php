@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Admin\Categories;
 
 use App\Models\Category;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Categories extends Component
 {
     public $search;
-    public function ChangeUserStatus($id) {
+
+    public function ChangeCategoryStatus($id) {
         $categories = Category::query()->find($id);
         if($categories->status == 1){
             $categories->update([
@@ -20,11 +22,10 @@ class Categories extends Component
             ]);
         }
     }
-
     public function render()
     {
         $categories = Category::query()->
-        where('name','like','%'.$this->search.'%')->paginate(7);
+        where('name','like','%'.$this->search.'%')->paginate(5);
         return view('livewire.admin.categories.categories' , compact('categories'));
     }
 }

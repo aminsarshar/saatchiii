@@ -87,7 +87,8 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $categories->links() }}
+                            {{ $categories->links('vendor.livewire.bootstrap') }}
+
                         </div>
                     </div>
                 </div>

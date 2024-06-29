@@ -25,7 +25,7 @@ class Categories extends Component
     public function render()
     {
         $categories = Category::query()->
-        where('name','like','%'.$this->search.'%')->paginate(5);
+        where('name','like','%'.$this->search.'%')->paginate(7);
         return view('livewire.admin.categories.categories' , compact('categories'));
     }
 }

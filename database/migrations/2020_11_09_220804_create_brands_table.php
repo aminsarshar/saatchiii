@@ -19,7 +19,7 @@ class CreateBrandsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('slug')->unique()->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->integer('status')->default(1);
 
             $table->timestamps();
         });

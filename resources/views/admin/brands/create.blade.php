@@ -29,8 +29,8 @@
 
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                                <label class="sr-only" for="is_active">وضعیت</label>
-                                                <select class="form-control" id="is_active" name="is_active">
+                                                <label class="sr-only" for="status">وضعیت</label>
+                                                <select class="form-control" id="status" name="status">
                                                     <option value="1" selected>فعال</option>
                                                     <option value="0">غیرفعال</option>
                                                 </select>

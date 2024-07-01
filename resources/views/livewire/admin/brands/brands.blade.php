@@ -46,12 +46,14 @@
                                     alt="{{ $brand->name }}" width="90px">
                             </td>
 
-                            <td>
-                                <span
-                                wire:click="ChangeUserStatus({{ $brand->id }})" style="cursor: pointer"
-                                    class="{{ $brand->getRawOriginal('is_active') ? 'badge badge-success' : 'badge badge-danger' }}">
-                                    {{ $brand->is_active }}
-                                </span>
+
+
+                            <td wire:click="ChangeUserStatus({{ $brand->id }})" style="cursor: pointer">
+                                @if ($brand->status == 1)
+                                    <div class="badge badge-success text-white">فعال</div>
+                                @else
+                                    <div class="badge badge-danger">غیر فعال</div>
+                                @endif
                             </td>
 
 

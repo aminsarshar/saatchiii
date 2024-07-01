@@ -51,7 +51,7 @@ class BrandController extends Controller
         Brand::create([
             'name' => $request->name,
             'image' => $file_name_image,
-            'is_active' => $request->is_active,
+            'status' => $request->status,
         ]);
 
         alert()->success('برند مورد نظر ایجاد شد', 'باتشکر');

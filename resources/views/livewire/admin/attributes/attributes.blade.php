@@ -1,10 +1,10 @@
 <div class="card">
     <div class="card-header d-flex" style="justify-content: space-between;align-items: center;">
         <div class="card-title-wrap bar-success">
-            <h4 class="card-title">لیست برند</h4>
+            <h4 class="card-title">لیست ویژگی های محصول</h4>
         </div>
         <div class="input-group w-50">
-            <input type="text" class="form-control" placeholder="جستجوی برند" aria-label="Amount"
+            <input type="text" class="form-control" placeholder="جستجوی ویژگی های محصول" aria-label="Amount"
                 wire:model="search">
             <div class="input-group-append">
                 <span class="input-group-text">
@@ -19,60 +19,42 @@
                 <thead>
                     <tr>
                         <th>ردیف</th>
-                        <th>نام برند</th>
-                        <th>عکس برند</th>
-                        <th>وضعیت</th>
-                        <th>تاریخ ایحاد</th>
+                        <th>نام ویژگی های محصول</th>
+                        <th>تاریخ ایجاد</th>
                         <th>نمایش</th>
                         <th>ویرایش</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($brands as $index => $brand)
+                    @foreach ($attributes as $index => $attribute)
                         <tr>
-                            <td>{{ $brands->firstItem() + $index }}</td>
+                            <td>{{ $attributes->firstItem() + $index }}</td>
 
                             <td class="text-truncate">
-                                @if (!empty($brand->name))
-                                    {{ $brand->name }}
+                                @if (!empty($attribute->name))
+                                    {{ $attribute->name }}
                                 @else
                                     <div class="badge badge-warning">این فیلد وارد نشده</div>
                                 @endif
                             </td>
 
-                            <td class="text-truncate">
-                                <img src="{{ asset(env('BRAND_IMAGES_UPLOAD_PATH') . $brand->image) }}"
-                                    alt="{{ $brand->name }}" width="90px">
-                            </td>
-
-
-
-                            <td wire:click="ChangeBrandStatus({{ $brand->id }})" style="cursor: pointer">
-                                @if ($brand->status == 1)
-                                    <div class="badge badge-success text-white">فعال</div>
-                                @else
-                                    <div class="badge badge-danger">غیر فعال</div>
-                                @endif
-                            </td>
-
-
                             <td>
                                 <span class="badge badge-primary">
-                                    {{ verta($brand->created_at)->format('%d  %B   %Y') }}
+                                    {{ verta($attribute->created_at)->format('%d  %B   %Y') }}
                                 </span>
 
                             </td>
 
                             <td>
                                 <a class="btn btn-sm btn-outline-primary"
-                                    href="{{ route('admin.brands.show', ['brand' => $brand->id]) }}">
+                                    href="{{ route('admin.attributes.show', ['attribute' => $attribute->id]) }}">
                                     نمایش <i class="fa fa-eye font-medium-3 mr-2"></i>
                                 </a>
                             </td>
                             <td>
                                 <a class="btn btn-sm btn-outline-warning mr-1"
-                                    href="{{ route('admin.brands.edit', ['brand' => $brand->id]) }}"
+                                    href="{{ route('admin.attributes.edit', ['attribute' => $attribute->id]) }}"
                                     style="color: #fcac00" class="p-0" data-original-title=""
                                     data-toggle="tooltip" data-placement="top" title="ویرایشششش">
                                     ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
@@ -82,7 +64,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $brands->links() }}
+            {{ $attributes->links() }}
         </div>
     </div>
 </div>

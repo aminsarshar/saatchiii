@@ -67,9 +67,9 @@
 
                                   <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">محصولات</span></a>
                                     <ul class="menu-content">
-                                      <li class="{{ request()->is('admin-panel/management/attributes') ? 'active' : '' }}" ><a href="{{route('admin.attributes.index')}}" class="menu-item">لیست ویژگی های محصول</a>
+                                      <li class="{{ request()->is('admin-panel/management/products') ? 'active' : '' }}" ><a href="{{route('admin.products.index')}}" class="menu-item">لیست ویژگی های محصول</a>
                                       </li>
-                                      <li class="{{ request()->is('admin-panel/management/attributes/create') ? 'active' : '' }}" ><a href="{{route('admin.attributes.create')}}" class="menu-item">ایجاد ویژگی های محصول</a>
+                                      <li class="{{ request()->is('admin-panel/management/products/create') ? 'active' : '' }}" ><a href="{{route('admin.products.create')}}" class="menu-item">ایجاد ویژگی های محصول</a>
                                       </li>
                                     </ul>
                                       </li>

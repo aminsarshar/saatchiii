@@ -6,8 +6,10 @@ use App\Models\Category;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+
 class Categories extends Component
 {
+    protected $paginationTheme = 'bootstrap';
     public $search;
 
     public function ChangeCategoryStatus($id) {

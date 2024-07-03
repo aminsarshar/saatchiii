@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Home;
 
 use Cart;
-use App\Models\Product;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Province;
+use App\Models\Transaction;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use App\Models\ProductVariation;
 use App\Http\Controllers\Controller;
-use App\Models\Province;
-use App\Models\UserAddress;
 
 class CartController extends Controller
 {
@@ -139,16 +140,11 @@ class CartController extends Controller
     public function usersProfileIndex()
     {
         $orders = Order::where('user_id' , auth()->id())->paginate(8);
-        return view('home.users_profile.orders' , compact('orders'));
+        $transactions = Transaction::where('user_id' , auth()->id())->find(10);
+        return view('home.users_profile.orders' , compact('orders' , 'transactions'));
     }
 
 
 
 
 }
-
-
-
-
-
-

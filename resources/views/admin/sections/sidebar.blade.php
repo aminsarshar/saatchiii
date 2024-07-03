@@ -71,8 +71,19 @@
                                       </li>
                                       <li class="{{ request()->is('admin-panel/management/products/create') ? 'active' : '' }}" ><a href="{{route('admin.products.create')}}" class="menu-item">ایجاد ویژگی های محصول</a>
                                       </li>
+                                      <li class="{{ request()->is('admin-panel/management/coupons') ? 'active' : '' }}" ><a href="{{route('admin.coupons.index')}}" class="menu-item">تخفیفات</a>
+                                      </li>
                                     </ul>
                                       </li>
+
+                                      <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">سفارشات</span></a>
+                                        <ul class="menu-content">
+                                          <li class="{{ request()->is('admin-panel/management/orders') ? 'active' : '' }}" ><a href="{{route('admin.orders.index')}}" class="menu-item">لیست سفارشات</a>
+                                          </li>
+                                          <li class="{{ request()->is('admin-panel/management/transactions') ? 'active' : '' }}" ><a href="{{route('admin.transactions.index')}}" class="menu-item">لیست تراکنش</a>
+                                          </li>
+                                        </ul>
+                                          </li>
 
                                       <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">مقالات</span></a>
                                         <ul class="menu-content">

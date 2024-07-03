@@ -40,16 +40,21 @@
                                                         <th>#</th>
                                                         <th>محصول سفارش</th>
                                                         <th>تاریخ ثبت سفارش</th>
+                                                        {{-- <th>شماره سفارش</th> --}}
                                                         <th>مبلغ پرداختی</th>
                                                         <th>وضعیت سفارش</th>
                                                         <th>جزییات</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="text-center">
+                                                    @php
+                                                    $transactions = App\Models\Transaction::where('user_id' , auth()->id())->find(10);
+                                                    @endphp
                                                     @foreach ($orders as $key => $order)
 
                                                             <tr>
                                                                 <td> {{ $orders->firstItem() + $key }} </td>
+                                                                {{-- <td> {{ $transactions->order_id }}</td> --}}
                                                                 <td> {{ verta($order->created_at)->format('%d %B، %Y') }}
                                                                 </td>
                                                                 <td>{{ $order->status }}</td>

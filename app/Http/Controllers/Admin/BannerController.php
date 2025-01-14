@@ -62,6 +62,7 @@ class BannerController extends Controller
         return redirect()->route('admin.banners.index');
     }
 
+
     /**
      * Display the specified resource.
      *

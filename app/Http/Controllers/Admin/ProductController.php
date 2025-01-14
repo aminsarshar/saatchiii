@@ -65,8 +65,8 @@ class ProductController extends Controller
             'images' => 'required',
             'images.*' => 'mimes:jpg,jpeg,png,svg',
             'category_id' => 'required',
-            'attribute_ids' => 'required',
-            'attribute_ids.*' => 'required',
+            // 'attribute_id' => 'required',
+            // 'attribute_id.*' => 'required',
             'variation_values' => 'required',
             'variation_values.*.*' => 'required',
             'variation_values.price.*' => 'integer',
@@ -91,8 +91,10 @@ class ProductController extends Controller
                 'type' => $request->type,
                 'delivery_amount' => $request->delivery_amount,
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
-            ]);
 
+            ]);
+            
+            // dd($product);
             foreach ($fileNameImages['fileNameImages'] as $fileNameImage) {
                 ProductImage::create([
                     'product_id' => $product->id,
@@ -234,8 +236,8 @@ class ProductController extends Controller
         // dd($request->all());
         $request->validate([
             'category_id' => 'required',
-            'attribute_ids' => 'required',
-            'attribute_ids.*' => 'required',
+            // 'attribute_ids' => 'required',
+            // 'attribute_ids.*' => 'required',
             'variation_values' => 'required',
             'variation_values.*.*' => 'required',
             'variation_values.price.*' => 'integer',
@@ -248,12 +250,12 @@ class ProductController extends Controller
                 'category_id' => $request->category_id
             ]);
 
-            $productAttributeController = new ProductAttributeController();
-            $productAttributeController->change($request->attribute_ids, $product);
+            // $productAttributeController = new ProductAttributeController();
+            // $productAttributeController->change($request->attribute_ids, $product);
 
             $category = Category::find($request->category_id);
             $productVariationController = new ProductVariationController();
-            $productVariationController->change($request->variation_values, $category->attributes()->wherePivot('is_variation', 1)->first()->id, $product);
+            $productVariationController->store($request->variation_values, $category->attributes()->wherePivot('is_variation', 1)->first()->id, $product);
 
             DB::commit();
         } catch (\Exception $ex) {

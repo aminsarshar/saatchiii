@@ -50,9 +50,9 @@ use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 
 Route::get('/admin-panel/dashboard', function () {
     return view('admin.dashboard');
-})->middleware(['role:admin'])->name('dashboard');
+})->name('dashboard');
 
-Route::prefix('admin-panel/management')->middleware(['role:admin'])->name('admin.')->group(function(){
+Route::prefix('admin-panel/management')->name('admin.')->group(function(){
 
     Route::resource('brands', BrandController::class);
     Route::resource('attributes', AttributeController::class);

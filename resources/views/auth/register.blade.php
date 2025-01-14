@@ -45,7 +45,7 @@
                                     <h3>ثبت نام در فروشگاه</h3>
                                     <p class="my-3 text-muted">اگر قبلا ثبت نام کرده اید وارد شوید</p>
                                 </div>
-                                {{-- <form action="{{ route('register') }}" method="post">
+                                <form action="{{ route('register') }}" method="post">
                                 @csrf
                                 <div class="auth-form">
                                         <div class="form-group">
@@ -102,11 +102,11 @@
                                             <button type="submit" class="btn-login w-50 waves-effect waves-light"><i class="bi bi-person"></i>
                                                  ثبت نام در سایت
                                             </button>
-                                            {{-- <a href="{{route('provider.login' , ['provider' => 'google'])}}" class="btn btn-login btn-g" style="margin-right: 23px;">
+                                             <a href="{{route('provider.login' , ['provider' => 'google'])}}" class="btn btn-login btn-g" style="margin-right: 23px;">
                                                 <i class="icon-google"></i>
                                                 حساب گوگل
-                                              </a> --}}
-                                        {{-- </div>
+                                              </a> 
+                                        </div>
 
                                     <div class="social mt-3">
                                         <a href="{{route('provider.login' , ['provider' => 'google'])}}" class="bi bi-google"></a>
@@ -114,7 +114,7 @@
                                         <a href="" class="bi bi-github"></a>
                                     </div>
                                 </div>
-                                </form> --}}
+                                </form> 
                                 {{-- <livewire:auth.register2.register2/>  --}}
                             </div>
                         </div>

@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->integer('status')->default(1);
             $table->boolean('is_active')->default(1);
             $table->boolean('type');
-            $table->string('type');
+            // $table->string('type');
             $table->string('daily_timer');
             $table->unsignedInteger('delivery_amount')->default(0);
             $table->unsignedInteger('delivery_amount_per_product')->nullable();

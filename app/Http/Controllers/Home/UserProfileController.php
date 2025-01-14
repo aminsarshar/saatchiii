@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
+use auth;
 use App\Models\City;
-use App\Models\Province;
-use App\Models\UserAddress;
+use App\Models\User;
 use App\Models\Product;
+use App\Models\Province;
 use App\Models\Wishlist;
+use App\Models\UserAddress;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 
 
@@ -19,8 +20,6 @@ class UserProfileController extends Controller
 
     public function index()
     {
-
-
         $wishlist = Wishlist::where('user_id' , auth()->id())->get();
         $addresses = UserAddress::where('user_id', auth()->id())->get();
         $provinces = Province::all();

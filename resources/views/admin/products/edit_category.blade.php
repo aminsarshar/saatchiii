@@ -5,60 +5,84 @@
 @endsection
 
 @section('script')
-    <script>
-        $('#categorySelect').selectpicker({
-            'title': 'انتخاب دسته بندی'
-        });
+<script>
+    $('#brandSelect').selectpicker({
+        'title': 'انتخاب برند'
+    });
+    $('#tagSelect').selectpicker({
+        'title': 'انتخاب تگ'
+    });
 
-        $('#attributesContainer').hide();
+    // Show File Name
+    $('#primary_image').change(function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    });
 
-        $('#categorySelect').on('changed.bs.select', function() {
-            let categoryId = $(this).val();
+    $('#images').change(function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    });
 
-            $.get(`{{ url('/admin-panel/management/category-attributes/${categoryId}') }}`, function(response,
-                status) {
-                if (status == 'success') {
-                    // console.log(response);
+    $('#categorySelect').selectpicker({
+        'title': 'انتخاب دسته بندی'
+    });
 
-                    $('#attributesContainer').fadeIn();
+    $('#attributesContainer').hide();
 
-                    // Empty Attribute Container
-                    $('#attributes').find('div').remove();
+    $('#categorySelect').on('changed.bs.select', function() {
+        let categoryId = $(this).val();
 
-                    // Create and Append Attributes Input
-                    response.attrubtes.forEach(attribute => {
-                        let attributeFormGroup = $('<div/>', {
-                            class: 'form-group col-md-3'
-                        });
-                        attributeFormGroup.append($('<label/>', {
-                            for: attribute.name,
-                            text: attribute.name
-                        }));
+        $.get(`{{ url('/admin-panel/management/category-attributes/${categoryId}') }}`, function(response,
+            status) {
+            if (status == 'success') {
+                // console.log(response);
 
-                        attributeFormGroup.append($('<input/>', {
-                            type: 'text',
-                            class: 'form-control',
-                            id: attribute.name,
-                            name: `attribute_ids[${attribute.id}]`
-                        }));
+                $('#attributesContainer').fadeIn();
 
-                        $('#attributes').append(attributeFormGroup);
+                // Empty Attribute Container
+                $('#attributes').find('div').remove();
 
+                // Create and Append Attributes Input
+                response.attrubtes.forEach(attribute => {
+                    let attributeFormGroup = $('<div/>', {
+                        class: 'form-group col-md-3'
                     });
+                    attributeFormGroup.append($('<label/>', {
+                        for: attribute.name,
+                        text: attribute.name
+                    }));
 
-                    $('#variationName').text(response.variation.name);
+                    attributeFormGroup.append($('<input/>', {
+                        type: 'text',
+                        class: 'form-control',
+                        id: attribute.name,
+                        name: `attribute_ids[${attribute.id}]`
+                    }));
 
-                } else {
-                    alert('مشکل در دریافت لیست ویژگی ها');
-                }
-            }).fail(function() {
+                    // $('#attributes').append(attributeFormGroup);
+
+                });
+
+                $('#variationName').text(response.variation.name);
+
+            } else {
                 alert('مشکل در دریافت لیست ویژگی ها');
-            });
-        });
+            }
+        }).fail(function() {
+            alert('مشکل در دریافت لیست ویژگی ها');
+        })
 
-        $("#czContainer").czMore();
+        // console.log(categoryId);
+    });
 
-    </script>
+    $("#czContainer").czMore();
+
+</script>
 @endsection
 
 @section('content')
@@ -88,7 +112,7 @@
                                 <label for="category_id">دسته بندی</label>
                                 <select id="categorySelect" name="category_id" class="form-control" data-live-search="true">
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id == $product->category->id ? 'selected' : '' }}>{{ $category->name }} -
+                                        <option value="{{ $category->id }}">{{ $category->name }} -
                                             {{ $category->parent->name }}
                                         </option>
                                     @endforeach

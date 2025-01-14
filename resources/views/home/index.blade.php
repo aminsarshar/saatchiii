@@ -108,7 +108,7 @@
     </style>
 
     <!-- home-slider -->
-    <div class="home-slider py-20">
+    <div class="home-slider py-20" >
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -117,10 +117,10 @@
                             @foreach ($sliders as $slider)
                                 <div class="swiper-slide">
                                     <a href=""><img
-                                            src="{{ asset(env('BANNER_IMAGES_UPLOAD_PATH') . $slider->image) }}"
+                                            src="{{asset('/upload/files/banners/images/' . $slider->image )}}"
                                             class="d-sm-block d-none" alt=""></a>
                                     <a href=""><img
-                                            src="{{ asset(env('BANNER_IMAGES_UPLOAD_PATH') . $slider->image) }}"
+                                            src="{{asset('/upload/files/banners/images/' . $slider->image )}}"
                                             class="d-sm-none d-block" alt=""></a>
                                 </div>
                             @endforeach
@@ -1597,7 +1597,7 @@
 
 
 
-                                    
+
                                     <a
                                         href="{{ route('home.products.show', ['product' => $product_normal_men->slug]) }}">
                                         <div class="image text-center">
@@ -3728,12 +3728,12 @@
                                 <div class="product-modal-feature">
                                     <strong>ویژگی های محصول:</strong>
                                     <ul>
-                                        @foreach ($product_normal_women->attributes()->with('attribute')->get()->take(5) as $attribute)
+                                        {{-- @foreach ($product_normal_women->attributes()->with('attribute')->get()->take(5) as $attribute)
                                             <li>
                                                 <span class="title">{{ $attribute->attribute->name }} :</span>
                                                 <span class="desc">{{ $attribute->value }}</span>
                                             </li>
-                                        @endforeach
+                                        @endforeach --}}
 
                                     </ul>
                                     <label for="post-2" class="read-more-trigger"></label>

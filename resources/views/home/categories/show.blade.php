@@ -675,11 +675,11 @@ href="{{asset('assets/css/home.css')}}"
                                             <div class="image text-center">
 
                                                 <a href="{{ route('home.products.show' , ['product' => $product->slug]) }}">
-                                                <img src="{{asset('/core/public/upload/files/products/images/' . $product->primary_image )}}" alt="توضیحات عکس" class="img-fluid one-image">
+                                                <img src="{{asset('/upload/files/products/images/' . $product->primary_image )}}" alt="توضیحات عکس" class="img-fluid one-image">
                                                 <a/>
                                                 {{-- hover image --}}
                                                 @foreach ($product->images as $image)
-                                                <img src="{{ asset('/core/public/upload/files/products/images/' . $image->image) }}" alt="" class="img-fluid two-image">
+                                                <img src="{{ asset('/upload/files/products/images/' . $image->image) }}" alt="" class="img-fluid two-image">
                                                 @endforeach
                                             </div>
                                             <div class="desc">

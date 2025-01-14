@@ -82,7 +82,7 @@ href="{{asset('assets/css/home.css')}}"
     <div class="container-fluid">
         <nav aria-label="breadcrumb" class="my-lg-0 my-2">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">خانه</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home.index')}}" class="font-14 text-muted">خانه</a></li>
                 <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">فروشگاه</a></li>
 
             </ol>
@@ -403,11 +403,24 @@ href="{{asset('assets/css/home.css')}}"
                                     <a href="{{ route('home.products.show' , ['product' => $product->slug]) }}">
                                         <div class="image text-center">
 
-                                            <img src="{{asset('/core/public/upload/files/products/images/' . $product->primary_image )}}" alt="توضیحات عکس" class="img-fluid one-image">
+
+                                             <img src="{{asset('/upload/files/products/images/' . $product->primary_image )}}" alt="توضیحات عکس" class="img-fluid one-image">
                                             {{-- hover image --}}
                                             @foreach ($product->images as $image)
-                                            <img src="{{ asset('/core/public/upload/files/products/images/' . $image->image) }}" alt="" class="img-fluid two-image">
+                                            <img src="{{ asset('/upload/files/products/images/' . $image->image) }}" alt="" class="img-fluid two-image">
                                             @endforeach
+
+
+                                            {{-- src for real server --}}
+
+                                            {{-- <img src="{{asset('/core/public/upload/files/products/images/' . $product->primary_image )}}" alt="توضیحات عکس" class="img-fluid one-image"> --}}
+                                            {{-- hover image --}}
+                                            {{-- @foreach ($product->images as $image)
+                                            <img src="{{ asset('/core/public/upload/files/products/images/' . $image->image) }}" alt="" class="img-fluid two-image">
+                                            @endforeach --}}
+
+                                            {{-- end src eal server --}}
+
                                         </div>
                                         <div class="desc">
                                             <div class="title">

@@ -47,6 +47,15 @@
                         </ul>
                           </li>
 
+                          <li class="has-sub nav-item"><a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">تگ ها</span></a>
+                            <ul class="menu-content">
+                              <li class="{{ request()->is('admin-panel/management/tags') ? 'active' : '' }}" ><a href="{{route('admin.tags.index')}}" class="menu-item">لیست تگ ها</a>
+                              </li>
+                              <li class="{{ request()->is('admin-panel/management/tags/create') ? 'active' : '' }}" ><a href="{{route('admin.tags.create')}}" class="menu-item">ایجاد تگ</a>
+                              </li>
+                            </ul>
+                              </li>
+
                           <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n="" class="menu-title">دسته بندی ها</span></a>
                             <ul class="menu-content">
                               <li class="{{ request()->is('admin-panel/management/categories') ? 'active' : '' }}" ><a href="{{route('admin.categories.index')}}" class="menu-item">لیست دسته بندی ها</a>
@@ -67,9 +76,9 @@
 
                                   <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">محصولات</span></a>
                                     <ul class="menu-content">
-                                      <li class="{{ request()->is('admin-panel/management/products') ? 'active' : '' }}" ><a href="{{route('admin.products.index')}}" class="menu-item">لیست ویژگی های محصول</a>
+                                      <li class="{{ request()->is('admin-panel/management/products') ? 'active' : '' }}" ><a href="{{route('admin.products.index')}}" class="menu-item">لیست محصول</a>
                                       </li>
-                                      <li class="{{ request()->is('admin-panel/management/products/create') ? 'active' : '' }}" ><a href="{{route('admin.products.create')}}" class="menu-item">ایجاد ویژگی های محصول</a>
+                                      <li class="{{ request()->is('admin-panel/management/products/create') ? 'active' : '' }}" ><a href="{{route('admin.products.create')}}" class="menu-item">ایجاد محصول</a>
                                       </li>
                                       <li class="{{ request()->is('admin-panel/management/coupons') ? 'active' : '' }}" ><a href="{{route('admin.coupons.index')}}" class="menu-item">تخفیفات</a>
                                       </li>

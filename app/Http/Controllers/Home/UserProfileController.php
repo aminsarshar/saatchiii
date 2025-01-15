@@ -6,6 +6,7 @@ use auth;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\Province;
 use App\Models\Wishlist;
 use App\Models\UserAddress;
@@ -22,8 +23,9 @@ class UserProfileController extends Controller
     {
         $wishlist = Wishlist::where('user_id' , auth()->id())->get();
         $addresses = UserAddress::where('user_id', auth()->id())->get();
+        $orders = Order::where('user_id', auth()->id())->get();
         $provinces = Province::all();
-        return view('home.users_profile.index' , compact('provinces', 'addresses' , 'wishlist'));
+        return view('home.users_profile.index' , compact('provinces', 'addresses' , 'wishlist' , 'orders'));
     }
 
     public function edit($id)

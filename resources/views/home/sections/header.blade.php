@@ -380,12 +380,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                                 border: 2px solid #6666ff;"
                                 class="img-fluid rounded-circle">  {{auth()->user()->name}}</label>
                               <ul style="width: 207px !important;margin-right: 219px !important;padding-top: 14px;">
-                                {{-- @role('admin') --}}
+                                @role('admin')
                                 <li><a href="{{route('dashboard')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل ادمین</a></li>
-                                {{-- @endrole --}}
-                                @role('user')
                                 <li><a href="{{route('home.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
                                 @endrole
+                                {{-- @role('user') --}}
+                                {{-- @endrole --}}
                                 @role('')
                                 <li><a href="{{route('home.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
                                 @endrole

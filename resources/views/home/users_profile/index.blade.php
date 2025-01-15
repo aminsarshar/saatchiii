@@ -178,12 +178,14 @@ $('.variation-select').on('change' , function(){
                 <div class="col-lg-9">
                     <div class="content-box" style="padding:40px 20px;">
                         <div class="row g-3">
+                            <a href="{{route('home.orders.users_profile.index')}}">
                             <div class="col-xl-3 col-6 dashboard-cart-col">
                                 <div class="dashboard-cart shadow-box">
                                     <div class="dashboard-cart-title"><i class="bi bi-bag-check"></i> سفارشات تکمیل
                                         شده</div>
-                                    <div class="dashboard-cart-footer" style="background: #0476D0;">0</div>
-                                </div>
+                                        <div class="dashboard-cart-footer" style="background: #0476D0;">{{$orders->count()}}</div>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-xl-3 col-6 dashboard-cart-col">
                                 <div class="dashboard-cart shadow-box">
@@ -376,7 +378,7 @@ $('.variation-select').on('change' , function(){
 
 
 
-                                                            <a href="#" class="editbtn" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{$address->id}}" aria-expanded="false" aria-controls="collapseEdit">
+                                                            <a href="#" class="btn-main btn-main-primary" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{$address->id}}" aria-expanded="false" aria-controls="collapseEdit">
                                                                 <i class="fa-solid fa-pen"></i>
                                                                 ویرایش آدرس
                                                             </a>

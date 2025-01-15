@@ -60,6 +60,7 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        // dd($request->all());
         try {
             DB::beginTransaction();
 
@@ -72,7 +73,7 @@ class UserController extends Controller
 
             $user->syncRoles($request->role);
 
-            $permissions = $request->except('_token', 'cellphone', 'role', 'name', '_method');
+            $permissions = $request->except('_token', 'cellphone','name' , 'role' ,  'email' , '_method');
             $user->syncPermissions($permissions);
 
             DB::commit();

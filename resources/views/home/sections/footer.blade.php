@@ -313,6 +313,7 @@
     <script src="{{asset('assets/js/rating.js')}}"></script>
     <script src="{{asset('assets/js/wow.js')}}"></script>
 
+    {{-- /admin/js/sweetalert2.all.min.js --}}
 
     <script>
         new WOW().init();

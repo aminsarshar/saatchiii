@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{{asset('assets/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/css/sweetalert2.min.css')}}"> --}}
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
+" rel="stylesheet">
+    {{-- /admin/vendors/css/sweetalert2.min.css --}}
+
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -366,7 +372,7 @@
 
                             <div class="dropdown toggle">
                               <input id="t1" type="checkbox">
-                              <label style="margin-right: 155px !important;margin-bottom: 3px;" for="t1"><img src="{{ asset('home/images/users_avatar/'.auth()->user()->avatar) == null ? asset('home/images/users_default/user_profile.png') : asset('home/images/users_avatar/'.auth()->user()->avatar) }}" alt="" style="    width: 47px;
+                              <label style="margin-right: 155px !important;margin-bottom: 3px;" for="t1"><img src="{{auth()->user()->avatar == null ? asset('home/images/users_default/images.jfif') : asset('home/images/users_avatar/'.auth()->user()->avatar) }}" alt="" style="    width: 47px;
                                 height: 47px;
                                 margin-left: 9px;
                                 object-fit: cover;

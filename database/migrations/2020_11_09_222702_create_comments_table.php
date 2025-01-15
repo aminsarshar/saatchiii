@@ -24,6 +24,9 @@ class CreateCommentsTable extends Migration
 
             $table->boolean('approved')->default(0);
             $table->text('text');
+            $table->string('tag_pos');
+            $table->string('tag_neg');
+
 
             $table->softDeletes();
             $table->timestamps();

@@ -56,10 +56,13 @@
                                 {{ $transaction->gateway_name }}
                             </td>
 
-                            <td>
-                                {{ $transaction->status }}
+                            <td wire:click="ChangeTransactionStatus({{ $transaction->id }})" style="cursor: pointer">
+                                @if ($transaction->status == 1)
+                                    <div class="badge badge-success text-white">فعال</div>
+                                @else
+                                    <div class="badge badge-danger">غیر فعال</div>
+                                @endif
                             </td>
-
 
                             <td>
                                 <span class="badge badge-primary">{{ verta($transaction->created_at)->format('%d  %B   %Y') }}</span>

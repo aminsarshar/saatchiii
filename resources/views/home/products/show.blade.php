@@ -835,7 +835,7 @@ $('.variation-select').on('change' , function(){
                                                 <div class="col-sm-10">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar p-2 bg-white shadow-box rounded-circle">
-                                                            <img src="{{ asset('home/images/users_avatar/'.$comment->avatar) == null ? asset('home/images/users_default/user_profile.png') : asset('home/images/users_avatar/' . $comment->avatar) }}" alt=""
+                                                            <img src="{{auth()->user()->avatar == null ? asset('home/images/users_default/images.jfif') : asset('home/images/users_avatar/'.auth()->user()->avatar) }}" alt=""
                                                                 class="img-fluid rounded-circle">
                                                         </div>
                                                         <div class="d-flex flex-wrap align-items-center ms-2">
@@ -877,7 +877,7 @@ $('.variation-select').on('change' , function(){
                                                         </div>
                                                         <div class="negitive rounded-4 mt-3 py-md-0 py-3">
                                                             <div class="d-flex align-items-center flex-wrap">
-                                                                <h6 class="font-14">نقاط صعف</h6>
+                                                                <h6 class="font-14">نقاط ضعف</h6>
                                                                 <nav class="navbar navbar-expand negitive-nav">
                                                                     <ul class="navbar-nav flex-wrap">
 

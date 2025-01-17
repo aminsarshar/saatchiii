@@ -4,7 +4,7 @@ rel="stylesheet"
 href="{{asset('assets/css/home.css')}}"
 />
 @section('title')
-    صفحه ای پروفایل
+پروفایل کاربری-نظرات
 @endsection
 
 @section('content')

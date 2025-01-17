@@ -115,9 +115,6 @@
     flex-wrap: wrap;
 }
 
-.dashboard-user-btn div:hover {
-    color: #F7CB2D;
-}
 
 .dashboard-user-btn div:hover a {
     color: #007fee !important;
@@ -473,15 +470,15 @@
                         </div>
 
                        <div>
-                           <i class="fa-solid fa-pen"></i>
-                        <a href="#" class="text-muted" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{auth()->user()->id}}" aria-expanded="false" aria-controls="collapseEdit">
+                           <i class="fa-solid fa-pen"  data-bs-toggle="collapse" data-bs-target="#collapseEditProfile" aria-expanded="false" aria-controls="collapseEdit"></i>
+                        <a href="#" class="text-muted" data-bs-toggle="collapse" data-bs-target="#collapseEditProfile" aria-expanded="false" aria-controls="collapseEdit">
                             ویرایش اطلاعات
                         </a>
                        </div>
 
                         <hr>
 
-                        <div class="collapse" id="collapseEdit-{{auth()->user()->id}}"  style="    margin-top: 30px;">
+                        <div class="collapse" id="collapseEditProfile"  style="    margin-top: 30px;">
                             <form
                             action="{{ route('home.users_profile.update', ['user' => auth()->user()->id]) }}"
                             method="POST"
@@ -544,11 +541,10 @@
 
                                 <div class=" col-lg-12 col-md-12">
 
-                                    <button class="cart-btn-2" type="submit" style="background-color: #FFC107;
-                                    color: white;
-                                    margin-bottom: 40px;"> ویرایش آدرس
+                                    <button class="btn-main btn-main-primary" type="submit" style="margin-top: 20px">
+                                    ویرایش اطلاعات
                                     </button>
-                                    <hr>
+                                    {{-- <hr> --}}
                                 </div>
 
                             </div>

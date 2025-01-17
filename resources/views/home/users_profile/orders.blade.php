@@ -2,7 +2,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/style-1.css') }}"> --}}
 
     @section('title')
-        صفحه ای سفارشات
+    پروفایل کاربری-سفارشات
     @endsection
 
     @section('content')

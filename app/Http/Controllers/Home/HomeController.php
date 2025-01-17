@@ -39,6 +39,8 @@ class HomeController extends Controller
         $targetDate = Carbon::parse('2023-10-10'); // تاریخ تعیین شده
         $currentDate = Carbon::now();
 
+        // $product = Product::find(17);
+        // dd($product->sale_check);
 
 
 

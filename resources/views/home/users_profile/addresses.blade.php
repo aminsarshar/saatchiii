@@ -1,18 +1,99 @@
 @extends('home.layouts.home')
-<link rel="stylesheet" href="{{asset('assets/css/style-1.css')}}">
+<link rel="stylesheet" href="{{asset('assets/js/plugin/countdown/countdown.css')}}">
+{{-- <link rel="stylesheet" href="{{asset('assets/css/style-1.css')}}"> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<script src="{{asset('assets/js/home.js')}}"></script>
-<script src="{{asset('assets/js/plugins.js')}}"></script>
-<script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-@section('title')
-    صفحه ای آدرس ها
-@endsection
 
 @section('script')
+
+<script>
+        window.toPersianNum = function (num, dontTrim) {
+
+var i = 0,
+
+    dontTrim = dontTrim || false,
+
+    num = dontTrim ? num.toString() : num.toString().trim(),
+    len = num.length,
+
+    res = '',
+    pos,
+
+    persianNumbers = typeof persianNumber == 'undefined' ?
+        ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
+        persianNumbers;
+
+for (; i < len; i++)
+    if ((pos = persianNumbers[num.charAt(i)]))
+        res += pos;
+    else
+        res += num.charAt(i);
+
+return res;
+}
+
+window.number_format = function (number, decimals, dec_point, thousands_point) {
+
+if (number == null || !isFinite(number)) {
+    throw new TypeError("number is not valid");
+}
+
+if (!decimals) {
+    var len = number.toString().split('.').length;
+    decimals = len > 1 ? len : 0;
+}
+
+if (!dec_point) {
+    dec_point = '.';
+}
+
+if (!thousands_point) {
+    thousands_point = ',';
+}
+
+number = parseFloat(number).toFixed(decimals);
+
+number = number.replace(".", dec_point);
+
+var splitNum = number.split(dec_point);
+splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+number = splitNum.join(dec_point);
+
+return number;
+}
+
+$('.variation-select').on('change' , function(){
+            let variation = JSON.parse(this.value);
+            let variationPriceDiv = $('.variation-price-' + $(this).data('id'));
+            variationPriceDiv.empty();
+
+            if(variation.is_sale){
+                let spanSale = $('<span />' , {
+                    class : 'new',
+                    text : toPersianNum(number_format(variation.sale_price)) + ' تومان'
+                });
+                let spanPrice = $('<del />' , {
+                    class : 'old',
+                    text : toPersianNum(number_format(variation.price)) + ' تومان'
+                });
+
+                variationPriceDiv.append(spanSale);
+                variationPriceDiv.append(spanPrice);
+            }else{
+                let spanPrice = $('<span />' , {
+                    class : 'new',
+                    text : toPersianNum(number_format(variation.price)) + ' تومان'
+                });
+                variationPriceDiv.append(spanPrice);
+            }
+
+            $('.quantity-input').attr('max' , variation.quantity);
+            $('.quantity-input').val(1);
+
+        });
+</script>
+
 <script>
     $('.province-select').change(function() {
 
@@ -79,6 +160,8 @@
         </script>
 
 @endsection
+
+
 
 @section('content')
 

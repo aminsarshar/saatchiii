@@ -28,7 +28,7 @@ function convertShamsiToGregorianDate($date)
 
     $arrayGergorianDate = verta()->jalaliToGregorian($shamsiDateSplit[0], $shamsiDateSplit[1], $shamsiDateSplit[2]);
 
-    return implode("-", $arrayGergorianDate) . " " . $shamsiDateSplit[3];
+    return implode("-", $arrayGergorianDate);
 }
 
 

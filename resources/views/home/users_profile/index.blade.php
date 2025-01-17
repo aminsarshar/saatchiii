@@ -1,13 +1,13 @@
 @extends('home.layouts.home')
 
-
+@section('title')
+    پروفایل کاربری
+@endsection
 <link rel="stylesheet" href="{{asset('assets/js/plugin/countdown/countdown.css')}}">
 {{-- <link rel="stylesheet" href="{{asset('assets/css/style-1.css')}}"> --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@section('title')
-    صفحه ای پروفایل
-@endsection
+
 
 @section('script')
 

@@ -30,7 +30,11 @@
             });
         });
 
+
+        
     </script>
+
+    
 @endsection
 
 @section('content')

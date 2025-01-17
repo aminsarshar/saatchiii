@@ -3,7 +3,7 @@
 
 
 @section('title')
-    صفحه اصلی
+    فروشگاه ساعت چی 
 @endsection
 
 @section('script')
@@ -2146,7 +2146,7 @@
                                         </style>
                                         <div class="sugget-item">
                                             <div class="timer text-center">
-                                                <div class='countdown' data-date="2028-01-01" data-time="18:30">
+                                                <div class='countdown' data-date="{{$product_daily_offer->variations->first()->date_on_sale_to}}">
                                                 </div>
                                             </div>
                                             <div class="image">

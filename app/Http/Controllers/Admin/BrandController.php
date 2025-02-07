@@ -95,7 +95,7 @@ class BrandController extends Controller
 
         $brand->update([
             'name' => $request->name,
-            'is_active' => $request->is_active,
+            'status' => $request->status,
         ]);
 
         alert()->success('برند مورد نظر ویرایش شد', 'باتشکر');

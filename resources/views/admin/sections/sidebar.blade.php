@@ -56,14 +56,6 @@
                             </ul>
                               </li>
 
-                          <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n="" class="menu-title">دسته بندی ها</span></a>
-                            <ul class="menu-content">
-                              <li class="{{ request()->is('admin-panel/management/categories') ? 'active' : '' }}" ><a href="{{route('admin.categories.index')}}" class="menu-item">لیست دسته بندی ها</a>
-                              </li>
-                              <li class="{{ request()->is('admin-panel/management/categories/create') ? 'active' : '' }}" ><a href="{{route('admin.categories.create')}}" class="menu-item">ایجاد دسته بندی</a>
-                              </li>
-                            </ul>
-                              </li>
 
                               <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n="" class="menu-title">ویژگی های محصول</span></a>
                                 <ul class="menu-content">
@@ -73,6 +65,15 @@
                                   </li>
                                 </ul>
                                   </li>
+
+                          <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n="" class="menu-title">دسته بندی ها</span></a>
+                            <ul class="menu-content">
+                              <li class="{{ request()->is('admin-panel/management/categories') ? 'active' : '' }}" ><a href="{{route('admin.categories.index')}}" class="menu-item">لیست دسته بندی ها</a>
+                              </li>
+                              <li class="{{ request()->is('admin-panel/management/categories/create') ? 'active' : '' }}" ><a href="{{route('admin.categories.create')}}" class="menu-item">ایجاد دسته بندی</a>
+                              </li>
+                            </ul>
+                              </li>
 
                                   <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n="" class="menu-title">محصولات</span></a>
                                     <ul class="menu-content">

@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $product_normal_mens = Product::where('category_id' , '17' , '15')->where('is_active' , 1)->where('type' , 1)->get()->take(15);
         $product_normal_womens = Product::where('category_id' , '22')->where('is_active' , 1)->where('type' , 1)->get()->take(15);
-        $product_daily_offers = Product::where('is_active' , 1)->where('type' , 3)->get()->take(15);
+        $product_daily_offers = Product::where('is_active' , 1)->where('type' , 1)->get()->take(15);
 
         $products = Product::where('is_active' , 1)->get()->take(15);
         $products_special_offers = Product::where('is_active' , 1)->where('type' , 2)->get()->take(15);
@@ -82,6 +82,7 @@ class HomeController extends Controller
         return view('home.about-us', compact('indexTopBanners'));
 
     }
+
 
 
     function contactUs()

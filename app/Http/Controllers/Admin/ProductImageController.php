@@ -63,8 +63,8 @@ class ProductImageController extends Controller
     public function add(Request $request, Product $product)
     {
         $request->validate([
-            'primary_image' => 'nullable|mimes:jpg,jpeg,png,svg',
-            'images.*' => 'nullable|mimes:jpg,jpeg,png,svg',
+            'primary_image' => 'nullable|mimes:jpg,jpeg,png,svg,webp',
+            'images.*' => 'nullable|mimes:jpg,jpeg,png,svg,webp',
         ]);
 
         if ($request->primary_image == null && $request->images == null) {

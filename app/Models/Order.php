@@ -38,6 +38,28 @@ class Order extends Model
         return $paymentType;
     }
 
+    public function getPaymentStageAttribute($paymentStage)
+    {
+        switch($paymentStage){
+            case 'wating' :
+                $paymentStage = 'در انتظار بررسی';
+                break;
+            case 'canceled' :
+                $paymentStage = 'لفو شده';
+                break;
+
+            case 'inprogress' :
+                $paymentStage = 'در حال تکمیل سفارش';
+                break;
+
+            case 'completed' :
+                $paymentStage = 'تکمیل شده';
+                break;
+        }
+        return $paymentStage;
+    }
+    
+
     public function getPaymentStatusAttribute($paymentStatus)
     {
         switch($paymentStatus){

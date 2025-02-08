@@ -23,7 +23,7 @@ class UserProfileController extends Controller
     {
         $wishlist = Wishlist::where('user_id' , auth()->id())->get();
         $addresses = UserAddress::where('user_id', auth()->id())->get();
-        $orders = Order::where('user_id', auth()->id())->get();
+        $orders = Order::where('user_id', auth()->id())->where('status' , 0)->get();
         $provinces = Province::all();
         return view('home.users_profile.index' , compact('provinces', 'addresses' , 'wishlist' , 'orders'));
     }

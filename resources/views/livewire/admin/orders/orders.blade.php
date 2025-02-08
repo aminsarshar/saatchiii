@@ -24,6 +24,7 @@
                         <th>مبلغ سفارش</th>
                         <th>نوع پرداخت</th>
                         <th>وضعیت پرداخت</th>
+                        <th>وضعیت سفارش</th>
                         <th>تاریخ سفارش</th>
                         <th>نمایش</th>
                         <th>ویرایش</th>
@@ -50,6 +51,10 @@
 
                             <td>
                                 {{ $order->payment_status }}
+                            </td>
+
+                            <td>
+                                {{ $order->payment_stage }}
                             </td>
 
                             <td>

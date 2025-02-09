@@ -183,7 +183,7 @@ $('.variation-select').on('change' , function(){
                                 <div class="dashboard-cart shadow-box">
                                     <div class="dashboard-cart-title"><i class="bi bi-bag-check"></i> سفارشات تکمیل
                                         شده</div>
-                                        <div class="dashboard-cart-footer" style="background: #0476D0;">{{$orders->count()}}</div>
+                                        <div class="dashboard-cart-footer" style="background: #0476D0;">{{$orders->where('payment_stage' , 'completed')->count()}}</div>
                                     </div>
                                 </a>
                             </div>
@@ -191,21 +191,20 @@ $('.variation-select').on('change' , function(){
                                 <div class="dashboard-cart shadow-box">
                                     <div class="dashboard-cart-title"><i class="bi bi-activity"></i> سفارشات در
                                         انتظار بررسی</div>
-                                    <div class="dashboard-cart-footer" style="background: #F6A21E;">0</div>
+                                    <div class="dashboard-cart-footer" style="background: #F6A21E;">{{$orders->where('payment_stage' , 'waiting')->count()}}</div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-6 dashboard-cart-col">
                                 <div class="dashboard-cart shadow-box">
-                                    <div class="dashboard-cart-title"><i class="bi bi-x-octagon"></i> سفارشات لغو
-                                        شده</div>
-                                    <div class="dashboard-cart-footer" style="background: #0db47f;">0</div>
+                                    <div class="dashboard-cart-title"><i class="bi bi-x-octagon"></i>سفارشات جاری</div>
+                                    <div class="dashboard-cart-footer" style="background: #0db47f;">{{$orders->where('payment_stage' , 'inprogress')->count()}}</div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-6 dashboard-cart-col">
                                 <div class="dashboard-cart shadow-box">
-                                    <div class="dashboard-cart-title"><i class="bi bi-repeat"></i> سفارشات مرجوعی
+                                    <div class="dashboard-cart-title"><i class="bi bi-repeat"></i> سفارشات لغو شده
                                     </div>
-                                    <div class="dashboard-cart-footer" style="background: #BA0F30;">0</div>
+                                    <div class="dashboard-cart-footer" style="background: #BA0F30;">{{$orders->where('payment_stage' , 'canceled')->count()}}</div>
                                 </div>
                             </div>
                         </div>

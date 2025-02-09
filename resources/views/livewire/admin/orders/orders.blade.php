@@ -53,9 +53,18 @@
                                 {{ $order->payment_status }}
                             </td>
 
-                            <td>
-                                {{ $order->payment_stage }}
+                            <td wire:click="ChangePaymentStage({{$order->id}})" style="cursor: pointer" title="تغییر وضعیت کاربر">
+                                @if ($order->payment_stage == 'waiting')
+                                    <div class="badge badge-warning text-white">در انتظار بررسی</div>
+                                @elseif($order->payment_stage == 'inprogress')
+                                    <div class="badge badge-primary">در حال انجام</div>
+                                @elseif($order->payment_stage == 'completed')
+                                    <div class="badge badge-success">تکمیل شده</div>
+                                @elseif($order->payment_stage == 'canceled')
+                                    <div class="badge badge-danger">لغو شده</div>
+                                @endif
                             </td>
+
 
                             <td>
                                 {{ verta($order->created_at)->format('%d  %B   %Y') }}

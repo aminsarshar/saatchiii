@@ -19,11 +19,11 @@
                     <div class="cart-empty-title">
                         <h2 class="text-muted">سبد خرید شما خالیست!</h2>
                         <div class="cart-empty-offer">
-                            <a href=""><span class="danger-span-border">لیست مورد علاقه من</span></a>
-                            <a href=""><span class="danger-span-border">محصولات شگفت انگیز</span></a>
-                            <a href=""><span class="danger-span-border">محصولات پر فروش روز</span></a>
+                            <a href="{{route('home.wishlist.users_profile.index')}}"><span class="danger-span-border">لیست مورد علاقه من</span></a>
+                            <a href="{{route('home.special-offer')}}"><span class="danger-span-border">محصولات شگفت انگیز</span></a>
+                            <a href="{{route('home.shop')}}"><span class="danger-span-border">محصولات پر فروش روز</span></a>
                         </div>
-                        <a href="index.html" class="btn-main btn-main-primary waves-effect waves-light fs-6 waves-effect waves-light">ادامه خرید از فروشگاه</a>
+                        <a href="{{route('home.index')}}" class="btn-main btn-main-primary waves-effect waves-light fs-6 waves-effect waves-light">ادامه خرید از فروشگاه</a>
                     </div>
 
                 </div>
@@ -39,7 +39,7 @@
                     <div class="line-step">
                         <div class="line-step-boxs">
                             <div class="line-step-box complete">
-                                <a href="cart.html">
+                                <a href="#">
                                     <div class="icon">
                                         <i class="bi bi-bag"></i>
                                     </div>
@@ -47,7 +47,7 @@
                                 </a>
                             </div>
                             <div class="line-step-box">
-                                <a href="checkout.html">
+                                <a href="{{route('home.orders.checkout')}}">
                                     <div class="icon">
                                         <i class="bi bi-file-earmark-text"></i>
                                     </div>
@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="line-step-box">
-                                <a href="cart.html">
+                                <a href="#">
                                     <div class="icon">
                                         <i class="bi bi-file-earmark-break"></i>
                                     </div>
@@ -111,7 +111,6 @@
                                                     </tr>
 
                                                     @endforeach
-                                            @endif
 
                                         </tbody>
                                     </table>
@@ -120,22 +119,6 @@
                                     <div class="col-sm-8">
                                         <div class="row g-2 align-items-center">
 
-
-                        {{-- <div class="col-lg-4 col-md-6">
-                            <div class="discount-code-wrapper">
-                                <div class="title-wrap">
-                                    <h4 class="cart-bottom-title section-bg-gray"> کد تخفیف </h4>
-                                </div>
-                                <div class="discount-code">
-                                    <p> لورم ایپسوم متن ساختگی با تولید سادگی </p>
-                                    <form action="{{route('home.coupons.check')}}" method="POST">
-                                        @csrf
-                                        <input type="text" required="" name="code">
-                                        <button class="cart-btn-2" type="submit"> ثبت </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> --}}
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
@@ -157,6 +140,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             </form>
                         </div>
@@ -226,6 +210,8 @@
                                 </a>
                             </div>
                         </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

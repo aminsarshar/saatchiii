@@ -58,7 +58,7 @@ $('#address-select').change(function() {
                 <div class="line-step">
                     <div class="line-step-boxs">
                         <div class="line-step-box complete">
-                            <a href="cart.html">
+                            <a href="{{route('home.cart.index')}}">
                                 <div class="icon">
                                     <i class="bi bi-bag"></i>
                                 </div>
@@ -66,7 +66,7 @@ $('#address-select').change(function() {
                             </a>
                         </div>
                         <div class="line-step-box complete">
-                            <a href="cart.html">
+                            <a href="#">
                                 <div class="icon">
                                     <i class="bi bi-file-earmark-text"></i>
                                 </div>
@@ -74,7 +74,7 @@ $('#address-select').change(function() {
                             </a>
                         </div>
                         <div class="line-step-box">
-                            <a href="cart.html">
+                            <a href="#">
                                 <div class="icon">
                                     <i class="bi bi-file-earmark-break"></i>
                                 </div>

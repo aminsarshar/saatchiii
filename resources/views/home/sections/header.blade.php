@@ -382,21 +382,18 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                                 class="img-fluid rounded-circle">  {{auth()->user()->name}}</label>
                               <ul style="width: 207px !important;margin-right: 219px !important;padding-top: 14px;">
                                 @role('admin')
-                                <li><a href="{{route('dashboard')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل ادمین</a></li>
-                                <li><a href="{{route('home.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
+                                <li><a href="{{route('dashboard')}}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل ادمین</a></li>
+                                <li><a href="{{route('home.users_profile.index')}}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
                                 @endrole
                                 {{-- @role('user') --}}
                                 {{-- @endrole --}}
-                                @role('')
-                                <li><a href="{{route('home.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
-                                @endrole
                                 @role('user')
-                                <li><a href="{{route('home.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
+                                <li><a href="{{route('home.users_profile.index')}}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-user" style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a></li>
                                 @endrole
-                                <li><a href="{{route('home.orders.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-cart-shopping" style="margin-left: 10px;margin-top: 3px;"></i>سفارش  </a></li>
-                                <li><a href="{{route('home.wishlist.users_profile.index')}}" style="font-weight: bold"><i class="fa-solid fa-heart" style="margin-left: 10px;margin-top: 3px;"></i>علاقه مندی ها</a></li>
-                                <li><a href="{{route('home.comments.users_profile.index') }}" style="font-weight: bold"><i class="fa-solid fa-message" style="margin-left: 10px;margin-top: 3px;"></i>نظرات ثبت شده</a></li>
-                                <li><a href="{{route('logout')}}" style="font-weight: bold"><i class="fa-solid fa-right-from-bracket" style="margin-left: 10px;margin-top: 3px;"></i>خروج از حساب کاربری</a></li>
+                                <li><a href="{{route('home.orders.users_profile.index')}}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-cart-shopping" style="margin-left: 10px;margin-top: 3px;"></i>سفارش  </a></li>
+                                <li><a href="{{route('home.wishlist.users_profile.index')}}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-heart" style="margin-left: 10px;margin-top: 3px;"></i>علاقه مندی ها</a></li>
+                                <li><a href="{{route('home.comments.users_profile.index') }}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-message" style="margin-left: 10px;margin-top: 3px;"></i>نظرات ثبت شده</a></li>
+                                <li><a href="{{route('logout')}}" target="_blank" style="font-weight: bold"><i class="fa-solid fa-right-from-bracket" style="margin-left: 10px;margin-top: 3px;"></i>خروج از حساب کاربری</a></li>
                               </ul>
                             </div>
                           </nav>

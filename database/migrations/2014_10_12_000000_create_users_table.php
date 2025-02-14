@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('provider_name')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
-            $table->foreign('role_id')->references('role_id')->on('model_has_roles')->nullable();
+            // $table->foreign('role_id')->references('role_id')->on('model_has_roles')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

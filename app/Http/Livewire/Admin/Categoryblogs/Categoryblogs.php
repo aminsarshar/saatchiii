@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Categories;
+namespace App\Http\Livewire\Admin\Categoryblogs;
 
-use App\Models\Category;
+use App\Models\CategoryBlog;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-
-class Categories extends Component
+class Categoryblogs extends Component
 {
-    protected $paginationTheme = 'bootstrap';
     public $search;
-
     public function ChangeCategoryStatus($id) {
-        $categories = Category::query()->find($id);
+        $categories = CategoryBlog::query()->find($id);
         if($categories->is_active == 1){
             $categories->update([
                 'is_active' => 0
@@ -24,10 +20,11 @@ class Categories extends Component
             ]);
         }
     }
+
     public function render()
     {
-        $categories = Category::query()->
+        $categories = CategoryBlog::query()->
         where('name','like','%'.$this->search.'%')->paginate(7);
-        return view('livewire.admin.categories.categories' , compact('categories'));
+        return view('livewire.admin.categoryblogs.categoryblogs' , compact('categories'));
     }
 }

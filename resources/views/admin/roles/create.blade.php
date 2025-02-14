@@ -67,7 +67,7 @@
 @endsection --}}
 @extends('admin.layouts.admin')
 @section('title')
-ایجاد نقش
+    ایجاد نقش
 @endsection
 @section('content')
     <section id="hidden-label-form-layouts">
@@ -89,15 +89,19 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                            <label class="sr-only" for="projectinput2">نام نقش</label>
-                                            <input type="text" placeholder="نام نقش" name="name" type="text" {{ old('name') }} class="form-control" required data-validation-required-message="فیلد نام نقش الزامی است">
+                                                <label class="sr-only" for="projectinput2">نام نقش</label>
+                                                <input type="text" placeholder="نام نقش" name="name" type="text"
+                                                    {{ old('name') }} class="form-control" required
+                                                    data-validation-required-message="فیلد نام نقش الزامی است">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                            <label class="sr-only" for="projectinput2">نام نمایشی نقش</label>
-                                            <input type="text" placeholder="نام نمایشی نقش" name="display_name" type="text" {{ old('display_name') }} class="form-control" required data-validation-required-message="فیلد نام نمایشی نقش الزامی است">
+                                                <label class="sr-only" for="projectinput2">نام نمایشی نقش</label>
+                                                <input type="text" placeholder="نام نمایشی نقش" name="display_name"
+                                                    type="text" {{ old('display_name') }} class="form-control" required
+                                                    data-validation-required-message="فیلد نام نمایشی نقش الزامی است">
                                             </div>
                                         </div>
 
@@ -105,9 +109,13 @@
                                             <div class="card">
                                                 <div class="card-header p-1" id="headingOne">
                                                     <h2 class="mb-0">
-                                                        <button style="display: flex;" class="btn btn-link btn-block text-right" type="button" data-toggle="collapse"
-                                                            data-target="#collapsePermission" aria-expanded="true" aria-controls="collapseOne">
-                                                            مجوز های دسترسی  <p style="color: rgb(105, 105, 105);font-size: 13px;padding-right: 10px;padding-top: 3px;">(کاربر چه مجوز هایی داشته باشه)</p>
+                                                        <button style="display: flex;"
+                                                            class="btn btn-link btn-block text-right" type="button"
+                                                            data-toggle="collapse" data-target="#collapsePermission"
+                                                            aria-expanded="true" aria-controls="collapseOne">
+                                                            مجوز های دسترسی <p
+                                                                style="color: rgb(105, 105, 105);font-size: 13px;padding-right: 10px;padding-top: 3px;">
+                                                                (کاربر چه مجوز هایی داشته باشه)</p>
                                                         </button>
                                                     </h2>
                                                 </div>
@@ -117,10 +125,12 @@
                                                     <div class="card-body row">
                                                         @foreach ($permissions as $permission)
                                                             <div class="form-group form-check col-md-3">
-                                                                <input type="checkbox" class="form-check-input" id="permission_{{$permission->id}}"
-                                                                name="{{$permission->name}}" value="{{$permission->name}}"
-                                                                >
-                                                                <label class="form-check-label mr-3" for="permission_{{$permission->id}}">{{ $permission->display_name }}</label>
+                                                                <input type="checkbox" class="form-check-input"
+                                                                    id="permission_{{ $permission->id }}"
+                                                                    name="{{ $permission->name }}"
+                                                                    value="{{ $permission->name }}">
+                                                                <label class="form-check-label mr-3"
+                                                                    for="permission_{{ $permission->id }}">{{ $permission->display_name }}</label>
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -134,7 +144,8 @@
 
                                 <div class="form-actions">
                                     <button type="button" class="btn btn-danger mr-1">
-                                        <a class="text-white" href="{{ route('admin.roles.index') }}"><i class="icon-back"></i> بازگشت</a>
+                                        <a class="text-white" href="{{ route('admin.roles.index') }}"><i
+                                                class="icon-back"></i> بازگشت</a>
                                     </button>
                                     <button type="submit" class="btn btn-success">
                                         <i class="icon-note"></i> ذخیره

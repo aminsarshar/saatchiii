@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Home\WishlistController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryBlogController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Home\UserProfileController;
@@ -67,6 +68,7 @@ Route::prefix('admin-panel/management')->name('admin.')->middleware('role:admin'
     Route::resource('users', UserController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('categoryblog', CategoryBlogController::class);
     Route::resource('blog', BlogController::class);
 
 

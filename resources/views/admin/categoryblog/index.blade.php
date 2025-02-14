@@ -1,12 +1,12 @@
 @extends('admin.layouts.admin')
 @section('title')
-    نقش ها
+    دسته بندی ها
 @endsection
 @section('content')
     <section id="extended">
         <div class="row">
             <div class="col-sm-12">
-                <livewire:admin.roles.roles />
+                <livewire:admin.categoryblogs.categoryblogs />
             </div>
         </div>
     </section>

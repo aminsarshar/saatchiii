@@ -6,9 +6,8 @@
     <section id="extended">
         <div class="row">
             <div class="col-sm-12">
-                <livewire:admin.users.users/>
+                <livewire:admin.users.users />
             </div>
         </div>
     </section>
 @endsection
-

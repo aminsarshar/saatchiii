@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('title')
-ایجاد کاربر
+    ایجاد کاربر
 @endsection
 @section('content')
     <section id="hidden-label-form-layouts">
@@ -25,28 +25,36 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                            <label class="sr-only" for="projectinput2">نام کاربری</label>
-                                            <input type="text" placeholder="نام کاربری" name="name" class="form-control" required data-validation-required-message="فیلد نام کاربری الزامی است">
+                                                <label class="sr-only" for="projectinput2">نام کاربری</label>
+                                                <input type="text" placeholder="نام کاربری" name="name"
+                                                    class="form-control" required
+                                                    data-validation-required-message="فیلد نام کاربری الزامی است">
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                            <label class="sr-only" for="projectinput2">ایمیل</label>
-                                            <input type="text" placeholder="ایمیل" name="email" class="form-control" required data-validation-required-message="فیلد ایمیل الزامی است">
+                                                <label class="sr-only" for="projectinput2">ایمیل</label>
+                                                <input type="text" placeholder="ایمیل" name="email"
+                                                    class="form-control" required
+                                                    data-validation-required-message="فیلد ایمیل الزامی است">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                            <label class="sr-only" for="projectinput2">رمزعبور</label>
-                                            <input type="text" placeholder="رمزعبور" name="password" class="form-control" required data-validation-required-message="فیلد رمزعبور الزامی است">
+                                                <label class="sr-only" for="projectinput2">رمزعبور</label>
+                                                <input type="text" placeholder="رمزعبور" name="password"
+                                                    class="form-control" required
+                                                    data-validation-required-message="فیلد رمزعبور الزامی است">
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                            <label class="sr-only" for="projectinput2">شماره تماس</label>
-                                            <input type="text" placeholder="شماره تماس" name="cellphone" class="form-control" required data-validation-required-message="فیلد شماره تماس الزامی است">
+                                                <label class="sr-only" for="projectinput2">شماره تماس</label>
+                                                <input type="text" placeholder="شماره تماس" name="cellphone"
+                                                    class="form-control" required
+                                                    data-validation-required-message="فیلد شماره تماس الزامی است">
                                             </div>
                                         </div>
                                     </div>
@@ -54,10 +62,13 @@
 
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="custom-file">
-                                            <div class="controls">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile01" name="avatar" required data-validation-required-message="فیلد لینک فایل الزامی است">
-                                                <label class="custom-file-label" for="inputGroupFile01">انتخاب فایل</label>
-                                            </div>
+                                                <div class="controls">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                        name="avatar" required
+                                                        data-validation-required-message="فیلد لینک فایل الزامی است">
+                                                    <label class="custom-file-label" for="inputGroupFile01">انتخاب
+                                                        فایل</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +129,8 @@
 
                                 <div class="form-actions">
                                     <button type="button" class="btn btn-danger mr-1">
-                                        <a class="text-white" href="{{route('admin.users.index')}}"><i class="icon-trash"></i> لغو</a>
+                                        <a class="text-white" href="{{ route('admin.users.index') }}"><i
+                                                class="icon-trash"></i> لغو</a>
                                     </button>
                                     <button type="submit" class="btn btn-success">
                                         <i class="icon-note"></i> ذخیره

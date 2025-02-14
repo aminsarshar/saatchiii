@@ -60,7 +60,7 @@
                                             </td> --}}
 
                                             <td wire:click="ChangeCategoryStatus({{ $category->id }})" style="cursor: pointer">
-                                                @if ($category->status == 1)
+                                                @if ($category->is_active == 1)
                                                     <div class="badge badge-success text-white">فعال</div>
                                                 @else
                                                     <div class="badge badge-danger">غیر فعال</div>

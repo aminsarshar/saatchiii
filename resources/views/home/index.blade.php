@@ -108,22 +108,6 @@
         }
     </style>
 
-    {{-- <script>
-        window.addEventListener("load", (function() {
-            const t = "67ac845ec8e8124df4c769ee";
-            window.chatina = {
-                bId: t
-            };
-            var e = document.createElement("div");
-            e.id = "chatina-root", document.body.appendChild(e);
-            var n = document.createElement("link");
-            n.rel = "stylesheet", n.href = "https://cdn.chatina.ai/static/widget.css", n.crossOrigin =
-                "anonymous", document.head.appendChild(n);
-            var a = document.createElement("script");
-            a.src = "https://cdn.chatina.ai/static/widget.js", a.crossOrigin = "anonymous", document.head
-                .appendChild(a)
-        }));
-    </script> --}}
 
     <script type="text/javascript">
         !function(){var i="by5M6H",a=window,d=document;function g(){var g=d.createElement("script"),s="https://www.goftino.com/widget/"+i,l=localStorage.getItem("goftino_"+i);g.async=!0,g.src=l?s+"?o="+l:s;d.getElementsByTagName("head")[0].appendChild(g);}"complete"===d.readyState?g():a.attachEvent?a.attachEvent("onload",g):a.addEventListener("load",g,!1);}();

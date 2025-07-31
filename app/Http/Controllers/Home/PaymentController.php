@@ -50,6 +50,7 @@ class PaymentController extends Controller
                 return redirect()->to($payGatewayResult['success']);
             }
         }
+        
 
         if ($request->payment_method == 'zarinpal') {
             $zarinpalGateway = new Zarinpal();

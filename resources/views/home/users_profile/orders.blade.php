@@ -2,7 +2,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/style-1.css') }}"> --}}
 
     @section('title')
-    پروفایل کاربری-سفارشات
+        پروفایل کاربری-سفارشات
     @endsection
 
     @section('content')
@@ -40,26 +40,49 @@
                                                             <th>#</th>
                                                             <th>محصول سفارش</th>
                                                             <th>تاریخ ثبت سفارش</th>
-                                                            {{-- <th>شماره سفارش</th> --}}
-                                                            <th>مبلغ پرداختی</th>
+                                                            <th>شماره سفارش</th>
+                                                            <th>وضعیت پرداخت</th>
                                                             <th>وضعیت سفارش</th>
-                                                            <th>جزییات</th>
+                                                            <th>مبلغ پرداختی</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="text-center">
-                                                        @php
-                                                            $transactions = App\Models\Transaction::where(
-                                                                'user_id',
-                                                                auth()->id(),
-                                                            )->find(10);
-                                                        @endphp
                                                         @foreach ($orders as $key => $order)
+                                                            @php
+                                                                $transactions = App\Models\Transaction::where(
+                                                                    'user_id',
+                                                                    auth()->id(),
+                                                                )->find($order->id);
+
+
+                                                            @endphp
                                                             <tr>
                                                                 <td> {{ $orders->firstItem() + $key }} </td>
-                                                                {{-- <td> {{ $transactions->order_id }}</td> --}}
+                                                                <td>
+                                                                    <button type="button" class="btn btn-primary"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#exampleModal-{{$order->id}}">
+                                                                        مشاهده محصول
+                                                                    </button>
+
+
+                                                                </td>
                                                                 <td> {{ verta($order->created_at)->format('%d %B، %Y') }}
+                                                                <td> {{ $transactions->ref_id }}</td>
                                                                 </td>
                                                                 <td>{{ $order->status }}</td>
+                                                                <td>
+                                                                    @if ($order->payment_stage == 'waiting')
+                                                                        <div class="btn btn-warning text-white">در
+                                                                            انتظار بررسی</div>
+                                                                    @elseif($order->payment_stage == 'inprogress')
+                                                                        <div class="btn btn-primary">در حال انجام</div>
+                                                                    @elseif($order->payment_stage == 'completed')
+                                                                        <div class="btn btn-success">تکمیل شده</div>
+                                                                    @elseif($order->payment_stage == 'canceled')
+                                                                        <div class="btn btn-danger">لغو شده</div>
+                                                                    @endif
+                                                                </td>
                                                                 <td>
                                                                     {{ number_format($order->paying_amount) }}
                                                                     تومان
@@ -68,14 +91,6 @@
                                                                             data-target="#ordersDetiles-{{ $order->id }}"
                                                                             class="check-btn sqr-btn "> نمایش جزئیات </a> --}}
                                                                 <!-- Button trigger modal -->
-                                                                <td>
-                                                                    <button type="button" class="btn btn-primary"
-                                                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                                        Launch demo modal
-                                                                    </button>
-
-
-                                                                </td>
                                                             </tr>
                                                         @endforeach
 
@@ -100,11 +115,12 @@
         <!-- end main-data -->
 
         <!-- Modal -->
-        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        @foreach ($order->orderItems as $item)
+        <div class="modal fade " id="exampleModal-{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel-{{$item->id}}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel-{{$item->id}}">{{$item->product->name}}</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -119,7 +135,7 @@
                             <tbody class="table-group-divider">
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>Mark</td>
+                                    <td>{{$item->product->description}}</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
                                 </tr>
@@ -144,4 +160,5 @@
                 </div>
             </div>
         </div>
+        @endforeach
     @endsection

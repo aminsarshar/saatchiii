@@ -141,6 +141,8 @@ class CartController extends Controller
     {
         $orders = Order::where('user_id' , auth()->id())->paginate(8);
         $transactions = Transaction::where('user_id' , auth()->id())->find(10);
+        // $products = Product::get();
+
         return view('home.users_profile.orders' , compact('orders' , 'transactions'));
     }
 

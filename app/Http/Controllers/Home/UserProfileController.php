@@ -27,6 +27,7 @@ class UserProfileController extends Controller
         // $orders_waiting = Order::where('user_id', auth()->id())->where('payment_stage' , 'waiting')->get();
 
         $orders = Order::where('user_id', auth()->id())->get();
+        // $products = Product::where('user_id', auth()->id())->get();
 
         $provinces = Province::all();
         return view('home.users_profile.index' , compact('provinces', 'addresses' , 'wishlist' , 'orders'));

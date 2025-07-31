@@ -147,6 +147,17 @@
                     </select>
                 </div>
 
+                <div class="form-group col-md-3">
+                    <label for="brand_id">برند</label>
+                    <select id="brandSelect" name="brand_id" class="form-control" data-live-search="true">
+                        <option value="0"></option>
+
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group col-md-12">
                     <label for="description">متن مقاله</label>
                     <textarea name="description" id="my_editor" class="editor">

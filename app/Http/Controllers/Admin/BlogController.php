@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryBlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Blog;
@@ -30,7 +31,8 @@ class BlogController extends Controller
     public function create()
     {
 
-        return view('admin.blog.create');
+        $categories = CategoryBlog::all();
+        return view('admin.blog.create'  ,compact('categories'));
 
     }
 

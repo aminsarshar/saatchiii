@@ -14,6 +14,7 @@ use App\Models\ProductVariation;
 use CreateProductVariationsTable;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ProductRequest;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductVariationController;
@@ -51,29 +52,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'brand_id' => 'required',
-            'is_active' => 'required',
-            'type' => 'required',
-            'tag_ids' => 'required',
-            'description' => 'required',
-            'primary_image' => 'required|mimes:jpg,jpeg,png,svg,webp',
-            'images' => 'required',
-            'images.*' => 'mimes:jpg,jpeg,png,svg,webp',
-            'category_id' => 'required',
-            // 'attribute_id' => 'required',
-            // 'attribute_id.*' => 'required',
-            'variation_values' => 'required',
-            'variation_values.*.*' => 'required',
-            'variation_values.price.*' => 'integer',
-            'variation_values.quantity.*' => 'integer',
-            'delivery_amount' => 'required|integer',
-            'delivery_amount_per_product' => 'nullable|integer',
-        ]);
+        // $request->validate([
+
+        // ]);
         try {
             DB::beginTransaction();
 
@@ -93,7 +76,7 @@ class ProductController extends Controller
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
 
             ]);
-            
+
             // dd($product);
             foreach ($fileNameImages['fileNameImages'] as $fileNameImage) {
                 ProductImage::create([

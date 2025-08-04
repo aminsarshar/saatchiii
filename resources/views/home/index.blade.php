@@ -4012,12 +4012,12 @@
                                 <div class="product-modal-feature">
                                     <strong>ویژگی های محصول:</strong>
                                     <ul>
-                                        @foreach ($product_normal_women->attributes()->with('attribute')->get()->take(5) as $attribute)
+                                        {{-- @foreach ($product_normal_women->attributes()->with('attribute')->get()->take(5) as $attribute)
                                             <li>
                                                 <span class="title">{{ $attribute->attribute->name }} :</span>
                                                 <span class="desc">{{ $attribute->value }}</span>
                                             </li>
-                                        @endforeach
+                                        @endforeach --}}
 
                                     </ul>
                                     <label for="post-2" class="read-more-trigger"></label>

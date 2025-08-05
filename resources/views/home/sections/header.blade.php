@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
- 
+
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.rtl.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/font/bootstrap-icon/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/waves/waves.min.css')}}">
@@ -101,7 +101,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body">
-                                   
+
                                     <div class="header-bottom-form mb-4 w-100">
                                         <form action="{{ route('search.results') }}" method="GET">
                                             <div class="position-relative">
@@ -163,12 +163,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
         background: -webkit-linear-gradient(0deg,#9d4edd,#c77dff,#e0aaff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 24px;  
+        font-size: 24px;
       }
 
       @media screen and (max-width: 576px) {
         .logo_type{
-        font-size: 18px;  
+        font-size: 18px;
 
         }
 
@@ -373,7 +373,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 
                             <div class="dropdown toggle">
                               <input id="t1" type="checkbox">
-                              <label style="margin-right: 155px !important;margin-bottom: 3px;" for="t1"><img src="{{auth()->user()->avatar == null ? asset('home/images/users_default/images.jfif') : asset('home/images/users_avatar/'.auth()->user()->avatar) }}" alt="" style="    width: 47px;
+                              <label style="margin-right: 155px !important;margin-bottom: 3px;" for="t1"><img src="{{auth()->user()->avatar == null ? asset('home/images/users_default/images.jfif') : asset('home/images/users_avatar/'.auth()->user()->avatar)  }}" alt="" style="    width: 47px;
                                 height: 47px;
                                 margin-left: 9px;
                                 object-fit: cover;
@@ -445,7 +445,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                     <span class="d-block mf-link-icon"><i class="bi bi-house font-20"></i></span>
                     <span class="mt-1 font-12 fw-bold mf-link-title">صفحه اصلی</span>
                 </a></li>
-           
+
             <li class="d-table-cell"><a class="mf-link nav-link text-center" data-bs-toggle="offcanvas"
                     href="#cartCanvas" role="button" aria-controls="cart canvas">
                     <div class="position-relative mf-link-icon d-table mx-auto">
@@ -458,7 +458,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                     <span class="mt-1 font-12 fw-bold mf-link-title">سبد خرید</span>
                 </a></li>
 
-                  
+
 
              @auth
                 <li class="d-table-cell"><a href="{{route('home.users_profile.index')}}" class="mf-link nav-link text-center">
@@ -477,4 +477,3 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
     </div>
 
 
-    

@@ -105,7 +105,7 @@
                                              <a href="{{route('provider.login' , ['provider' => 'google'])}}" class="btn btn-login btn-g" style="margin-right: 23px;">
                                                 <i class="icon-google"></i>
                                                 حساب گوگل
-                                              </a> 
+                                              </a>
                                         </div>
 
                                     <div class="social mt-3">
@@ -114,7 +114,7 @@
                                         <a href="" class="bi bi-github"></a>
                                     </div>
                                 </div>
-                                </form> 
+                                </form>
                                 {{-- <livewire:auth.register2.register2/>  --}}
                             </div>
                         </div>

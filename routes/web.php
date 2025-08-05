@@ -138,7 +138,7 @@ Route::get('/register2', Register2::class)->name('register2');
 Route::get('/login/{provider}' , [AuthController::class , 'redirectToProvider'])->name('provider.login');
 Route::get('/login/{provider}/callback' , [AuthController::class , 'handleProviderCallback']);
 
-
+// برای ورود از طریق پیامک
 Route::any('/loginsms/' , [AuthController::class , 'loginsms'])->name('loginsms');
 Route::post('/check-otp/' , [AuthController::class , 'checkOtp']);
 Route::post('/resend-otp/' , [AuthController::class , 'resendOtp']);

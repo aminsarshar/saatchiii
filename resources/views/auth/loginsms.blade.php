@@ -11,7 +11,8 @@ href="{{asset('assets/loginsms/css/home.css')}}"
 
 {{-- <script src="{{ asset('assets/loginsms/js/jquery-1.12.4.min.js') }}"></script> --}}
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+{{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> --}}
+<script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
 <script src="{{ asset('assets/loginsms/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/loginsms/js/home.js') }}"></script>
 <script>

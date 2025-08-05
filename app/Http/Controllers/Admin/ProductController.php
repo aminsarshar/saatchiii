@@ -15,6 +15,7 @@ use CreateProductVariationsTable;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\Admin\ProductEditRequest;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductVariationController;
@@ -54,9 +55,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        // $request->validate([
-
-        // ]);
         try {
             DB::beginTransaction();
 
@@ -144,27 +142,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductEditRequest $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'brand_id' => 'required|exists:brands,id',
-            'is_active' => 'required',
-            'tag_ids' => 'required',
-            'tag_ids.*' => 'exists:tags,id',
-            'description' => 'required',
-            'attribute_values' => 'required',
-            'variation_values' => 'required',
-            'variation_values.*.price' => 'required|integer',
-            'variation_values.*.quantity' => 'required|integer',
-            'variation_values.*.sale_price' => 'nullable|integer',
-            'variation_values.*.date_on_sale_from' => 'nullable|date',
-            'variation_values.*.date_on_sale_to' => 'nullable|date',
-            'delivery_amount' => 'required|integer',
-            'delivery_amount_per_product' => 'nullable|integer',
-        ]);
-
         try {
             DB::beginTransaction();
 
@@ -174,6 +153,7 @@ class ProductController extends Controller
                 'brand_id' => $request->brand_id,
                 'description' => $request->description,
                 'is_active' => $request->is_active,
+                'type' => $request->type,
                 'delivery_amount' => $request->delivery_amount,
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
             ]);

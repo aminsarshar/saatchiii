@@ -173,8 +173,7 @@ $('.variation-select').on('change' , function(){
                 <div class="col-lg-9">
                     <div class="content-box" style="padding:40px 20px;">
                         <p>
-
-                            <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <button class="address_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                               ایجاد آدرس
                             </button>
                           </p>
@@ -258,7 +257,7 @@ $('.variation-select').on('change' , function(){
 
                                     <div class=" col-lg-12 col-md-12">
 
-                                        <button class="cart-btn-2" type="submit"> ثبت آدرس
+                                        <button class="address_btn" type="submit"> ثبت آدرس
                                         </button>
                                     </div>
 
@@ -287,8 +286,13 @@ $('.variation-select').on('change' , function(){
                                             <div class="ui-box-item-desc">
                                                 <div class="orders">
                                                     <div class="order-item">
+                                                        <div class="order-item-status-item">
+                                                            @if($addresses->isEmpty())
+                                                            <div class="alert alert-warning" style="margin: 10px">
+                                                             آدرسی ثبت نشده
+                                                            </div>
+                                                            @else
                                                         <div class="order-item-status flex-nowrap">
-                                                            <div class="order-item-status-item">
                                                                 @foreach ($addresses as $address)
                                                                 <div>
                                                                     <address>
@@ -320,23 +324,11 @@ $('.variation-select').on('change' , function(){
 
                                                                     </address>
 
-                                                                    <style>
-                                                                        .address_p{
-                                                                            padding-bottom: 11px;
-                                                                        }
-
-                                                                        .editbtn{
-                                                                            background: white !important;
-                                                                        }
-
-                                                                        .editbtn:hover{
-                                                                            color: rgb(255, 140, 0) !important;
-                                                                        }
-                                                                    </style>
 
 
 
-                                                                    <a href="#" class="editbtn" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{$address->id}}" aria-expanded="false" aria-controls="collapseEdit">
+
+                                                                    <a href="#" style="color: white !important" class="address_btn" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{$address->id}}" aria-expanded="false" aria-controls="collapseEdit">
                                                                         <i class="fa-solid fa-pen"></i>
                                                                         ویرایش آدرس
                                                                     </a>
@@ -436,7 +428,7 @@ $('.variation-select').on('change' , function(){
 
                                                                             <div class=" col-lg-12 col-md-12">
 
-                                                                                <button class="cart-btn-2" type="submit" style="background-color: #FFC107;
+                                                                                <button class="address_btn" type="submit" style="background-color: #FFC107;
                                                                                 color: white;
                                                                                 margin-bottom: 40px;"> ویرایش آدرس
                                                                                 </button>
@@ -452,8 +444,9 @@ $('.variation-select').on('change' , function(){
                                                                 </div>
 
                                                                 @endforeach
+                                                                @endif
                                                             </div>
-                                                     
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -469,5 +462,16 @@ $('.variation-select').on('change' , function(){
     </div>
     <!-- end dashboard -->
 </div>
+
+<style>
+    .address_btn{
+     background: linear-gradient(to right, #c77dff, #9d4edd);
+    color: white;
+    border: navajowhite;
+    padding: 7px;
+    margin-top: 22px;
+    border-radius: 7px;
+                }
+</style>
 
 @endsection

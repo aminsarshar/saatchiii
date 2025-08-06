@@ -40,10 +40,10 @@
             </li>
             <li class="nav-item mt-1 d-none d-lg-block"><a id="navbar-notification-sidebar" href="javascript:;" class="nav-link position-relative notification-sidebar-toggle"><i class="icon-equalizer blue-grey darken-4"></i>
                 <p class="d-none">نوار اطلاع رسانی</p></a></li>
-            <li class="dropdown nav-item mr-0"><a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-user-link dropdown-toggle"><span class="avatar avatar-online"><img id="navbar-avatar" src="/admin/img/portrait/small/avatar-s-3.jpg" alt="avatar"/></span>
+            <li class="dropdown nav-item mr-0"><a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-user-link dropdown-toggle"><span class="avatar avatar-online"><img id="navbar-avatar" src="{{asset('home/images/users_avatar/'.auth()->user()->avatar)}}" alt="avatar"/></span>
                 <p class="d-none">تنظیمات کاربر</p></a>
               <div aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-left">
-                <div class="arrow_box_right"><a href="user-profile-page.html" class="dropdown-item py-1"><i class="ft-edit ml-2"></i><span>پروفایل من</span></a><a href="chat.html" class="dropdown-item py-1"><i class="ft-message-circle ml-2"></i><span>چت من</span></a><a href="javascript:;" class="dropdown-item py-1"><i class="ft-settings ml-2"></i><span>تنظیمات</span></a>
+                <div class="arrow_box_right"><a href="{{route('home.users_profile.index')}}" class="dropdown-item py-1"><i class="ft-edit ml-2"></i><span>پروفایل من</span></a><a href="chat.html" class="dropdown-item py-1"><i class="ft-message-circle ml-2"></i><span>چت من</span></a><a href="javascript:;" class="dropdown-item py-1"><i class="ft-settings ml-2"></i><span>تنظیمات</span></a>
                   <div class="dropdown-divider"></div><a href="javascript:;" class="dropdown-item"><i class="ft-power ml-2"></i><span>خروج</span></a>
                 </div>
               </div>

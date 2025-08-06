@@ -4302,7 +4302,7 @@ ul.show {
 
 .order-item-status-item i {
     font-size: 25px;
-    color: #009500;
+    color: #c77dff !important;
     vertical-align: -webkit-baseline-middle;
     vertical-align: -moz-middle-with-baseline;
 }

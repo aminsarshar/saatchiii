@@ -51,46 +51,56 @@ use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
 
 Route::get('/admin-panel/dashboard', function () {
     return view('admin.dashboard');
-})->name('dashboard')->middleware('role:admin');
+})->name('dashboard')->middleware('role:super_admin|admin|writer');
 
-Route::prefix('admin-panel/management')->name('admin.')->middleware('role:admin')->group(function(){
+Route::prefix('admin-panel/management')->name('admin.')->group(function(){
 
-    Route::resource('brands', BrandController::class);
-    Route::resource('attributes', AttributeController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('tags', TagController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('banners', BannerController::class);
-    Route::resource('comments', CommentController::class);
-    Route::resource('coupons', CouponController::class);
-    Route::resource('orders', OrderController::class);
-    Route::resource('transactions', TransactionController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('categoryblog', CategoryBlogController::class);
-    Route::resource('blog', BlogController::class);
+    Route::resource('brands', BrandController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('attributes', AttributeController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('categories', CategoryController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('tags', TagController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('products', ProductController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('banners', BannerController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('comments', CommentController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('coupons', CouponController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::resource('orders', OrderController::class)->middleware(['role_or_permission:super_admin|admin|order_management']);
+    Route::resource('transactions', TransactionController::class)->middleware(['role_or_permission:super_admin|admin|order_management']);
+    Route::resource('users', UserController::class)->middleware(['role_or_permission:super_admin|admin|users_management']);
+
+    Route::resource('permissions', PermissionController::class)->middleware(['role_or_permission:super_admin|admin']);
+    Route::resource('roles', RoleController::class)->middleware(['role_or_permission:super_admin|admin']);
+    Route::resource('categoryblog', CategoryBlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
+    Route::resource('blog', BlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
 
 
-    Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve');
+
+    Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
 
 
 
     // Get Category Attributes
-    Route::get('/category-attributes/{category}' ,[CategoryController::class , 'getCategoryAttributes']);
+    Route::get('/category-attributes/{category}' ,[CategoryController::class , 'getCategoryAttributes'])
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
     // Edit Product Image
-    Route::get('/products/{product}/images-edit' ,[ProductImageController::class , 'edit'])->name('products.images.edit');
-    Route::delete('/products/{product}/images-destroy' ,[ProductImageController::class , 'destroy'])->name('products.images.destroy');
-    Route::put('/products/{product}/images-set-primary' ,[ProductImageController::class , 'setPrimary'])->name('products.images.set_primary');
-    Route::post('/products/{product}/images-add' ,[ProductImageController::class , 'add'])->name('products.images.add');
+    Route::get('/products/{product}/images-edit' ,[ProductImageController::class , 'edit'])->name('products.images.edit')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::delete('/products/{product}/images-destroy' ,[ProductImageController::class , 'destroy'])->name('products.images.destroy')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::put('/products/{product}/images-set-primary' ,[ProductImageController::class , 'setPrimary'])->name('products.images.set_primary')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::post('/products/{product}/images-add' ,[ProductImageController::class , 'add'])->name('products.images.add')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
 
 
     // Edit Product Category
-    Route::get('/products/{product}/category-edit' ,[ProductController::class , 'editCategory'])->name('products.category.edit');
-    Route::put('/products/{product}/category-update' ,[ProductController::class , 'updateCategory'])->name('products.category.update');
+    Route::get('/products/{product}/category-edit' ,[ProductController::class , 'editCategory'])->name('products.category.edit')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::put('/products/{product}/category-update' ,[ProductController::class , 'updateCategory'])->name('products.category.update')
+    ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
 });
 

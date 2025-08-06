@@ -125,6 +125,11 @@ $('.variation-select').on('change' , function(){
                                         </div>
                                         <div class="ui-box-item-desc">
                                             <div class="product-list-row">
+                                                @if($wishlist->isEmpty())
+                                                <div class="alert alert-warning" style="margin: 10px">
+                                                    لیست علاقه مندی های شما خالی می باشد
+                                                </div>
+                                                @else
                                                 @foreach ($wishlist as $item)
                                                 <div class="product-row">
                                                     <a href="{{ route('home.products.show' , ['product' => $item->product->slug]) }}">
@@ -192,7 +197,7 @@ $('.variation-select').on('change' , function(){
                                                     </a>
                                                 </div>
                                                 @endforeach
-
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

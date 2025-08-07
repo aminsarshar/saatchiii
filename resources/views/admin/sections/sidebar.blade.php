@@ -35,11 +35,11 @@
                     <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n=""
                                 class="menu-title">مقالات</span></a>
                         <ul class="menu-content">
-                            <li class="{{ request()->is('admin-panel/management/blog') ? 'active' : '' }}"><a
-                                    href="{{ route('admin.blog.index') }}" class="menu-item">لیست مقالات</a>
+                            <li class="{{ request()->is('admin-panel/management/blogs') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.blogs.index') }}" class="menu-item">لیست مقالات</a>
                             </li>
-                            <li class="{{ request()->is('admin-panel/management/blog/create') ? 'active' : '' }}"><a
-                                    href="{{ route('admin.blog.create') }}" class="menu-item">ایجاد مقاله</a>
+                            <li class="{{ request()->is('admin-panel/management/blogs/create') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.blogs.create') }}" class="menu-item">ایجاد مقاله</a>
                             </li>
                         </ul>
                     </li>

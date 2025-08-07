@@ -70,7 +70,7 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function(){
     Route::resource('permissions', PermissionController::class)->middleware(['role_or_permission:super_admin|admin']);
     Route::resource('roles', RoleController::class)->middleware(['role_or_permission:super_admin|admin']);
     Route::resource('categoryblog', CategoryBlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
-    Route::resource('blog', BlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
+    Route::resource('blogs', BlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
 
 
 

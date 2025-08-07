@@ -122,7 +122,7 @@
 
             @include('admin.sections.errors')
 
-            <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.blogs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-row">
@@ -165,7 +165,7 @@
                 </div>
 
                 <button class="btn btn-outline-primary mt-5" type="submit">ثبت</button>
-                <a href="{{ route('admin.blog.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
+                <a href="{{ route('admin.blogs.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
             </form>
         </div>
 

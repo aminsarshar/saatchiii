@@ -21,8 +21,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::latest()->search()->paginate(5);
-        return view('admin.blog.index' , compact('blog'));
+        $blogs = Blog::latest()->search()->paginate(5);
+        return view('admin.blogs.index' , compact('blogs'));
     }
 
     /**
@@ -32,7 +32,7 @@ class BlogController extends Controller
     {
 
         $categories = CategoryBlog::all();
-        return view('admin.blog.create'  ,compact('categories'));
+        return view('admin.blogs.create'  ,compact('categories'));
 
     }
 
@@ -63,7 +63,7 @@ class BlogController extends Controller
         ]);
 
         alert()->success('مقاله مورد نظر ایجاد شد', 'باتشکر');
-        return redirect()->route('admin.blog.index');
+        return redirect()->route('admin.blogs.index');
 
 
 
@@ -74,7 +74,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('admin.blog.show' ,compact('blog'));
+        return view('admin.blogs.show' ,compact('blogs'));
     }
 
     /**
@@ -83,7 +83,7 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         // $blog = Blog::findOrFail($id);
-        return view('admin.blog.edit' , compact('blog'));
+        return view('admin.blogs.edit' , compact('blogs'));
     }
 
     /**
@@ -114,7 +114,7 @@ class BlogController extends Controller
 
 
         alert()->success('مقاله مورد نظر ویرایش شد', 'باتشکر');
-        return redirect()->route('admin.blog.index');
+        return redirect()->route('admin.blogs.index');
 
     }
 

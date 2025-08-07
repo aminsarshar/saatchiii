@@ -5262,7 +5262,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
   display : inline-block;
   padding : 0.25em 0.4em;
   font-size : 75%;
-  
+
   line-height : 1;
   text-align : center;
   white-space : nowrap;
@@ -5405,7 +5405,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 }
 
 .alert-link {
-  
+
 }
 
 .alert-dismissible {
@@ -5856,7 +5856,7 @@ input[type='submit'].btn-block, input[type='reset'].btn-block, input[type='butto
 .close {
   float : right;
   font-size : 1.5rem;
-  
+
   line-height : 1;
   color : #000000;
   text-shadow : 0 1px 0 #FFFFFF;
@@ -40234,7 +40234,7 @@ button:hover {
 
 form label {
   color : #75787D;
-  font-size : 0.75rem;
+  font-size : 1rem;
   text-transform : uppercase;
 }
 
@@ -40821,7 +40821,7 @@ h2.title {
 }
 
 .text-bold-700 {
-  
+
 }
 
 .text-italic {
@@ -44057,7 +44057,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
   background : #FFFFFF;
   font-family : fontawesome;
   font-size : 12px;
-  
+
 }
 
 .base-timeline li:last-child {
@@ -44187,7 +44187,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
   right : -140px;
   text-transform : uppercase;
   font-size : 10px;
-  
+
 }
 
 .activity-timeline li:before {
@@ -44205,7 +44205,7 @@ ul.list-inline.list-inline-pipe > li + li:before {
   border-radius : 50%;
   background : #C6C5C7;
   font-size : 12px;
-  
+
   line-height : 30px;
 }
 
@@ -51004,7 +51004,7 @@ ul.no-list-style {
 .lineArea1Shadow {
   -webkit-filter : drop-shadow(0px 20px 6px rgba(0, 0, 0, 0.3));
           filter : drop-shadow(0px 20px 6px rgba(0, 0, 0, 0.3));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                                        for the spread property */
 }
 
@@ -51151,7 +51151,7 @@ ul.no-list-style {
 .lineChart.lineChartShadow {
   -webkit-filter : drop-shadow(0px 20px 6px rgba(0, 0, 0, 0.3));
           filter : drop-shadow(0px 20px 6px rgba(0, 0, 0, 0.3));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                                          for the spread property */
 }
 
@@ -51191,7 +51191,7 @@ ul.no-list-style {
 .donutShadow {
   -webkit-filter : drop-shadow(0px 20px 8px rgba(0, 0, 0, 0.3));
           filter : drop-shadow(0px 20px 8px rgba(0, 0, 0, 0.3));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                              for the spread property */
 }
 
@@ -51223,7 +51223,7 @@ ul.no-list-style {
 .BarChartShadow {
   -webkit-filter : drop-shadow(0px 20px 8px rgba(0, 0, 0, 0.3));
           filter : drop-shadow(0px 20px 8px rgba(0, 0, 0, 0.3));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                                        for the spread property */
 }
 
@@ -51316,7 +51316,7 @@ ul.no-list-style {
 .WidgetAreaChartshadow {
   -webkit-filter : drop-shadow(0px -5px 2px rgba(0, 0, 0, 0.2));
           filter : drop-shadow(0px -5px 2px rgba(0, 0, 0, 0.2));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                                        for the spread property */
 }
 
@@ -51369,7 +51369,7 @@ ul.no-list-style {
 .lineChart2Shadow {
   -webkit-filter : drop-shadow(0px 14px 4px rgba(0, 0, 0, 0.2));
           filter : drop-shadow(0px 14px 4px rgba(0, 0, 0, 0.2));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                                        for the spread property */
 }
 
@@ -51435,7 +51435,7 @@ ul.no-list-style {
 .lineArea6Shadow {
   -webkit-filter : drop-shadow(0px -8px 4px rgba(0, 0, 0, 0.2));
           filter : drop-shadow(0px -8px 4px rgba(0, 0, 0, 0.2));
-  /* Same syntax as box-shadow, except 
+  /* Same syntax as box-shadow, except
                                                        for the spread property */
 }
 

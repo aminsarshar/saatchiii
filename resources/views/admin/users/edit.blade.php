@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('title')
-    ایجاد کاربر
+    ویرایش کاربر
 @endsection
 @section('content')
     <section id="hidden-label-form-layouts">

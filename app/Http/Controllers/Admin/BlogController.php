@@ -74,7 +74,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('admin.blogs.show' ,compact('blogs'));
+        return view('admin.blogs.show' ,compact('blog'));
     }
 
     /**
@@ -83,7 +83,7 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         // $blog = Blog::findOrFail($id);
-        return view('admin.blogs.edit' , compact('blogs'));
+        return view('admin.blogs.edit' , compact('blog'));
     }
 
     /**

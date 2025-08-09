@@ -22,7 +22,6 @@ class UserController extends Controller
     public function create()
     {
         return view('admin.users.create');
-
     }
 
     /**
@@ -32,12 +31,12 @@ class UserController extends Controller
     {
         $file = $request->file('avatar');
         $avatar = '';
-        if(!empty($file)){
-            $avatar = time().".".$file->getClientOriginalExtension();
-            $file->move('admin/images/users' , $avatar);
+        if (!empty($file)) {
+            $avatar = time() . "." . $file->getClientOriginalExtension();
+            $file->move('admin/images/users', $avatar);
         }
         User::query()->create([
-            'avatar'=>$avatar,
+            'avatar' => $avatar,
             'name' => $request->name,
             'email' => $request->email,
             'cellphone' => $request->cellphone,
@@ -60,7 +59,6 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        // dd($request->all());
         try {
             DB::beginTransaction();
 
@@ -73,7 +71,7 @@ class UserController extends Controller
 
             $user->syncRoles($request->role);
 
-            $permissions = $request->except('_token', 'cellphone','name' , 'role' ,  'email' , '_method');
+            $permissions = $request->except('_token', 'cellphone', 'name', 'role',  'email', '_method');
             $user->syncPermissions($permissions);
 
             DB::commit();
@@ -94,6 +92,5 @@ class UserController extends Controller
 
         alert()->success('کاربر مورد نظر حذف شد', 'باتشکر');
         return redirect()->route('admin.users.index');
-
     }
 }

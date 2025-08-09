@@ -53,8 +53,7 @@
                                             <div class="controls">
                                                 <label class="sr-only" for="projectinput2">شماره تماس</label>
                                                 <input type="text" placeholder="شماره تماس" name="cellphone"
-                                                    class="form-control" required
-                                                    data-validation-required-message="فیلد شماره تماس الزامی است">
+                                                    class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -64,67 +63,14 @@
                                             <div class="custom-file">
                                                 <div class="controls">
                                                     <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                                        name="avatar" required
-                                                        data-validation-required-message="فیلد لینک فایل الزامی است">
+                                                        name="avatar">
                                                     <label class="custom-file-label" for="inputGroupFile01">انتخاب
                                                         فایل</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <h4 class="form-section">
-                                        <i class="icon-book-open"></i>مورد نیاز پروژه
-                                    </h4>
 
-                                    <div class="row">
-                                        <div class="form-group col-12 mb-2">
-                                            <label class="sr-only" for="projectinput5">شرکت</label>
-                                            <input type="text" id="projectinput5" class="form-control"
-                                                placeholder="نام شرکت" name="company">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-6 mb-2">
-                                            <label class="sr-only" for="projectinput6">علاقه مند هستم</label>
-                                            <select id="projectinput6" name="interested" class="form-control">
-                                                <option value="none" selected="" disabled="">علاقه مند هستم</option>
-                                                <option value="design">طرح</option>
-                                                <option value="development">توسعه</option>
-                                                <option value="illustration">تصویر</option>
-                                                <option value="branding">نام تجاری</option>
-                                                <option value="video">ویدئو</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-6 mb-2">
-                                            <label class="sr-only" for="projectinput7">بودجه</label>
-                                            <select id="projectinput7" name="budget" class="form-control">
-                                                <option value="0" selected="" disabled="">بودجه</option>
-                                                <option value="less than 5000$">کمتر از 5000 ریال</option>
-                                                <option value="5000$ - 10000$">5000 ریال 10000 - ریال</option>
-                                                <option value="10000$ - 20000$">10000 ریال 20000 - ریال</option>
-                                                <option value="more than 20000$">بیش از 20000 ریال </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-12 mb-2">
-                                            <label class="sr-only">انتخاب فایل</label>
-                                            <label id="projectinput8" class="file center-block">
-                                                <input type="file" id="file">
-                                                <span class="file-custom"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-12 mb-2">
-                                            <label class="sr-only" for="projectinput9">
-                                                خلاصه پروژه</label>
-                                            <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder="خلاصه پروژه"></textarea>
-                                        </div>
-                                    </div> --}}
                                 </div>
 
                                 <div class="form-actions">

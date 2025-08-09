@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ asset('assets/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    {{-- <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/css/sweetalert2.min.css')}}"> --}}
     <link href="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
 " rel="stylesheet">
@@ -460,9 +459,20 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                         </ul>
                     @else
                         <ul class="navbar-nav text-end" style="margin-right:245px ">
-                            <a href="#loginModal"
+                            {{-- <a href="#loginModal"
                                 class="header-bottom-link-cat waves-effect waves-light rounded-pill ms-1 font-14 d-flex align-items-center justify-content-center flex-wrap"
                                 data-bs-toggle="modal" data-bs-target="#loginModal" role="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                    <path fill-rule="evenodd"
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                </svg>
+                                <span class="fw-bold text-overflow">حساب کاربری</span>
+                            </a> --}}
+
+                            <a href="{{route('login')}}"
+                                class="header-bottom-link-cat waves-effect waves-light rounded-pill ms-1 font-14 d-flex align-items-center justify-content-center flex-wrap">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />

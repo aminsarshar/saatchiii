@@ -25774,6 +25774,7 @@ h3.cart-page-title {
     height: 50px;
     margin-bottom: 30px;
     padding: 0 15px;
+    width: 100% !important;
 }
 
 .login-register-wrapper

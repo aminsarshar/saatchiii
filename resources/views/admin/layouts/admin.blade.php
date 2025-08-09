@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="/admin/vendors/css/toastr.css">
     <link rel="stylesheet" type="text/css" href="/admin/vendors/css/sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="/admin/vendors/css/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/css/jquery.md.bootstrap.datetimepicker.style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/jquery.md.bootstrap.datetimepicker.style.css') }}">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     @livewireStyles
 </head>
@@ -69,7 +69,7 @@
     <!-- BEGIN VENDOR JS-->
     @livewireScripts
     <script src="/admin/vendors/js/core/jquery-3.3.1.min.js"></script>
-    <script src="{{asset('admin/js/jquery.md.bootstrap.datetimepicker.js')}}"></script>
+    <script src="{{ asset('admin/js/jquery.md.bootstrap.datetimepicker.js') }}"></script>
     <script src="/admin/vendors/js/core/popper.min.js"></script>
     <script src="/admin/vendors/js/core/bootstrap.min.js"></script>
     <script src="/admin/vendors/js/perfect-scrollbar.jquery.min.js"></script>
@@ -95,7 +95,7 @@
     <script src="/admin/js/sweetalert2.all.min.js"></script>
     <script src="/admin/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-    <script src="{{asset('admin/js/jquery.czMore-latest.js')}}"></script>
+    <script src="{{ asset('admin/js/jquery.czMore-latest.js') }}"></script>
 
 
     jquery.czMore-latest

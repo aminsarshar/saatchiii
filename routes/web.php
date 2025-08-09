@@ -35,6 +35,7 @@ use App\Http\Controllers\Home\BlogController as HomeBlogController;
 use App\Http\Controllers\Home\CommentController as HomeCommentController;
 use App\Http\Controllers\Home\ProductController as HomeProductController;
 use App\Http\Controllers\Home\CategoryController as HomeCategoryController;
+use UniSharp\LaravelFilemanager\Lfm;
 
 
 
@@ -107,7 +108,7 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function(){
 
 // blogs
 
-Route::get('/blog/{blogs:id}' , [HomeBlogController::class , 'show'])->name('home.blogs.show');
+Route::get('/blog/{blogs:slug}' , [HomeBlogController::class , 'show'])->name('home.blogs.show');
 
 
 Route::get('/' , [HomeController::class , 'index'])->name('home.index');
@@ -208,7 +209,10 @@ Route::get('/test', function () {
 });
 
 
-
+Route::group(['prefix' => 'laravel-filemanager'], function () {
+    Lfm::routes();
+});
+// Route::post('/ckeditor/upload', [App\Http\Controllers\CKEditorController::class, 'upload'])->name('ckeditor.upload');
 
 // Route::any('/login' , [AuthController::class , 'login'])->name('login');
 

@@ -3362,9 +3362,9 @@
 
                         @foreach ($blog as $blogs)
                             <div class="swiper-slide">
-                                <a href="{{ route('home.blogs.show', ['blogs' => $blogs->id]) }}">
+                                <a href="{{ route('home.blogs.show', ['blogs' => $blogs->slug]) }}">
                                     <div class="image-blog text-center">
-                                        <img style="max-height: 277px;"
+                                        <img style="height: 300px;"
                                             src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH') . $blogs->primary_image) }}"
                                             alt="{{ $blogs->title }}" class="img-fluid">
                                         <div class="blog-desc position-absolute bottom-0">

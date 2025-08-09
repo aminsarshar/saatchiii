@@ -70,7 +70,7 @@ href="{{asset('assets/css/home.css')}}"
                                 <div class="shadow-box">
                                     <div class="card shadow-inner border-muted">
                                         <div class="image-blog text-center">
-                                            <img style="max-height: 225px;" src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid rounded-2">
+                                            <img style="height: 225px;" src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid rounded-2">
                                             <div class="blog-desc p-0 px-2 position-absolute bottom-0">
                                                 <div class="d-flex justify-content-between align-items-center my-2">
                                                     <div class="like">
@@ -94,7 +94,7 @@ href="{{asset('assets/css/home.css')}}"
                                             <p class="card-text text-overflow-3 font-13 text-justify">
                                                 {{$blogs->description = strip_tags(\Illuminate\Support\Str::limit($blogs->description,200))}}
                                             </p>
-                                            <a href="{{ route('home.blogs.show', ['blogs' => $blogs->id]) }}" class="span-primary rounded-3 font-14 shadow-md">مشاهده</a>
+                                            <a href="{{ route('home.blogs.show', ['blogs' => $blogs->slug]) }}" class="span-primary rounded-3 font-14 shadow-md">مشاهده</a>
                                             <div
                                                 class="my-card-footer mt-3 d-flex justify-content-center border-top pt-2 border-muted">
                                                 <div class="btn-group" role="group">

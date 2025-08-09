@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         $products = Product::where('is_active' , 1)->get()->take(15);
         $products_special_offers = Product::where('is_active' , 1)->where('type' , 2)->get()->take(15);
-        $blog = Blog::where('is_active' , 1)->get()->take(5);
+        $blog = Blog::where('is_active' , 1)->get()->take(20);
 
         $targetDate = Carbon::parse('2023-10-10'); // تاریخ تعیین شده
         $currentDate = Carbon::now();

@@ -44,6 +44,8 @@ class BlogController extends Controller
 
         $request->validate([
             'title' => 'required',
+            'slug' => 'required',
+            'category_id' => 'required',
             'description' => 'required',
             'primary_image' => 'required',
             'is_active' => 'required',
@@ -55,6 +57,8 @@ class BlogController extends Controller
     //    $file_name_image_primary = generateFileName( $request->primary_image->getClientOriginalName());
         Blog::create([
             'title' => $request->title,
+            'slug' => $request->slug,
+            'category_id' => $request->category_id,
             'description' => $request->description,
             'primary_image' => $file_name_image_primary,
             'user_id' =>Auth::user()->id,

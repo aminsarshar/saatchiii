@@ -108,6 +108,12 @@
     </script>
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 
+
+    <script src="https://cdn.ckeditor.com/4.21.0/full-all/ckeditor.js"></script>
+
+    <script src="{{ asset('admin/js/ckeditor.js') }}"></script>
+
+
     @yield('script')
 
 

@@ -2,6 +2,8 @@
 @section('title')
     ایجاد مقاله
 @endsection
+
+
 @section('content')
     <section id="hidden-label-form-layouts">
 
@@ -10,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title-wrap bar-success">
-                            <h4 class="card-title">ساخت کاربر</h4>
+                            <h4 class="card-title">ساخت مقاله</h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -27,6 +29,25 @@
                                                     class="form-control" required
                                                     data-validation-required-message="فیلد عنوان مقاله الزامی است">
                                             </div>
+                                        </div>
+                                        <div class="form-group col-md-6 mb-2">
+                                            <div class="controls">
+                                                <label class="sr-only" for="projectinput2">نام نمایشی</label>
+                                                <input type="text" placeholder="نام نمایشی" name="slug"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6 mb-2">
+                                            <label for="category_id">دسته بندی</label>
+                                            <select id="categorySelect" name="category_id" class="form-control"
+                                                data-live-search="true">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }} -
+                                                        {{-- {{ $category->parent->name }} --}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="custom-file">
@@ -49,12 +70,10 @@
 
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-6 mb-2">
+                                        <div class="form-group col-md-12 mb-2">
                                             <div class="controls">
                                                 <label class="sr-only" for="projectinput2">متن مقاله</label>
-                                                <input type="text" placeholder="مقاله" name="description"
-                                                    class="form-control" required
-                                                    data-validation-required-message="فیلد متن مقاله الزامی است">
+                                                <textarea name="description" id="editor"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -78,4 +97,19 @@
         </div>
 
     </section>
+
+
+    <style>
+        /* ارتفاع ثابت برای ادیتور */
+        .ck-editor__editable_inline {
+            min-height: 500px;
+        }
+
+        /* راست‌چین پیش‌فرض */
+        .ck-content {
+            direction: rtl;
+            text-align: right;
+            font-family: tahoma, sans-serif;
+        }
+    </style>
 @endsection

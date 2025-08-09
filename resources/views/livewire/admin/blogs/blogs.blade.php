@@ -44,7 +44,7 @@
 
                             <td class="text-truncate">
                                 @if (!empty($blog->description))
-                                    {{ $blog->description }}
+                                    {{-- {!! $blog->description !!} --}}
                                 @else
                                     <div class="badge badge-warning">این فیلد وارد نشده</div>
                                 @endif

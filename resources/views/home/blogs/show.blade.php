@@ -7,6 +7,8 @@ href="{{asset('assets/css/home.css')}}"
     وبلاگ
 @endsection
 @section('content')
+
+
     <!-- bread croumb -->
     <div class="content">
         <div class="container-fluid">
@@ -244,7 +246,8 @@ href="{{asset('assets/css/home.css')}}"
                         </div>
                         <div class="blog-desc">
                             <p>
-                                {{print_r($blogs->description)}}
+                                {{-- {{print_r($blogs->description)}} --}}
+                                {!! $blogs->description !!}
                             </p>
 
                         </div>
@@ -366,9 +369,9 @@ href="{{asset('assets/css/home.css')}}"
                         <div class="swiper-wrapper">
                         @foreach ($blog as $blogs)
                         <div class="swiper-slide">
-                            <a href="{{ route('home.blogs.show', ['blogs' => $blogs->id]) }}">
+                            <a href="{{ route('home.blogs.show', ['blogs' => $blogs->slug]) }}">
                                 <div class="image-blog text-center">
-                                    <img style="max-height: 277px" src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid">
+                                    <img style="height: 300px" src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid">
                                     <div class="blog-desc position-absolute bottom-0">
                                         <h6 class="font-14">{{ $blogs->title }}</h6>
                                         <div class="d-flex justify-content-between align-items-center my-2">

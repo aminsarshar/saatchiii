@@ -43,6 +43,18 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="has-sub nav-item"><a href="#"><i class="icon-layers"></i><span data-i18n=""
+                                class="menu-title">دسته بندی مقاله</span></a>
+                        <ul class="menu-content">
+                            <li class="{{ request()->is('admin-panel/management/categoryblog') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.categoryblog.index') }}" class="menu-item">لیست دسته بندی مقاله</a>
+                            </li>
+                            <li class="{{ request()->is('admin-panel/management/categoryblog/create') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.categoryblog.create') }}" class="menu-item">ایجاد دسته بندی مقاله</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endhasanyrole
 
                 @can('product_management')

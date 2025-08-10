@@ -19,7 +19,7 @@
                     <tr>
                         <th>ردیف</th>
                         <th>عنوان مقاله</th>
-                        <th>محتوای مقاله</th>
+                        <th>دسته بندی مقاله</th>
                         <th>تصویر مقاله</th>
                         <th>وضعیت</th>
                         <th>نام نویسنده</th>
@@ -43,11 +43,9 @@
                             </td>
 
                             <td class="text-truncate">
-                                @if (!empty($blog->description))
-                                    {{-- {!! $blog->description !!} --}}
-                                @else
-                                    <div class="badge badge-warning">این فیلد وارد نشده</div>
-                                @endif
+                                <div class="badge badge-secondary">
+                                    {{ $blog->category->name }}
+                                </div>
                             </td>
 
                             <td class="text-truncate">

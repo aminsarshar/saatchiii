@@ -49,6 +49,19 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group col-md-4">
+
+                                        <label for="category_id">دسته بندی</label>
+                                        <select id="categorySelect" name="category_id" class="form-control"
+                                            data-live-search="true">
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }} -
+                                                    {{ $category->parent->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                     <div class="form-group col-md-12">
                                         <label for="description">متن مقاله</label>
                                         <textarea class="form-control" name="description" id="editor" cols="60" rows="20">{{ $blog->description }}</textarea>
@@ -107,20 +120,15 @@
 @endsection
 
 @section('script')
-
-<script src="https://cdn.ckeditor.com/4.21.0/full-all/ckeditor.js"></script>
-<script>
-    
-    CKEDITOR.replace('editor', {
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserFlashBrowseUrl: '/laravel-filemanager?type=Flash',
-        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}',
-        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{ csrf_token() }}',
-        filebrowserFlashUploadUrl: '/laravel-filemanager/upload?type=Flash&_token={{ csrf_token() }}'
-    });
-
-
-</script>
-
+    <script src="https://cdn.ckeditor.com/4.21.0/full-all/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor', {
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserFlashBrowseUrl: '/laravel-filemanager?type=Flash',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{ csrf_token() }}',
+            filebrowserFlashUploadUrl: '/laravel-filemanager/upload?type=Flash&_token={{ csrf_token() }}'
+        });
+    </script>
 @endsection

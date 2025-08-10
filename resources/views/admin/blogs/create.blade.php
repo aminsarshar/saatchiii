@@ -42,9 +42,10 @@
                                             <label for="category_id">دسته بندی</label>
                                             <select id="categorySelect" name="category_id" class="form-control"
                                                 data-live-search="true">
+                                                <option disabled selected>انتخاب کنید</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }} -
-                                                        {{-- {{ $category->parent->name }} --}}
+                                                        {{ $category->parent->name }}
                                                     </option>
                                                 @endforeach
                                             </select>

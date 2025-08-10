@@ -16,4 +16,14 @@ class CategoryBlog extends Model
         return $this->belongsTo(CategoryBlog::class, 'parent_id');
     }
 
+    public function children()
+    {
+        return $this->hasMany(CategoryBlog::class, 'parent_id');
+    }
+
+    public function blogs()
+    {
+
+        return $this->hasMany(Blog::class);
+    }
 }

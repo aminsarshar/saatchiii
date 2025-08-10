@@ -332,7 +332,7 @@ href="{{asset('assets/css/home.css')}}"
                             <h3 class="font-16 mb-2"><i class="bi bi-folder me-1"></i>دسته بندی</h3>
                             <div class="d-flex align-items-center flex-wrap">
                                 <div class="blog-tag">
-                                    <a href="">تکنولوژی</a>
+                                    <a href="">{{$blogs->category->name}}</a>
                                 </div>
                             </div>
                         </div>
@@ -383,7 +383,7 @@ href="{{asset('assets/css/home.css')}}"
                                             </div>
                                             <div class="date d-flex align-items-center">
                                                 <div class="icon me-1"><i class="bi bi-calendar-event"></i></div>
-                                                <span class="font-12">3 روز پیش</span>
+                                                <span class="font-12">{{ verta($blogs->created_at)->format('%d  %B   %Y') }}</span>
                                             </div>
                                         </div>
                                     </div>

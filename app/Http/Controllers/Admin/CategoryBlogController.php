@@ -51,6 +51,7 @@ class CategoryBlogController extends Controller
                 'description' => $request->description,
             ]);
 
+
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();

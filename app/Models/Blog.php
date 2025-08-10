@@ -12,9 +12,14 @@ class Blog extends Model
     protected $guarded = [];
 
 
-        public function user()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryBlog::class);
     }
 
     public function getIsActiveAttribute($is_active)
@@ -26,10 +31,9 @@ class Blog extends Model
     {
         $keyword = request()->search;
         if (request()->has('search') && trim($keyword) != '') {
-            $query->where('title', 'LIKE', '%'. trim($keyword) .'%');
+            $query->where('title', 'LIKE', '%' . trim($keyword) . '%');
         }
 
         return $query;
     }
-
 }

@@ -3383,7 +3383,7 @@
                                                     <span class="counter font-12">25</span>
                                                 </div>
                                                 <div class="date">
-                                                    <span class="font-12">3 روز پیش</span>
+                                                    <span class="font-12">{{ verta($blogs->created_at)->format('%d  %B   %Y') }}</span>
                                                 </div>
                                             </div>
                                         </div>

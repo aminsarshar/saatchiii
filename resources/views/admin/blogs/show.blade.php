@@ -56,7 +56,7 @@
                                         <div class="form-group col-md-12 mb-2">
                                             <div class="controls">
                                                 <label class="" for="projectinput2">متن مقاله</label>
-                                                <textarea disabled name="description" id="my_editor" class="form-control">{{ str_replace(' ', '', $blog->description) }}</textarea>
+                                                <textarea disabled name="description" id="editor" class="form-control">{!! $blog->description !!}</textarea>
                                             </div>
                                         </div>
 
@@ -90,7 +90,6 @@
                                                     width: 100%;
                                                     height: 250px;
                                                     object-fit: cover
-
                                                 }
                                             </style>
 

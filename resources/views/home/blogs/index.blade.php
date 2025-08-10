@@ -1,13 +1,9 @@
 @extends('home.layouts.home')
-<link
-rel="stylesheet"
-href="{{asset('assets/css/home.css')}}"
-/>
+<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @section('title')
     وبلاگ
 @endsection
 @section('content')
-
     <!-- bread croumb -->
     <div class="content">
         <div class="container-fluid">
@@ -66,56 +62,59 @@ href="{{asset('assets/css/home.css')}}"
                         <div class="row gy-4">
 
                             @foreach ($blog as $blogs)
-                            <div class="col-md-4 col-sm-6">
-                                <div class="shadow-box">
-                                    <div class="card shadow-inner border-muted">
-                                        <div class="image-blog text-center">
-                                            <img style="height: 225px;" src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH').$blogs->primary_image) }}" alt="{{ $blogs->title }}" class="img-fluid rounded-2">
-                                            <div class="blog-desc p-0 px-2 position-absolute bottom-0">
-                                                <div class="d-flex justify-content-between align-items-center my-2">
-                                                    <div class="like">
-                                                        <span class="icon">
-                                                            <i class="bi bi-heart"></i>
-                                                        </span>
-                                                        <span class="counter font-12">25</span>
-                                                    </div>
-                                                    <div class="date">
-                                                        <span class="icon">
-                                                            <i class="bi bi-calendar-event"></i>
-                                                        </span>
-                                                        <span class="font-12">3 روز پیش</span>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="shadow-box">
+                                        <div class="card shadow-inner border-muted">
+                                            <div class="image-blog text-center">
+                                                <img style="height: 225px;"
+                                                    src="{{ asset(env('BLOG_IMAGES_UPLOAD_PATH') . $blogs->primary_image) }}"
+                                                    alt="{{ $blogs->title }}" class="img-fluid rounded-2">
+                                                <div class="blog-desc p-0 px-2 position-absolute bottom-0">
+                                                    <div class="d-flex justify-content-between align-items-center my-2">
+                                                        <div class="like">
+                                                            <span class="icon">
+                                                                <i class="bi bi-heart"></i>
+                                                            </span>
+                                                            <span class="counter font-12">25</span>
+                                                        </div>
+                                                        <div class="date">
+                                                            <span class="icon">
+                                                                <i class="bi bi-calendar-event"></i>
+                                                            </span>
+                                                            <span class="font-12">{{ verta($blogs->created_at)->format('%d  %B   %Y') }}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-15 text-overflow-2">{{$blogs->title}}
-                                            </h5>
-                                            <p class="card-text text-overflow-3 font-13 text-justify">
-                                                {{$blogs->description = strip_tags(\Illuminate\Support\Str::limit($blogs->description,200))}}
-                                            </p>
-                                            <a href="{{ route('home.blogs.show', ['blogs' => $blogs->slug]) }}" class="span-primary rounded-3 font-14 shadow-md">مشاهده</a>
-                                            <div
-                                                class="my-card-footer mt-3 d-flex justify-content-center border-top pt-2 border-muted">
-                                                <div class="btn-group" role="group">
-                                                    <a href="" class="btn border-0 bg-dark text-white btn-sm"
-                                                        style="border-top-right-radius:20px;border-bottom-right-radius:20px">تکتولوژی</a>
-                                                    <a href="" class="btn border-0 bg-primary text-white btn-sm"
-                                                        style="border-top-left-radius:20px;border-bottom-left-radius:20px">0
-                                                        دیدگاه</a>
+                                            <div class="card-body">
+                                                <h5 class="card-title font-15 text-overflow-2">{{ $blogs->title }}
+                                                </h5>
+                                                <p class="card-text text-overflow-3 font-13 text-justify">
+                                                    {{ $blogs->description = strip_tags(\Illuminate\Support\Str::limit($blogs->description, 200)) }}
+                                                </p>
+                                                <a href="{{ route('home.blogs.show', ['blogs' => $blogs->slug]) }}"
+                                                    class="span-primary rounded-3 font-14 shadow-md">مشاهده</a>
+                                                <div
+                                                    class="my-card-footer mt-3 d-flex justify-content-center border-top pt-2 border-muted">
+                                                    <div class="btn-group" role="group">
+                                                        <a href="" class="btn border-0 bg-dark text-white btn-sm"
+                                                            style="border-top-right-radius:20px;border-bottom-right-radius:20px">تکتولوژی</a>
+                                                        <a href="" class="btn border-0 bg-primary text-white btn-sm"
+                                                            style="border-top-left-radius:20px;border-bottom-left-radius:20px">0
+                                                            دیدگاه</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
 
-                            {{$blog->links()}}
+                            {{ $blog->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- end main-data -->
-@endsection
+        <!-- end main-data -->
+    @endsection

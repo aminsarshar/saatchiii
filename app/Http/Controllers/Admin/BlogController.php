@@ -22,7 +22,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::latest()->search()->paginate(5);
-        return view('admin.blogs.index' , compact('blogs'));
+        $categories = CategoryBlog::all();
+        return view('admin.blogs.index' , compact('blogs' , 'categories'));
     }
 
     /**
@@ -31,7 +32,7 @@ class BlogController extends Controller
     public function create()
     {
 
-        $categories = CategoryBlog::all();
+        $categories = CategoryBlog::where('parent_id', '!=', 0)->get();
         return view('admin.blogs.create'  ,compact('categories'));
 
     }
@@ -87,7 +88,8 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         // $blog = Blog::findOrFail($id);
-        return view('admin.blogs.edit' , compact('blog'));
+        $categories = CategoryBlog::where('parent_id', '!=', 0)->get();
+        return view('admin.blogs.edit' , compact('categories', 'blog'));
     }
 
     /**
@@ -111,6 +113,7 @@ class BlogController extends Controller
         $blog->update([
             'title' => $request->title,
             'description' => $request->description,
+            'category_id' => $request->category_id,
             'primary_image' => $primary_image,
             'is_active' => $request->is_active,
 

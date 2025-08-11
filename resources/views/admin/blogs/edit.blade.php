@@ -106,8 +106,15 @@
 
                                 </div>
 
-                                <button class="btn btn-outline-primary mt-5" type="submit">ویرایش</button>
-                                <a href="{{ route('admin.blogs.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-danger mr-1">
+                                        <a class="text-white" href="{{ route('admin.blogs.index') }}"><i
+                                                class="icon-trash"></i> لغو</a>
+                                    </button>
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="icon-note"></i> ویرایش
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -119,16 +126,4 @@
     </section>
 @endsection
 
-@section('script')
-    <script src="https://cdn.ckeditor.com/4.21.0/full-all/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('editor', {
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserFlashBrowseUrl: '/laravel-filemanager?type=Flash',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_token() }}',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{ csrf_token() }}',
-            filebrowserFlashUploadUrl: '/laravel-filemanager/upload?type=Flash&_token={{ csrf_token() }}'
-        });
-    </script>
-@endsection
+

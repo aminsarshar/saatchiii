@@ -45,6 +45,15 @@
                                             </div>
                                         </div>
 
+
+                                        <div class="form-group col-md-6 mb-2">
+                                            <div class="controls">
+                                                <label class="" for="projectinput2">دسته بندی</label>
+                                                <input class="form-control" type="text" value="{{ $blog->category->name }}"
+                                                    disabled>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
                                                 <label class="" for="projectinput2">نویسنده</label>

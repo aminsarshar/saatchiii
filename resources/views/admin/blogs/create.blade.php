@@ -34,15 +34,16 @@
                                             <div class="controls">
                                                 <label class="sr-only" for="projectinput2">نام نمایشی</label>
                                                 <input type="text" placeholder="نام نمایشی" name="slug"
-                                                    class="form-control">
+                                                    class="form-control" required
+                                                    data-validation-required-message="فیلد نام نمایشی الزامی است">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-6 mb-2">
-                                            <label for="category_id">دسته بندی</label>
-                                            <select id="categorySelect" name="category_id" class="form-control"
+                                            <label class="sr-only" for="category_id">دسته بندی</label>
+                                            <select id="categorySelect" name="category_id" class="form-control" 
                                                 data-live-search="true">
-                                                <option disabled selected>انتخاب کنید</option>
+                                                <option disabled selected>دسته بندی</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }} -
                                                         {{ $category->parent->name }}

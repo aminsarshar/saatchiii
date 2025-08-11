@@ -6,6 +6,8 @@ use App\Models\CategoryBlog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryBlogRequest;
+use App\Http\Requests\Admin\CategoryBlogEditRequest;
 
 
 class CategoryBlogController extends Controller
@@ -26,19 +28,13 @@ class CategoryBlogController extends Controller
     {
         $parentCategories = CategoryBlog::where('parent_id', 0)->get();
         return view('admin.categoryblog.create', compact('parentCategories'));
-
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryBlogRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:categories,slug',
-            'parent_id' => 'required',
-        ]);
 
         try {
             DB::beginTransaction();
@@ -69,7 +65,6 @@ class CategoryBlogController extends Controller
     public function show(CategoryBlog $categoryblog)
     {
         return view('admin.categoryblog.show', compact('categoryblog'));
-
     }
 
     /**
@@ -85,13 +80,8 @@ class CategoryBlogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CategoryBlog $categoryblog)
+    public function update(CategoryBlogEditRequest $request, CategoryBlog $categoryblog)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:category_blogs,slug,' . $categoryblog->id,
-            'parent_id' => 'required',
-        ]);
 
         try {
             DB::beginTransaction();
@@ -99,6 +89,7 @@ class CategoryBlogController extends Controller
             $categoryblog->update([
                 'name' => $request->name,
                 'slug' => $request->slug,
+                'is_active' => $request->is_active,
                 'parent_id' => $request->parent_id,
                 'icon' => $request->icon,
                 'description' => $request->description,

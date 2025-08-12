@@ -56,15 +56,15 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-sm btn-outline-warning mr-1"
-                                    href="{{ route('admin.tags.restore', $tag->id) }}"><i
-                                        class="fa fa-trash-o font-medium-3 mr-2"></i>بازگرداندن</a>
+                                <a wire:click="restoreTag({{ $tag->id }})"
+                                    class="btn btn-success">بازگردانی</a>
                             </td>
 
                             <td>
-                                <a class="btn btn-sm btn-outline-danger mr-1"
-                                    href="{{ route('admin.tags.delete', $tag->id) }}"><i
-                                        class="fa fa-trash-o font-medium-3 mr-2"></i>حذف</a>
+                                <a class="btn btn-danger mr-2" wire:click="forceDeleteTag({{ $tag->id }})"
+                                    data-original-title="" data-toggle="tooltip" data-placement="top" title="حذف کامل">
+                                    حذف
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -74,3 +74,26 @@
         </div>
     </div>
 </div>
+
+@section('script')
+    <script>
+        window.addEventListener('forceDeleteTag', event => {
+            Swal.fire({
+                title: 'آیا از حذف مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('forceDestroyTag', event.detail.id)
+                    Swal.fire(
+                        'حذف با موفقیت انجام شد',
+                    )
+                }
+            })
+        })
+    </script>
+@endsection

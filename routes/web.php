@@ -73,14 +73,9 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     // Products
     Route::resource('products', ProductController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
 
-    Route::get('/trashed_products', [ProductController::class, 'trashed'])->name('products.trashed_list')
+    Route::get('/trashed_products', [ProductController::class, 'trashed'])->name('products.trashed_product')
         ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
-    Route::get('/products/restore/{id}', [ProductController::class, 'restore'])
-        ->name('products.restore');
-
-    Route::get('/products/delete/{id}', [ProductController::class, 'delete'])
-        ->name('products.delete');
 
     // Edit Product Category
     Route::get('/products/{product}/category-edit', [ProductController::class, 'editCategory'])->name('products.category.edit')
@@ -109,25 +104,13 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::get('/trashed_blogs', [BlogController::class, 'trashed'])->name('blogs.trashed_blog')
         ->middleware(['role_or_permission:super_admin|admin|blog_management']);
 
-    Route::get('/blogs/restore/{id}', [BlogController::class, 'restore'])
-        ->name('blogs.restore');
-
-    Route::get('/blogs/delete/{id}', [BlogController::class, 'delete'])
-        ->name('blogs.delete');
-
 
     // Tags
 
     Route::resource('tags', TagController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
 
-    Route::get('/trashed_tags', [TagController::class, 'trashed'])->name('blogs.trashed_tag')
+    Route::get('/trashed_tags', [TagController::class, 'trashed'])->name('tags.trashed_tag')
         ->middleware(['role_or_permission:super_admin|admin']);
-
-    Route::get('/tags/restore/{id}', [TagController::class, 'restore'])
-        ->name('tags.restore');
-
-    Route::get('/tags/delete/{id}', [TagController::class, 'delete'])
-        ->name('tags.delete');
 
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve')

@@ -195,31 +195,7 @@ class ProductController extends Controller
     public function trashed()
     {
         $products = Product::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
-        return view('admin.products.trashed_list', compact('products'));
-    }
-
-
-    public function restore($id)
-    {
-        $product = Product::onlyTrashed()->find($id);
-        if ($product) {
-            $product->restore();
-        alert()->success('محصول مورد نظر بازگردانده شد', 'باتشکر');
-        return redirect()->route('admin.products.index');
-        }
-
-        return redirect()->back()->with('error', 'محصول یافت نشد ❌');
-    }
-
-    public function delete($id){
-        $product = Product::onlyTrashed()->find($id);
-                if ($product) {
-            $product->forceDelete();
-        alert()->success('محصول مورد نظر بازگردانده شد', 'باتشکر');
-        return redirect()->route('admin.products.index');
-        }
-
-        return redirect()->back()->with('error', 'محصول یافت نشد ❌');
+        return view('admin.products.trashed_product', compact('products'));
     }
 
 

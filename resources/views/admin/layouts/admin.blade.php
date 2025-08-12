@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="/admin/vendors/css/chartist.min.css">
     <link rel="stylesheet" type="text/css" href="/admin/css/app.css">
     <link rel="stylesheet" type="text/css" href="/admin/vendors/css/toastr.css">
-    <link rel="stylesheet" type="text/css" href="/admin/vendors/css/sweetalert2.min.css">
+    {{-- <link rel="stylesheet" type="text/css" href="/admin/vendors/css/sweetalert2.min.css"> --}}
     <link rel="stylesheet" type="text/css" href="/admin/vendors/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/jquery.md.bootstrap.datetimepicker.style.css') }}">
     <link rel="stylesheet"
@@ -92,7 +92,7 @@
 
     <script src="/admin/vendors/js/jqBootstrapValidation.js"></script>
     <script src="/admin/js/form-validation.js"></script>
-    <script src="/admin/js/sweetalert2.all.min.js"></script>
+    {{-- <script src="/admin/js/sweetalert2.all.min.js"></script> --}}
     <script src="/admin/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script src="{{ asset('admin/js/jquery.czMore-latest.js') }}"></script>
@@ -106,6 +106,8 @@
             dropdownParent: $('#parent')
         ])
     </script>
+    {{-- @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9']) --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 
 

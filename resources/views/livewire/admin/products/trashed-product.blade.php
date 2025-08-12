@@ -40,7 +40,7 @@
 
                             <td class="text-truncate">
                                 <a href="{{ route('admin.products.show', ['product' => $product->id]) }}">
-                                    {{ \Illuminate\Support\Str::limit($product->name, 50, '...') }}
+                                    {{ \Illuminate\Support\Str::limit($product->name, 30, '...') }}
                                 </a>
                             </td>
 
@@ -79,15 +79,35 @@
                             </td>
 
                             <td>
-                                <a class="btn btn-sm btn-outline-warning mr-1"
-                                    href="{{ route('admin.products.restore', $product->id) }}"><i
-                                        class="fa fa-trash-o font-medium-3 mr-2"></i>بازگرداندن</a>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        عملیات
+                                    </button>
+                                    <div class="dropdown-menu">
+
+                                        <a href="{{ route('admin.products.edit', ['product' => $product->id]) }}"
+                                            class="dropdown-item text-right"> ویرایش محصول </a>
+
+                                        <a href="{{ route('admin.products.images.edit', ['product' => $product->id]) }}"
+                                            class="dropdown-item text-right"> ویرایش تصاویر </a>
+
+                                        <a href="{{ route('admin.products.category.edit', ['product' => $product->id]) }}"
+                                            class="dropdown-item text-right"> ویرایش دسته بندی و ویژگی </a>
+
+                                    </div>
+                                </div>
                             </td>
 
                             <td>
-                                <a class="btn btn-sm btn-outline-danger mr-1"
-                                    href="{{ route('admin.products.delete', $product->id) }}"><i
-                                        class="fa fa-trash-o font-medium-3 mr-2"></i>حذف</a>
+                                <a wire:click="restoreProduct({{ $product->id }})" class="btn btn-success">بازگردانی</a>
+                            </td>
+
+                            <td>
+                                <a class="btn btn-danger mr-2" wire:click="forceDeleteProduct({{ $product->id }})"
+                                    data-original-title="" data-toggle="tooltip" data-placement="top" title="حذف کامل">
+                                    حذف
+                                </a>
                             </td>
 
                         </tr>
@@ -98,3 +118,26 @@
         </div>
     </div>
 </div>
+
+@section('script')
+    <script>
+        window.addEventListener('forceDeleteProduct', event => {
+            Swal.fire({
+                title: 'آیا از حذف مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('forceDestroyProduct', event.detail.id)
+                    Swal.fire(
+                        'حذف با موفقیت انجام شد',
+                    )
+                }
+            })
+        })
+    </script>
+@endsection

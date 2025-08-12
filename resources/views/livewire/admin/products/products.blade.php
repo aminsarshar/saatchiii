@@ -14,7 +14,7 @@
         </div>
 
         <div class="">
-            <a class="btn-warning btn-sm" href="{{ route('admin.products.trashed_list') }}">محصولات حذف شده</a>
+            <a class="btn-warning btn-sm" href="{{ route('admin.products.trashed_product') }}">محصولات حذف شده</a>
         </div>
     </div>
     <div class="card-body">
@@ -100,21 +100,41 @@
                             </td>
 
                             <td>
-                                <form action="{{ route('admin.products.destroy', ['product' => $product->id]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button class="btn btn-sm btn-outline-danger mr-1" type="submit">حذف <i
-                                            class="fa fa-trash-o font-medium-3 mr-2"></i></button>
-                                </form>
+                                <a class="p-0 text-danger" wire:click="deleteProduct({{ $product->id }})"
+                                    data-original-title="" data-toggle="tooltip" data-placement="top" title="حذف">
+                                    <i class="fa fa-trash-o font-medium-3 mr-2"></i>
+                                </a>
                             </td>
 
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $products->links() }}
+            {{-- {{ $products->links() }} --}}
+            {{ $products->appends(Request::except('page'))->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>
+
+@section('script')
+    <script>
+        window.addEventListener('deleteProduct', event => {
+            Swal.fire({
+                title: 'آیا از حذف مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('destroyProduct', event.detail.id)
+                    Swal.fire(
+                        'حذف با موفقیت انجام شد',
+                    )
+                }
+            })
+        })
+    </script>
+@endsection

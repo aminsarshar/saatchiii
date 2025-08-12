@@ -14,7 +14,7 @@
         </div>
 
         <div class="">
-            <a class="btn-warning btn-sm" href="{{ route('admin.blogs.trashed_blog') }}">مقالات حذف شده</a>
+            <a class="btn-warning btn-sm" href="{{ route('admin.blogs.index') }}">لیست مقالات</a>
         </div>
     </div>
     <div class="card-body">
@@ -88,22 +88,14 @@
                             </td>
                             <td>
                                 <a class="btn btn-sm btn-outline-warning mr-1"
-                                    href="{{ route('admin.blogs.edit', ['blog' => $blog->id]) }}"
-                                    style="color: #fcac00" class="p-0" data-original-title="" data-toggle="tooltip"
-                                    data-placement="top" title="ویرایشششش">
-                                    ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
-                                </a>
+                                    href="{{ route('admin.blogs.restore', $blog->id) }}"><i
+                                        class="fa fa-trash-o font-medium-3 mr-2"></i>بازگرداندن</a>
                             </td>
 
                             <td>
-                                <form action="{{ route('admin.blogs.destroy', ['blog' => $blog->id]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button class="btn btn-sm btn-outline-danger mr-1" type="submit">حذف <i
-                                            class="fa fa-trash-o font-medium-3 mr-2"></i></button>
-                                </form>
+                                <a class="btn btn-sm btn-outline-danger mr-1"
+                                    href="{{ route('admin.blogs.delete', $blog->id) }}"><i
+                                        class="fa fa-trash-o font-medium-3 mr-2"></i>حذف</a>
                             </td>
                         </tr>
                     @endforeach

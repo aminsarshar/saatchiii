@@ -24,7 +24,7 @@ class TrashedList extends Component
     }
     public function render()
     {
-        $products = Product::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
-        return view('livewire.admin.trashed.trashed-list' , compact('products'));
+        $products = Product::query()->where('deleted_at', '!=', null)->where('deleted_at', '!=', null)->where('name', 'like', '%' . $this->search . '%')->onlyTrashed()->paginate(10);
+        return view('livewire.admin.trashed.trashed-list', compact('products'));
     }
 }

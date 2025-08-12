@@ -194,8 +194,6 @@ class ProductController extends Controller
 
     public function trashed()
     {
-        // $products = Product::latest()->paginate(10);
-        // $products = Product::latest()->paginate(10);
         $products = Product::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
         return view('admin.products.trashed_list', compact('products'));
     }

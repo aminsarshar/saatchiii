@@ -60,20 +60,61 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('attributes', AttributeController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('categories', CategoryController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('tags', TagController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::resource('products', ProductController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('banners', BannerController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('comments', CommentController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('coupons', CouponController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('orders', OrderController::class)->middleware(['role_or_permission:super_admin|admin|order_management']);
     Route::resource('transactions', TransactionController::class)->middleware(['role_or_permission:super_admin|admin|order_management']);
     Route::resource('users', UserController::class)->middleware(['role_or_permission:super_admin|admin|users_management']);
-
     Route::resource('permissions', PermissionController::class)->middleware(['role_or_permission:super_admin|admin']);
     Route::resource('roles', RoleController::class)->middleware(['role_or_permission:super_admin|admin']);
     Route::resource('categoryblog', CategoryBlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
+
+
+    // Products
+    Route::resource('products', ProductController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::get('/trashed_products', [ProductController::class, 'trashed'])->name('products.trashed_list')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::get('/products/restore/{id}', [ProductController::class, 'restore'])
+        ->name('products.restore');
+
+    Route::get('/products/delete/{id}', [ProductController::class, 'delete'])
+        ->name('products.delete');
+
+    // Edit Product Category
+    Route::get('/products/{product}/category-edit', [ProductController::class, 'editCategory'])->name('products.category.edit')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::put('/products/{product}/category-update', [ProductController::class, 'updateCategory'])->name('products.category.update')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    // Edit Product Image
+    Route::get('/products/{product}/images-edit', [ProductImageController::class, 'edit'])->name('products.images.edit')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::delete('/products/{product}/images-destroy', [ProductImageController::class, 'destroy'])->name('products.images.destroy')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::put('/products/{product}/images-set-primary', [ProductImageController::class, 'setPrimary'])->name('products.images.set_primary')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::post('/products/{product}/images-add', [ProductImageController::class, 'add'])->name('products.images.add')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    // Blogs
+
     Route::resource('blogs', BlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
 
+    Route::get('/trashed_blogs', [BlogController::class, 'trashed'])->name('blogs.trashed_blog')
+        ->middleware(['role_or_permission:super_admin|admin|blog_management']);
 
+    Route::get('/blogs/restore/{id}', [BlogController::class, 'restore'])
+        ->name('blogs.restore');
+
+    Route::get('/blogs/delete/{id}', [BlogController::class, 'delete'])
+        ->name('blogs.delete');
 
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve')
@@ -82,35 +123,6 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     // Get Category Attributes
     Route::get('/category-attributes/{category}', [CategoryController::class, 'getCategoryAttributes'])
         ->middleware(['role_or_permission:super_admin|admin|product_management']);
-
-    // Edit Product Image
-    Route::get('/products/{product}/images-edit', [ProductImageController::class, 'edit'])->name('products.images.edit')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::delete('/products/{product}/images-destroy', [ProductImageController::class, 'destroy'])->name('products.images.destroy')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::put('/products/{product}/images-set-primary', [ProductImageController::class, 'setPrimary'])->name('products.images.set_primary')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::post('/products/{product}/images-add', [ProductImageController::class, 'add'])->name('products.images.add')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-
-
-
-    // Edit Product Category
-    Route::get('/products/{product}/category-edit', [ProductController::class, 'editCategory'])->name('products.category.edit')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::put('/products/{product}/category-update', [ProductController::class, 'updateCategory'])->name('products.category.update')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-
-
-    Route::get('/trashed_products', [ProductController::class, 'trashed'])->name('products.trashed_list')
-        ->middleware(['role_or_permission:super_admin|admin|product_management']);
-
-
-    Route::get('/products/restore/{id}', [ProductController::class, 'restore'])
-        ->name('products.restore');
-
-    Route::get('/products/delete/{id}', [ProductController::class, 'delete'])
-        ->name('products.delete');
 });
 
 

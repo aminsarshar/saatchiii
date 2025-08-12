@@ -15,6 +15,10 @@
                             </span>
                         </div>
                     </div>
+
+                    {{-- <div class="">
+                        <a class="btn-warning btn-sm" href="{{ route('admin.categoryblog.trashedblog') }}">دسته بندی حذف شده</a>
+                    </div> --}}
                 </div>
                 <div class="card-body">
                     <div class="card-block">
@@ -59,7 +63,8 @@
                                             </span>
                                         </td> --}}
 
-                                        <td wire:click="ChangeCategoryStatus({{ $category->id }})" style="cursor: pointer">
+                                        <td wire:click="ChangeCategoryStatus({{ $category->id }})"
+                                            style="cursor: pointer">
                                             @if ($category->is_active == 1)
                                                 <div class="badge badge-success text-white">فعال</div>
                                             @else
@@ -82,6 +87,18 @@
                                                 data-toggle="tooltip" data-placement="top" title="ویرایشششش">
                                                 ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                             </a>
+                                        </td>
+
+                                        <td>
+                                            <form
+                                                action="{{ route('admin.categoryblog.destroy', ['categoryblog' => $category->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-sm btn-outline-danger mr-1" type="submit">حذف <i
+                                                        class="fa fa-trash-o font-medium-3 mr-2"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

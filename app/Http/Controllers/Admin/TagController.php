@@ -16,7 +16,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::latest()->paginate(20);
-        return view('admin.tags.index' , compact('tags'));
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -57,7 +57,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        return view('admin.tags.show' , compact('tag'));
+        return view('admin.tags.show', compact('tag'));
     }
 
     /**
@@ -68,7 +68,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('admin.tags.edit' , compact('tag'));
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -98,8 +98,43 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+
+        alert()->success('تگ مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.tags.index');
+    }
+
+    public function trashed()
+    {
+        $tags = Tag::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.tags.trashed_tag', compact('tags'));
+    }
+
+
+    public function restore($id)
+    {
+        $tag = Tag::onlyTrashed()->find($id);
+        if ($tag) {
+            $tag->restore();
+            alert()->success('تگ مورد نظر بازگردانده شد', 'باتشکر');
+            return redirect()->route('admin.tags.index');
+        }
+
+        return redirect()->back()->with('error', 'تگ یافت نشد ❌');
+    }
+
+    public function delete($id)
+    {
+        $tag = Tag::onlyTrashed()->find($id);
+        if ($tag) {
+            $tag->forceDelete();
+            alert()->success('تگ مورد نظر بازگردانده شد', 'باتشکر');
+            return redirect()->route('admin.tags.index');
+        }
+
+        return redirect()->back()->with('error', 'تگ یافت نشد ❌');
     }
 }

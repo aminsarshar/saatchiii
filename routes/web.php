@@ -59,7 +59,6 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('brands', BrandController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('attributes', AttributeController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('categories', CategoryController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::resource('tags', TagController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('banners', BannerController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('comments', CommentController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('coupons', CouponController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
@@ -115,6 +114,20 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 
     Route::get('/blogs/delete/{id}', [BlogController::class, 'delete'])
         ->name('blogs.delete');
+
+
+    // Tags
+
+    Route::resource('tags', TagController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::get('/trashed_tags', [TagController::class, 'trashed'])->name('blogs.trashed_tag')
+        ->middleware(['role_or_permission:super_admin|admin']);
+
+    Route::get('/tags/restore/{id}', [TagController::class, 'restore'])
+        ->name('tags.restore');
+
+    Route::get('/tags/delete/{id}', [TagController::class, 'delete'])
+        ->name('tags.delete');
 
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve')

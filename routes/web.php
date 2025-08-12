@@ -54,7 +54,7 @@ Route::get('/admin-panel/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard')->middleware('role:super_admin|admin|writer');
 
-Route::prefix('admin-panel/management')->name('admin.')->group(function(){
+Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 
     Route::resource('brands', BrandController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('attributes', AttributeController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
@@ -75,45 +75,53 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function(){
 
 
 
+
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
-
-
-
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
     // Get Category Attributes
-    Route::get('/category-attributes/{category}' ,[CategoryController::class , 'getCategoryAttributes'])
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::get('/category-attributes/{category}', [CategoryController::class, 'getCategoryAttributes'])
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
     // Edit Product Image
-    Route::get('/products/{product}/images-edit' ,[ProductImageController::class , 'edit'])->name('products.images.edit')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::delete('/products/{product}/images-destroy' ,[ProductImageController::class , 'destroy'])->name('products.images.destroy')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::put('/products/{product}/images-set-primary' ,[ProductImageController::class , 'setPrimary'])->name('products.images.set_primary')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::post('/products/{product}/images-add' ,[ProductImageController::class , 'add'])->name('products.images.add')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::get('/products/{product}/images-edit', [ProductImageController::class, 'edit'])->name('products.images.edit')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::delete('/products/{product}/images-destroy', [ProductImageController::class, 'destroy'])->name('products.images.destroy')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::put('/products/{product}/images-set-primary', [ProductImageController::class, 'setPrimary'])->name('products.images.set_primary')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::post('/products/{product}/images-add', [ProductImageController::class, 'add'])->name('products.images.add')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
 
 
     // Edit Product Category
-    Route::get('/products/{product}/category-edit' ,[ProductController::class , 'editCategory'])->name('products.category.edit')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::put('/products/{product}/category-update' ,[ProductController::class , 'updateCategory'])->name('products.category.update')
-    ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::get('/products/{product}/category-edit', [ProductController::class, 'editCategory'])->name('products.category.edit')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+    Route::put('/products/{product}/category-update', [ProductController::class, 'updateCategory'])->name('products.category.update')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
 
+
+    Route::get('/trashed_products', [ProductController::class, 'trashed'])->name('products.trashed_list')
+        ->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+
+    Route::get('/products/restore/{id}', [ProductController::class, 'restore'])
+        ->name('products.restore');
+
+    Route::get('/products/delete/{id}', [ProductController::class, 'delete'])
+        ->name('products.delete');
 });
 
 
 // blogs
 
-Route::get('/blog/{blogs:slug}' , [HomeBlogController::class , 'show'])->name('home.blogs.show');
+Route::get('/blog/{blogs:slug}', [HomeBlogController::class, 'show'])->name('home.blogs.show');
 
 
-Route::get('/' , [HomeController::class , 'index'])->name('home.index');
-Route::get('/categories/{category:slug}' , [HomeCategoryController::class , 'show'])->name('home.categories.show');
-Route::get('/products/{product:slug}' , [HomeProductController::class , 'show'])->name('home.products.show');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/categories/{category:slug}', [HomeCategoryController::class, 'show'])->name('home.categories.show');
+Route::get('/products/{product:slug}', [HomeProductController::class, 'show'])->name('home.products.show');
 Route::post('/comments/{product}', [HomeCommentController::class, 'store'])->name('home.comments.store');
 
 Route::get('/add-to-wishlist/{product}', [WishlistController::class, 'add'])->name('home.wishlist.add');
@@ -146,19 +154,19 @@ Route::get('/register2', Register2::class)->name('register2');
 
 
 // برای ورود از طریق گوگل
-Route::get('/login/{provider}' , [AuthController::class , 'redirectToProvider'])->name('provider.login');
-Route::get('/login/{provider}/callback' , [AuthController::class , 'handleProviderCallback']);
+Route::get('/login/{provider}', [AuthController::class, 'redirectToProvider'])->name('provider.login');
+Route::get('/login/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
 
 // برای ورود از طریق پیامک
-Route::any('/loginsms/' , [AuthController::class , 'loginsms'])->name('loginsms');
-Route::post('/check-otp/' , [AuthController::class , 'checkOtp']);
-Route::post('/resend-otp/' , [AuthController::class , 'resendOtp']);
+Route::any('/loginsms/', [AuthController::class, 'loginsms'])->name('loginsms');
+Route::post('/check-otp/', [AuthController::class, 'checkOtp']);
+Route::post('/resend-otp/', [AuthController::class, 'resendOtp']);
 
 
 
 
-Route::prefix('profile')->name('home.')->group(function(){
-    Route::get('/' , [UserProfileController::class , 'index'])->name('users_profile.index');
+Route::prefix('profile')->name('home.')->group(function () {
+    Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index');
     Route::get('/comments', [HomeCommentController::class, 'usersProfileIndex'])->name('comments.users_profile.index');
     Route::get('/wishlist', [WishlistController::class, 'usersProfileIndex'])->name('wishlist.users_profile.index');
 
@@ -166,34 +174,31 @@ Route::prefix('profile')->name('home.')->group(function(){
     Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
     Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
     Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
-    Route::put('/{user}' , [UserProfileController::class , 'update'])->name('users_profile.update');
+    Route::put('/{user}', [UserProfileController::class, 'update'])->name('users_profile.update');
 
 
     Route::get('/orders', [CartController::class, 'usersProfileIndex'])->name('orders.users_profile.index');
-
-
-
 });
 
-Route::get('/get-province-cities-list' , [AddressController::class, 'getProvinceCitiesList']);
+Route::get('/get-province-cities-list', [AddressController::class, 'getProvinceCitiesList']);
 
 
-Route::get('/about-us' , [HomeController::class , 'aboutUs'])->name('home.about-us');
+Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('home.about-us');
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
 Route::post('/contact-us-form', [HomeController::class, 'contactUsForm'])->name('home.contact-us.form');
-Route::get('/shop' , [HomeController::class , 'shop'])->name('home.shop');
-Route::get('/error404' , [HomeController::class , 'error404'])->name('home.error404');
+Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
+Route::get('/error404', [HomeController::class, 'error404'])->name('home.error404');
 
 // blog
-Route::get('/blog' , [HomeBlogController::class , 'index'])->name('home.blog.index');
+Route::get('/blog', [HomeBlogController::class, 'index'])->name('home.blog.index');
 
 // special offer
 
-Route::get('/special-offer' , [HomeController::class , 'specialoffer'])->name('home.special-offer');
+Route::get('/special-offer', [HomeController::class, 'specialoffer'])->name('home.special-offer');
 
 // search
-Route::get('/search', [SearchController::class , 'index'])->name('search.index');
-Route::get('/search/results', [SearchController::class , 'search'])->name('search.results');
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
 
 
 Route::get('/logout', function () {
@@ -205,7 +210,6 @@ Route::get('/test', function () {
 
     $user = User::find(20);
     $user->notify(new OTPSms(1234));
-
 });
 
 

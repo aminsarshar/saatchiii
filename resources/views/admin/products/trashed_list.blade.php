@@ -6,8 +6,11 @@
     <section id="extended">
         <div class="row">
             <div class="col-sm-12">
-                <livewire:admin.products.products/>
+                <livewire:admin.trashed.trashed-list />
             </div>
         </div>
     </section>
 @endsection
+
+
+

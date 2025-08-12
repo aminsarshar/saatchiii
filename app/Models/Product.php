@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Comment;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "products";
     protected $guarded = [];
@@ -21,15 +22,6 @@ class Product extends Model
      *
     //  * @return array
     //  */
-    // public function sluggable():array
-    // {
-    //     // return [
-    //     //     'slug' => [
-    //     //         'source' => 'name'
-    //     //     ]
-    //     // ];
-    // }
-
 
     public function getQuantityCheckAttribute()
     {
@@ -54,37 +46,37 @@ class Product extends Model
 
     public function scopeFilter($query)
     {
-        if(request()->has('attribute')){
-            foreach(request()->attribute as $attribue){
-                $query->whereHas('attributes' , function($query) use($attribue){
-                    foreach(explode('-' , $attribue) as $index => $item){
-                        if($index == 0){
-                            $query->where('value' , $item);
-                        }else{
-                            $query->orWhere('value' , $item);
+        if (request()->has('attribute')) {
+            foreach (request()->attribute as $attribue) {
+                $query->whereHas('attributes', function ($query) use ($attribue) {
+                    foreach (explode('-', $attribue) as $index => $item) {
+                        if ($index == 0) {
+                            $query->where('value', $item);
+                        } else {
+                            $query->orWhere('value', $item);
                         }
                     }
                 });
             }
         }
 
-        if(request()->has('variation')){
-            $query->whereHas('variations' , function($query){
-                foreach(explode('-' , request()->variation) as $index => $variation){
-                    if($index == 0){
-                        $query->where('value' , $variation);
-                    }else{
-                        $query->orWhere('value' , $variation);
+        if (request()->has('variation')) {
+            $query->whereHas('variations', function ($query) {
+                foreach (explode('-', request()->variation) as $index => $variation) {
+                    if ($index == 0) {
+                        $query->where('value', $variation);
+                    } else {
+                        $query->orWhere('value', $variation);
                     }
                 }
             });
         }
-        if(request()->has('sortBy')){
+        if (request()->has('sortBy')) {
             $sortBy = request()->sortBy;
 
-            switch($sortBy){
+            switch ($sortBy) {
                 case 'max':
-                    $query->orderByDesc(ProductVariation::select('price')->whereColumn('product_variations.product_id' , 'products.id')->orderBy('sale_price', 'desc')->take(1));
+                    $query->orderByDesc(ProductVariation::select('price')->whereColumn('product_variations.product_id', 'products.id')->orderBy('sale_price', 'desc')->take(1));
                     break;
                 case 'min':
                     $query->orderBy(ProductVariation::select('price')->whereColumn('product_variations.product_id', 'products.id')->orderBy('sale_price', 'asc')->take(1));
@@ -108,7 +100,7 @@ class Product extends Model
     {
         $keyword = request()->search;
         if (request()->has('search') && trim($keyword) != '') {
-            $query->where('name', 'LIKE', '%'. trim($keyword) .'%');
+            $query->where('name', 'LIKE', '%' . trim($keyword) . '%');
         }
 
         return $query;
@@ -152,21 +144,18 @@ class Product extends Model
 
     public function approvedComments()
     {
-        return $this->hasMany(Comment::class)->where('approved' , 1);
+        return $this->hasMany(Comment::class)->where('approved', 1);
     }
 
     public function checkUserWishlist($userId)
     {
-        return $this->hasMany(Wishlist::class)->where('user_id' , $userId)->exists();
+        return $this->hasMany(Wishlist::class)->where('user_id', $userId)->exists();
     }
 
 
     public function checkUserCompare($userId)
     {
         $products = Product::findOrFail(session()->get('compareProducts'));
-        return $this->hasMany()->where('user_id' , $userId)->exists();
+        return $this->hasMany()->where('user_id', $userId)->exists();
     }
-
-
-
 }

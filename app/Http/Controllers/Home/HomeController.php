@@ -36,22 +36,13 @@ class HomeController extends Controller
         $products_special_offers = Product::where('is_active' , 1)->where('type' , 2)->get()->take(15);
         $blog = Blog::where('is_active' , 1)->get()->take(20);
 
-        $targetDate = Carbon::parse('2023-10-10'); // تاریخ تعیین شده
-        $currentDate = Carbon::now();
+        // $targetDate = Carbon::parse('2023-10-10'); // تاریخ تعیین شده
+        // $currentDate = Carbon::now();
 
-        // $product = Product::find(17);
-        // dd($product->sale_check);
-
-
-
-
-        // $ProductIphones = Product::find(6);
-        // dd($ProductIphones->sale_check);
         return view('home.index' , compact(
-            'targetDate'
-            ,
-            'currentDate'
-            ,
+            // 'targetDate'
+            // ,
+            // 'currentDate'
             'sliders'
              ,
             'indexTopBanners'
@@ -76,7 +67,7 @@ class HomeController extends Controller
         ));
     }
 
-     function aboutUs()
+     public function aboutUs()
     {
         $indexTopBanners = Banner::where('type' , 'TopBanners')->where('is_active' , 1)->orderBY('priority')->get();
         return view('home.about-us', compact('indexTopBanners'));
@@ -85,13 +76,13 @@ class HomeController extends Controller
 
 
 
-    function contactUs()
+    public function contactUs()
     {
         $setting = Setting::findOrFail(1);
         return view('home.contact-us', compact('setting'));
     }
 
-    function contactUsForm(Request $request)
+    public function contactUsForm(Request $request)
     {
         $request->validate([
             'name' => 'required|string|min:4|max:50',

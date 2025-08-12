@@ -183,15 +183,53 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+
+        alert()->success('محصول مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.products.index');
     }
+
+    public function trashed()
+    {
+        // $products = Product::latest()->paginate(10);
+        // $products = Product::latest()->paginate(10);
+        $products = Product::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.products.trashed_list', compact('products'));
+    }
+
+
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->find($id);
+        if ($product) {
+            $product->restore();
+        alert()->success('محصول مورد نظر بازگردانده شد', 'باتشکر');
+        return redirect()->route('admin.products.index');
+        }
+
+        return redirect()->back()->with('error', 'محصول یافت نشد ❌');
+    }
+
+    public function delete($id){
+        $product = Product::onlyTrashed()->find($id);
+                if ($product) {
+            $product->forceDelete();
+        alert()->success('محصول مورد نظر بازگردانده شد', 'باتشکر');
+        return redirect()->route('admin.products.index');
+        }
+
+        return redirect()->back()->with('error', 'محصول یافت نشد ❌');
+    }
+
+
 
     public function editCategory(Request $request, Product $product)
     {
         $categories = Category::where('parent_id', '!=', 0)->get();
-        return view('admin.products.edit_category', compact('product' , 'categories'));
+        return view('admin.products.edit_category', compact('product', 'categories'));
     }
 
     public function updateCategory(Request $request, Product $product)

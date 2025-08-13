@@ -93,4 +93,10 @@ class UserController extends Controller
         alert()->success('کاربر مورد نظر حذف شد', 'باتشکر');
         return redirect()->route('admin.users.index');
     }
+
+    public function trashed()
+    {
+        $users = User::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.users.trashed_user', compact('users'));
+    }
 }

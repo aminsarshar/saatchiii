@@ -113,28 +113,4 @@ class TagController extends Controller
         return view('admin.tags.trashed_tag', compact('tags'));
     }
 
-
-    public function restore($id)
-    {
-        $tag = Tag::onlyTrashed()->find($id);
-        if ($tag) {
-            $tag->restore();
-            alert()->success('تگ مورد نظر بازگردانده شد', 'باتشکر');
-            return redirect()->route('admin.tags.index');
-        }
-
-        return redirect()->back()->with('error', 'تگ یافت نشد ❌');
-    }
-
-    public function delete($id)
-    {
-        $tag = Tag::onlyTrashed()->find($id);
-        if ($tag) {
-            $tag->forceDelete();
-            alert()->success('تگ مورد نظر بازگردانده شد', 'باتشکر');
-            return redirect()->route('admin.tags.index');
-        }
-
-        return redirect()->back()->with('error', 'تگ یافت نشد ❌');
-    }
 }

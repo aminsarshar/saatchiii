@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header d-flex" style="justify-content: space-between;align-items: center;">
         <div class="card-title-wrap bar-success">
-            <h4 class="card-title">لیست کاربران</h4>
+            <h4 class="card-title">لیست کاربران حذف شده</h4>
         </div>
         <div class="input-group w-50">
             <input type="text" class="form-control" placeholder="جستجوی کاربر" aria-label="Amount" wire:model="search">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="">
-            <a class="btn-warning btn-sm" href="{{ route('admin.users.trashed_user') }}">لیست کاربران حذف شده</a>
+            <a class="btn-warning btn-sm" href="{{ route('admin.users.index') }}">لیست کاربران</a>
         </div>
     </div>
     <div class="card-body">
@@ -27,6 +27,7 @@
                         <th>وضعیت</th>
                         <th>تاریخ عضویت</th>
                         <th>ویرایش</th>
+                        <th>بازگرداندن </th>
                         <th>حذف</th>
                     </tr>
                 </thead>
@@ -74,17 +75,22 @@
                             </td>
 
                             <td>
-                                <a style="color: #fc0000" class="btn btn-sm btn-outline-danger mr-1" wire:click="deleteUser({{ $user->id }})"
-                                    data-original-title="" data-toggle="tooltip" data-placement="top" title="حذف">
-                                    حذف<i class="fa fa-trash-o font-medium-3 mr-2"></i>
+                                <a style="color:  rgb(40, 208, 148);" class="btn btn-sm btn-outline-success mr-1"
+                                    wire:click="restoreUser({{ $user->id }})" class="btn btn-success">بازگردانی <i
+                                        class="fa fa-pencil font-medium-3 mr-2"></i></a>
+                            </td>
+
+                            <td>
+                                <a style="color: #fc0000" class="btn btn-sm btn-outline-danger mr-1" wire:click="forceDeleteUser({{ $user->id }})"
+                                    data-original-title="" data-toggle="tooltip" data-placement="top" title="حذف کامل">
+                                    حذف <i class="fa fa-trash-o font-medium-3 mr-2"></i>
                                 </a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{-- {{ $users->links() }} --}}
-            {{ $users->appends(Request::except('page'))->links('pagination::bootstrap-4') }}
+            {{ $users->links() }}
 
 
 
@@ -97,10 +103,9 @@
         </div>
     </div>
 </div>
-
 @section('script')
     <script>
-        window.addEventListener('deleteUser', event => {
+        window.addEventListener('forceDeleteUser', event => {
             Swal.fire({
                 title: 'آیا از حذف مطمئن هستید؟',
                 icon: 'warning',
@@ -111,7 +116,7 @@
                 cancelButtonText: 'خیر'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emit('destroyUser', event.detail.id)
+                    Livewire.emit('forceDestroyUser', event.detail.id)
                     Swal.fire(
                         'حذف با موفقیت انجام شد',
                     )

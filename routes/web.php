@@ -70,6 +70,13 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('categoryblog', CategoryBlogController::class)->middleware(['role_or_permission:super_admin|admin|writer']);
 
 
+    // Users
+
+    Route::resource('users', UserController::class)->middleware(['role_or_permission:super_admin|admin|users_management']);
+
+    Route::get('/trashed_users', [UserController::class, 'trashed'])->name('users.trashed_user')
+        ->middleware(['role_or_permission:super_admin|admin']);
+
     // Products
     Route::resource('products', ProductController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
 

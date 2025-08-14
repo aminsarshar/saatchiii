@@ -70,7 +70,8 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $tags->links() }}
+            {{-- {{ $tags->links() }} --}}
+            {{ $tags->appends(Request::except('page'))->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>

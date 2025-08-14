@@ -21,7 +21,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Banner::where('type', 'sliders')->get();
+        $sliders = Banner::isActive(1)->where('type', 'sliders')->get();
         $products = Product::isActive(1)->get()->take(15);
         $product_normal_mens = Product::isActive(1)->where('category_id', '17', '15')->where('type', 1)->get()->take(15);
         $product_normal_womens = Product::isActive(1)->where('category_id', '22')->where('type', 1)->get()->take(15);

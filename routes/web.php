@@ -59,7 +59,6 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('brands', BrandController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('attributes', AttributeController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('categories', CategoryController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
-    Route::resource('banners', BannerController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('comments', CommentController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('coupons', CouponController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('orders', OrderController::class)->middleware(['role_or_permission:super_admin|admin|order_management']);
@@ -118,6 +117,13 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 
     Route::get('/trashed_tags', [TagController::class, 'trashed'])->name('tags.trashed_tag')
         ->middleware(['role_or_permission:super_admin|admin']);
+
+    // Banners
+    Route::resource('banners', BannerController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::get('/trashed_banners', [BannerController::class, 'trashed'])->name('banners.trashed_banner')
+        ->middleware(['role_or_permission:super_admin|admin']);
+
 
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve')

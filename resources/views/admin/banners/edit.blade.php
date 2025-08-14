@@ -69,9 +69,9 @@
                     <div class="form-group col-md-3">
                         <label for="is_active">وضعیت</label>
                         <select class="form-control" id="is_active" name="is_active">
-                            <option value="1" {{ $banner->getRawOriginal('status') == 1 ? 'selected' : '' }}>فعال
+                            <option value="1" {{ $banner->getRawOriginal('is_active') == 1 ? 'selected' : '' }}>فعال
                             </option>
-                            <option value="0" {{ $banner->getRawOriginal('status') == 0 ? 'selected' : '' }}>غیرفعال
+                            <option value="0" {{ $banner->getRawOriginal('is_active') == 0 ? 'selected' : '' }}>غیرفعال
                             </option>
                         </select>
                     </div>

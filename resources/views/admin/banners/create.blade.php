@@ -39,7 +39,7 @@
                                                 {{-- <label for="image"> انتخاب تصویر</label> --}}
                                                 <div class="custom-file">
                                                     <input type="file" name="image" class="custom-file-input"
-                                                        id="image">
+                                                        id="banner_image">
                                                     <label class="custom-file-label" for="image"> انتخاب فایل </label>
                                                 </div>
                                             </div>

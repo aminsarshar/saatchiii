@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header d-flex" style="justify-content: space-between;align-items: center;">
         <div class="card-title-wrap bar-success">
-            <h4 class="card-title">لیست بنر</h4>
+            <h4 class="card-title">لیست بنر های حذف شده</h4>
         </div>
         <div class="input-group w-50">
             <input type="text" class="form-control" placeholder="جستجوی بنر" aria-label="Amount" wire:model="search">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="">
-            <a class="btn btn-primary" href="{{ route('admin.banners.trashed_banner') }}">بنر های حذف شده</a>
+            <a class="btn btn-primary" href="{{ route('admin.banners.index') }}">لیست بنر</a>
         </div>
     </div>
     <div class="card-body">
@@ -128,23 +128,14 @@
                                     </button>
                                     <div class="dropdown-menu">
 
-                                        <a class="btn btn-sm btn-outline-primary" style="display:block;margin:10px"
-                                            href="{{ route('admin.banners.show', ['banner' => $banner->id]) }}">
-                                            نمایش <i class="fa fa-eye font-medium-3 mr-2"></i>
-                                        </a>
+                                        <a style="display:block;margin:10px"
+                                            wire:click="restoreBanner({{ $banner->id }})"
+                                            class="btn btn-success">بازگردانی</a>
 
-                                        <a class="btn btn-sm btn-outline-warning mr-1"
-                                            href="{{ route('admin.banners.edit', ['banner' => $banner->id]) }}"
-                                            style="color: #fcac00;display:block;margin:10px" class="p-0"
-                                            data-original-title="" data-toggle="tooltip" data-placement="top"
-                                            title="ویرایشششش">
-                                            ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
-                                        </a>
-
-                                        <a style="display:block;margin:10px;color:rgb(255, 73, 97)" class="btn btn-sm btn-outline-danger" wire:click="deleteBanner({{ $banner->id }})"
-                                            data-original-title="" data-toggle="tooltip" data-placement="top"
-                                            title="حذف">
-                                            حذف <i class="fa fa-trash-o font-medium-3 mr-2"></i>
+                                        <a style="display:block;margin:10px" class="btn btn-danger mr-2"
+                                            wire:click="forceDeleteBanner({{ $banner->id }})" data-original-title=""
+                                            data-toggle="tooltip" data-placement="top" title="حذف کامل">
+                                            حذف
                                         </a>
                                     </div>
                                 </div>
@@ -157,13 +148,14 @@
             </table>
             {{-- {{ $banners->links() }} --}}
             {{ $banners->appends(Request::except('page'))->links('pagination::bootstrap-4') }}
+
         </div>
     </div>
 </div>
 
 @section('script')
     <script>
-        window.addEventListener('deleteBanner', event => {
+        window.addEventListener('forceDeleteBanner', event => {
             Swal.fire({
                 title: 'آیا از حذف مطمئن هستید؟',
                 icon: 'warning',
@@ -174,7 +166,7 @@
                 cancelButtonText: 'خیر'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emit('destroyBanner', event.detail.id)
+                    Livewire.emit('forceDestroyBanner', event.detail.id)
                     Swal.fire(
                         'حذف با موفقیت انجام شد',
                     )
@@ -182,4 +174,4 @@
             })
         })
     </script>
-@endsection
+ @endsection

@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Banner extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes;
 
     protected $table = "banners";
     protected $guarded = [];
@@ -17,10 +18,10 @@ class Banner extends Model
         return $is_active ? 'فعال' : 'غیرفعال';
     }
 
-    // public function scopeIsActive($query, $is_active)
-    // {
-    //     $query->where('is_active', $is_active);
-    // }
+    public function scopeIsActive($query, $is_active)
+    {
+        $query->where('is_active', $is_active);
+    }
 
     // protected static function booted()
     // {

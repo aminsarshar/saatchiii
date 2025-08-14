@@ -39,7 +39,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'image' => 'required|mimes:jpg,jpeg,png,svg,webp',
-            'priority' => 'required|integer',
+            'title' => 'required|integer',
             'type' => 'required'
         ]);
 

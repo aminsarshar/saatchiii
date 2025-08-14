@@ -1,22 +1,21 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    create Banner
+    ویرایش بنر
 @endsection
 
 @section('script')
-<script>
-    // Show File Name
-    $('#banner_image').change(function() {
-        //get the file name
-        var fileName = $(this).val();
-        //replace the "Choose a file" label
-        $(this).next('.custom-file-label').html(fileName);
-    });
-</script>
+    <script>
+        // Show File Name
+        $('#banner_image').change(function() {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    </script>
 @endsection
 @section('content')
-
     <!-- Content Row -->
     <div class="row">
 
@@ -26,13 +25,15 @@
             </div>
             <hr>
             @include('admin.sections.errors')
-            <form action="{{ route('admin.banners.update' , ['banner' => $banner]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.banners.update', ['banner' => $banner]) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row justify-content-center mb-3">
                     <div class="col-md-4">
                         <div class="card">
-                            <img class="card-img-top" src="{{ url( env('BANNER_IMAGES_UPLOAD_PATH').$banner->image ) }}" alt="">
+                            <img class="card-img-top" src="{{ url(env('BANNER_IMAGES_UPLOAD_PATH') . $banner->image) }}"
+                                alt="">
                         </div>
                     </div>
                 </div>
@@ -49,55 +50,70 @@
 
                     <div class="form-group col-md-3">
                         <label for="title">عنوان</label>
-                        <input class="form-control" id="title" name="title" type="text" value="{{ $banner->title }}">
+                        <input class="form-control" id="title" name="title" type="text"
+                            value="{{ $banner->title }}">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="text">متن</label>
-                        <input class="form-control" id="text" name="text" type="text" value="{{ $banner->text }}">
+                        <input class="form-control" id="text" name="text" type="text"
+                            value="{{ $banner->text }}">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="priority">الویت</label>
-                        <input class="form-control" id="priority" name="priority" type="number" value="{{ $banner->priority }}">
+                        <input class="form-control" id="priority" name="priority" type="number"
+                            value="{{ $banner->priority }}">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="is_active">وضعیت</label>
                         <select class="form-control" id="is_active" name="is_active">
-                            <option value="1" {{ $banner->getRawOriginal('status') == 1 ? 'selected' : '' }}>فعال</option>
-                            <option value="0" {{ $banner->getRawOriginal('status') == 0 ? 'selected' : '' }}>غیرفعال</option>
+                            <option value="1" {{ $banner->getRawOriginal('status') == 1 ? 'selected' : '' }}>فعال
+                            </option>
+                            <option value="0" {{ $banner->getRawOriginal('status') == 0 ? 'selected' : '' }}>غیرفعال
+                            </option>
                         </select>
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="type">نوع بنر</label>
-                        <input class="form-control" id="type" name="type" type="text" value="{{ $banner->type }}">
+                        <input class="form-control" id="type" name="type" type="text"
+                            value="{{ $banner->type }}">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="button_text">متن دکمه</label>
-                        <input class="form-control" id="button_text" name="button_text" type="text" value="{{ $banner->button_text }}">
+                        <input class="form-control" id="button_text" name="button_text" type="text"
+                            value="{{ $banner->button_text }}">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="button_link">لینک دکمه</label>
-                        <input class="form-control" id="button_link" name="button_link" type="text" value="{{ $banner->button_link }}">
+                        <input class="form-control" id="button_link" name="button_link" type="text"
+                            value="{{ $banner->button_link }}">
                     </div>
 
                     <div class="form-group col-md-3">
                         <label for="button_icon">آیکون دکمه</label>
-                        <input class="form-control" id="button_icon" name="button_icon" type="text" value="{{ $banner->button_icon }}">
+                        <input class="form-control" id="button_icon" name="button_icon" type="text"
+                            value="{{ $banner->button_icon }}">
                     </div>
 
 
                 </div>
 
-                <button class="btn btn-outline-primary mt-5" type="submit">ثبت</button>
-                <a href="{{ route('admin.banners.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-danger mr-1">
+                        <a class="text-white" href="{{ route('admin.banners.index') }}"><i class="icon-back"></i>
+                            بازگشت</a>
+                    </button>
+                    <button type="submit" class="btn btn-warning">
+                        <i class="icon-note"></i> ویرایش
+                    </button>
+                </div>
             </form>
         </div>
 
     </div>
-
 @endsection

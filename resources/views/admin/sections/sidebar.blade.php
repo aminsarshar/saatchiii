@@ -48,10 +48,12 @@
                                 class="menu-title">دسته بندی مقاله</span></a>
                         <ul class="menu-content">
                             <li class="{{ request()->is('admin-panel/management/categoryblog') ? 'active' : '' }}"><a
-                                    href="{{ route('admin.categoryblog.index') }}" class="menu-item">لیست دسته بندی مقاله</a>
+                                    href="{{ route('admin.categoryblog.index') }}" class="menu-item">لیست دسته بندی
+                                    مقاله</a>
                             </li>
-                            <li class="{{ request()->is('admin-panel/management/categoryblog/create') ? 'active' : '' }}"><a
-                                    href="{{ route('admin.categoryblog.create') }}" class="menu-item">ایجاد دسته بندی مقاله</a>
+                            <li class="{{ request()->is('admin-panel/management/categoryblog/create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.categoryblog.create') }}" class="menu-item">ایجاد دسته بندی
+                                    مقاله</a>
                             </li>
                         </ul>
                     </li>
@@ -163,6 +165,19 @@
                         </li>
                     @endcan
 
+                    @role('super_admin|admin')
+                        <li class="has-sub nav-item"><a href="#"><i class="icon-shield"></i><span data-i18n=""
+                                    class="menu-title">بنر ها</span></a>
+                            <ul class="menu-content">
+                                <li class="{{ request()->is('admin-panel/management/banners') ? 'active' : '' }}"><a
+                                        href="{{ route('admin.banners.index') }}" class="menu-item">لیست بنر ها</a>
+                                </li>
+                                <li class="{{ request()->is('admin-panel/management/banners/create') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.banners.create') }}" class="menu-item">ایجاد بنر</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endrole
 
                     <li class=" nav-item"><a href="cards.html"><i class="icon-layers"></i><span data-i18n=""
                                 class="menu-title">کارت ها</span></a>

@@ -158,4 +158,8 @@ class Product extends Model
         $products = Product::findOrFail(session()->get('compareProducts'));
         return $this->hasMany()->where('user_id', $userId)->exists();
     }
+
+    public function scopeIsActive($query, $is_active) {
+        $query->where('is_active', $is_active);
+    }
 }

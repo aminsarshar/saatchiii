@@ -128,8 +128,8 @@ class BlogController extends Controller
         $blog->delete();
 
 
-        alert()->success('مقاله مورد نظر حذف شد', 'باتشکر');
-        return redirect()->route('admin.blogs.index');
+        alert()->success('تگ مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.banners.index');
     }
 
     public function trashed()
@@ -138,28 +138,4 @@ class BlogController extends Controller
         return view('admin.blogs.trashed_blog', compact('blogs'));
     }
 
-
-    public function restore($id)
-    {
-        $blog = Blog::onlyTrashed()->find($id);
-        if ($blog) {
-            $blog->restore();
-            alert()->success('مقاله مورد نظر بازگردانده شد', 'باتشکر');
-            return redirect()->route('admin.blogs.index');
-        }
-
-        return redirect()->back()->with('error', 'مقاله یافت نشد ❌');
-    }
-
-    public function delete($id)
-    {
-        $blog = Blog::onlyTrashed()->find($id);
-        if ($blog) {
-            $blog->forceDelete();
-            alert()->success('مقاله مورد نظر بازگردانده شد', 'باتشکر');
-            return redirect()->route('admin.blogs.index');
-        }
-
-        return redirect()->back()->with('error', 'مقاله یافت نشد ❌');
-    }
 }

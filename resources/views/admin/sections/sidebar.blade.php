@@ -24,6 +24,10 @@
                             <li class="{{ request()->is('admin-panel/management/users') ? 'active' : '' }}"><a
                                     href="{{ route('admin.users.index') }}" class="menu-item">لیست کاربران</a>
                             </li>
+                            <li class="{{ request()->is('admin-panel/management/trashed_users') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.users.trashed_user') }}" class="menu-item">لیست کاربران حذف
+                                    شده</a>
+                            </li>
                             <li class="{{ request()->is('admin-panel/management/users/create') ? 'active' : '' }}"><a
                                     href="{{ route('admin.users.create') }}" class="menu-item">ایجاد کاربر</a>
                             </li>
@@ -37,6 +41,10 @@
                         <ul class="menu-content">
                             <li class="{{ request()->is('admin-panel/management/blogs') ? 'active' : '' }}"><a
                                     href="{{ route('admin.blogs.index') }}" class="menu-item">لیست مقالات</a>
+                            </li>
+                            <li class="{{ request()->is('admin-panel/management/trashed_blogs') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.blogs.trashed_blog') }}" class="menu-item">لیست مقالات حذف
+                                    شده</a>
                             </li>
                             <li class="{{ request()->is('admin-panel/management/blogs/create') ? 'active' : '' }}"><a
                                     href="{{ route('admin.blogs.create') }}" class="menu-item">ایجاد مقاله</a>
@@ -78,6 +86,9 @@
                             <li class="{{ request()->is('admin-panel/management/tags') ? 'active' : '' }}"><a
                                     href="{{ route('admin.tags.index') }}" class="menu-item">لیست تگ ها</a>
                             </li>
+                            <li class="{{ request()->is('admin-panel/management/trashed_tags') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.tags.trashed_tag') }}" class="menu-item">لیست تگ های حذف شده</a>
+                            </li>
                             <li class="{{ request()->is('admin-panel/management/tags/create') ? 'active' : '' }}"><a
                                     href="{{ route('admin.tags.create') }}" class="menu-item">ایجاد تگ</a>
                             </li>
@@ -116,6 +127,10 @@
                         <ul class="menu-content">
                             <li class="{{ request()->is('admin-panel/management/products') ? 'active' : '' }}"><a
                                     href="{{ route('admin.products.index') }}" class="menu-item">لیست محصول</a>
+                            </li>
+                            <li class="{{ request()->is('admin-panel/management/trashed_products') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.products.trashed_product') }}" class="menu-item">لیست محصولات
+                                    حذف شده</a>
                             </li>
                             <li class="{{ request()->is('admin-panel/management/products/create') ? 'active' : '' }}"><a
                                     href="{{ route('admin.products.create') }}" class="menu-item">ایجاد محصول</a>
@@ -171,6 +186,10 @@
                             <ul class="menu-content">
                                 <li class="{{ request()->is('admin-panel/management/banners') ? 'active' : '' }}"><a
                                         href="{{ route('admin.banners.index') }}" class="menu-item">لیست بنر ها</a>
+                                </li>
+                                <li class="{{ request()->is('admin-panel/management/trashed_banners') ? 'active' : '' }}"><a
+                                        href="{{ route('admin.banners.trashed_banner') }}" class="menu-item">لیست بنر
+                                        حذف شده</a>
                                 </li>
                                 <li class="{{ request()->is('admin-panel/management/banners/create') ? 'active' : '' }}">
                                     <a href="{{ route('admin.banners.create') }}" class="menu-item">ایجاد بنر</a>

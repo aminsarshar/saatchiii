@@ -24,6 +24,30 @@ class TrashedBlog extends Component
     }
 
 
+    protected $listeners = [
+        'forceDestroyBlog',
+        'refreshComponent' => '$refresh'
+    ];
+
+    public function forceDeleteBlog($id)
+    {
+        $this->dispatchBrowserEvent('forceDeleteBlog', ['id' => $id]);
+    }
+
+    public function forceDestroyBlog($id)
+    {
+        Blog::query()->withTrashed()->find($id)->forceDelete();
+        $this->emit('refreshComponent');
+    }
+
+    public function restoreBlog($id)
+    {
+        Blog::query()->withTrashed()->find($id)->restore();
+        $this->emit('refreshComponent');
+    }
+
+
+
     public function render()
     {
         $blogs = Blog::query()->where('deleted_at', '!=', null)->where('title', 'like', '%' . $this->search . '%')->onlyTrashed()->paginate(10);

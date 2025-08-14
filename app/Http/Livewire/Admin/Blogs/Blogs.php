@@ -4,10 +4,13 @@ namespace App\Http\Livewire\Admin\Blogs;
 
 use App\Models\Blog;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Blogs extends Component
 {
+    use WithPagination;
     public $search;
+    protected $paginationTheme = 'bootstrap';
 
     public function ChangeBlogStatus($id)
     {
@@ -22,6 +25,23 @@ class Blogs extends Component
             ]);
         }
     }
+
+    protected $listeners = [
+        'destroyBlog',
+        'refreshComponent' => '$refresh'
+    ];
+
+    public function deleteBlog($id)
+    {
+        $this->dispatchBrowserEvent('deleteBlog', ['id' => $id]);
+    }
+
+    public function destroyBlog($id)
+    {
+        Blog::destroy($id);
+        $this->emit('refreshComponent');
+    }
+
 
     public function render()
     {

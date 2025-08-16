@@ -41,7 +41,7 @@
 
                                         <div class="form-group col-md-6 mb-2">
                                             <label class="sr-only" for="category_id">دسته بندی</label>
-                                            <select id="categorySelect" name="category_id" class="form-control" 
+                                            <select id="categorySelect" name="category_id" class="form-control"
                                                 data-live-search="true">
                                                 <option disabled selected>دسته بندی</option>
                                                 @foreach ($categories as $category)

@@ -6,32 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.rtl.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/font/bootstrap-icon/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugin/waves/waves.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugin/swiper/swiper-bundle.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugin/timer/timer.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugin/hint-css/hint-css.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    <link href="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
-" rel="stylesheet">
-    {{-- /admin/vendors/css/sweetalert2.min.css --}}
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    {{-- <link
-    rel="stylesheet"
-    href="{{asset('assets/css/plugins/owl-carousel/owl.carousel.css')}}"
-  /> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    @include('home.sections.links_css')
 </head>
 
 <body>
@@ -160,41 +135,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                         </div>
                     </div>
 
-                    <style>
-                        .logo_type {
-                            background: -webkit-linear-gradient(0deg, #9d4edd, #c77dff, #e0aaff);
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                            font-size: 24px;
-                        }
-
-                        @media screen and (max-width: 576px) {
-                            .logo_type {
-                                font-size: 18px;
-
-                            }
-
-                            .modal-content {
-                                width: 88% !important;
-                                margin: auto;
-                                margin-top: 21%;
-                            }
-
-                            .product-modal-link form {
-                                display: block;
-                            }
-
-                            cart-plus-minus {
-                                width: 84%;
-                            }
-
-                            .pro-details-cart {
-                                margin-top: auto !important;
-                                margin-right: auto !important;
-                            }
-
-                        }
-                    </style>
                     <div class="col-6 d-lg-flex d-none order-lg-2 order-3">
                         <div class="header-bottom-form me-2 w-100">
                             <form action="{{ route('search.results') }}" method="GET">
@@ -279,117 +219,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                 <div class="col-4">
                     @auth
                         <ul class="navbar-nav text-end">
-                            <style>
-                                .dropdown.toggle>input {
-                                    display: none;
-                                }
-
-                                .dropdown>a,
-                                .dropdown.toggle>label {
-                                    border-radius: 2px;
-                                    /* box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); */
-                                }
-
-                                .dropdown>a::after,
-                                .dropdown.toggle>label::after {
-                                    content: "";
-                                    float: right;
-                                    margin: 15px 15px 0 0;
-                                    width: 0;
-                                    height: 0;
-                                    border-left: 5px solid transparent;
-                                    border-right: 5px solid transparent;
-                                    border-top: 10px solid #CCC;
-                                    display: none;
-                                }
-
-                                .dropdown ul {
-                                    list-style-type: none;
-                                    display: block;
-                                    margin: 0;
-                                    padding: 0;
-                                    position: absolute;
-                                    width: 100%;
-                                    /* box-shadow: 0 6px 5px -5px rgba(0,0,0,0.3); */
-                                    overflow: hidden;
-                                }
-
-                                .dropdown a,
-                                .dropdown.toggle>label {
-                                    display: block;
-                                    padding: 0 0 0 10px;
-                                    text-decoration: none;
-                                    line-height: 40px;
-                                    font-size: 15px;
-                                    text-transform: uppercase;
-                                    font-weight: bold;
-                                    color: #494949;
-                                    background-color: #fff;
-                                    text-align: right;
-                                    padding-right: 12px
-                                }
-
-                                .dropdown li {
-                                    height: 0;
-                                    overflow: hidden;
-                                    transition: all 500ms;
-                                }
-
-                                .dropdown.hover li {
-                                    transition-delay: 300ms;
-                                }
-
-                                .dropdown li:first-child a {
-                                    border-radius: 2px 2px 0 0;
-                                    margin-top: -12px !important;
-
-                                }
-
-                                .dropdown li:last-child a {
-                                    border-radius: 0 0 2px 2px;
-                                    margin-top: -12px !important;
-                                }
-
-                                .dropdown li:first-child a::before {
-                                    content: "";
-                                    display: block;
-                                    position: absolute;
-                                    width: 0;
-                                    height: 0;
-                                    border-left: 10px solid transparent;
-                                    border-right: 10px solid transparent;
-                                    border-bottom: 10px solid #FFF;
-                                    margin: -10px 0 0 30px;
-                                }
-
-                                .dropdown a:hover,
-                                .dropdown.toggle>label:hover,
-                                .dropdown.toggle>input:checked~label {
-                                    color: #666;
-                                }
-
-                                .dropdown>a:hover::after,
-                                .dropdown.toggle>label:hover::after,
-                                .dropdown.toggle>input:checked~label::after {
-                                    border-top-color: #AAA;
-                                }
-
-                                .dropdown li:first-child a:hover::before {
-                                    border-bottom-color: #EEE;
-                                }
-
-                                .dropdown.hover:hover li,
-                                .dropdown.toggle>input:checked~ul li {
-                                    height: 40px;
-                                }
-
-                                .dropdown.hover:hover li:first-child,
-                                .dropdown.toggle>input:checked~ul li:first-child {
-                                    padding-top: 15px;
-                                    text-align: center
-                                }
-                            </style>
-
                             <script>
                                 $(document).click(function(event) {
                                     if (
@@ -407,33 +236,20 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                                     <input id="t1" type="checkbox">
                                     <label style="margin-right: 155px !important;margin-bottom: 3px;" for="t1"><img
                                             src="{{ auth()->user()->avatar == null ? asset('home/images/users_default/images.jfif') : asset('home/images/users_avatar/' . auth()->user()->avatar) }}"
-                                            alt=""
-                                            style="    width: 47px;
-                                height: 47px;
-                                margin-left: 9px;
-                                object-fit: cover;
-                                margin-top: -3px;
-                                border: 2px solid #6666ff;"
-                                            class="img-fluid rounded-circle"> {{ auth()->user()->name }}</label>
+                                            alt="" class="img-fluid rounded-circle avatar-style">
+                                        {{ auth()->user()->name }}</label>
                                     <ul style="width: 207px !important;margin-right: 219px !important;padding-top: 14px;">
-                                        @role('admin|super_admin|writer')
+                                        @role('admin|super_admin')
                                             <li><a href="{{ route('dashboard') }}" target="_blank"
                                                     style="font-weight: bold"><i class="fa-solid fa-user"
                                                         style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل ادمین</a>
                                             </li>
-                                            <li><a href="{{ route('home.users_profile.index') }}" target="_blank"
-                                                    style="font-weight: bold"><i class="fa-solid fa-user"
-                                                        style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a>
-                                            </li>
                                         @endrole
-                                        {{-- @role('user') --}}
-                                        {{-- @endrole --}}
-                                        @role('admin|super_admin|user')
-                                            <li><a href="{{ route('home.users_profile.index') }}" target="_blank"
-                                                    style="font-weight: bold"><i class="fa-solid fa-user"
-                                                        style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a>
-                                            </li>
-                                        @endrole
+
+                                        <li><a href="{{ route('home.users_profile.index') }}" target="_blank"
+                                                style="font-weight: bold"><i class="fa-solid fa-user"
+                                                    style="margin-left: 10px;margin-top: 3px;"></i>مشاهده پنل کاربری</a>
+                                        </li>
 
                                         <li><a href="{{ route('home.orders.users_profile.index') }}" target="_blank"
                                                 style="font-weight: bold"><i class="fa-solid fa-cart-shopping"
@@ -459,19 +275,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.min.css
                         </ul>
                     @else
                         <ul class="navbar-nav text-end" style="margin-right:245px ">
-                            {{-- <a href="#loginModal"
-                                class="header-bottom-link-cat waves-effect waves-light rounded-pill ms-1 font-14 d-flex align-items-center justify-content-center flex-wrap"
-                                data-bs-toggle="modal" data-bs-target="#loginModal" role="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fill-rule="evenodd"
-                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg>
-                                <span class="fw-bold text-overflow">حساب کاربری</span>
-                            </a> --}}
-
-                            <a href="{{route('login')}}"
+                            <a href="{{ route('login') }}"
                                 class="header-bottom-link-cat waves-effect waves-light rounded-pill ms-1 font-14 d-flex align-items-center justify-content-center flex-wrap">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-person-circle me-2" viewBox="0 0 16 16">

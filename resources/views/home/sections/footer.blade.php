@@ -264,68 +264,8 @@
 <div class="" id="contactOverlay"></div>
 <!-- end contact us floating -->
 
-<!-- Plugins JS File -->
-@livewireScripts
+@include('home.sections.links_js')
 
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/plugin/waves/waves.min.js') }}"></script>
-<script src="{{ asset('assets/plugin/swiper/swiper-bundle.min.js') }}"></script>
-<script src="{{ asset('assets/plugin/timer/timer.js') }}"></script>
-<script src="{{ asset('assets/plugin/hint-css/hint-css.js') }}"></script>
-<script src="{{ asset('assets/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
-<script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('assets/js/jquery-app.js') }}"></script>
-
-<!-- ===== start new update 3.2.0 -->
-<script src="{{ asset('assets/plugin/go-to-top/script.js') }}"></script>
-<script src="{{ asset('assets/plugin/rasta-contact/script.js') }}"></script>
-
-<link rel="stylesheet" href="{{ asset('assets/plugin/go-to-top/style.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugin/rasta-contact/style.css') }}">
-
-<script src="{{ asset('assets/rating.js') }}"></script>
-
-
-
-
-
-
-<script>
-    //// config floating contact
-    $('#btncollapzion').Collapzion({
-        _child_attribute: [{
-                'label': 'پشتیبانی تلفنی',
-                'url': 'tel:0930555555555',
-                'icon': 'bi bi-telephone'
-            },
-            {
-                'label': 'پشتیبانی تلگرام',
-                'url': 'https://tlgrm.me',
-                'icon': 'bi bi-telegram'
-            },
-            {
-                'label': 'پشتیبانی واتس آپ',
-                'url': 'https://wa.me/444444444',
-                'icon': 'bi-whatsapp'
-            },
-
-        ],
-    });
-</script>
-<script src="{{ asset('assets/js/rating.js') }}"></script>
-<script src="{{ asset('assets/js/wow.js') }}"></script>
-
-{{-- /admin/js/sweetalert2.all.min.js --}}
-
-<script>
-    new WOW().init();
-</script>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
 </body>
 
 </html>

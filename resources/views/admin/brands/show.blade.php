@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title-wrap bar-success">
-                            <h5 class="font-weight-bold"> نمایش برند {{ $brand->name }}</h5>
+                            <h5 class="font-weight-bold"> نمایش برند {{ $brand->title }}</h5>
                         </div>
                     </div>
                     <div class="card-body">
@@ -30,31 +30,27 @@
 
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                                <label class="" for="projectinput2">تاریخ ایجاد</label>
-                                                <input class="form-control" type="text" placeholder="تاریخ ایجاد"
-                                                    name="name" type="text" value="{{ verta($brand->created_at)->format('%d  %B   %Y') }}" disabled>
+                                                <label class="" for="projectinput2">عکس برند</label>
+                                                <img src="{{ asset(env('BRAND_IMAGES_UPLOAD_PATH') . $brand->image) }}"
+                                                    alt="{{ $brand->name }}" width="90px">
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
                                                 <label class="" for="projectinput2">وضعیت برند</label>
-                                                <input class="form-control" type="text" value="{{ $brand->is_active }}" disabled>
+                                                <input class="form-control" type="text" value="{{ $brand->status }}"
+                                                    disabled>
                                             </div>
                                         </div>
 
                                         <div class="form-group col-md-6 mb-2">
                                             <div class="controls">
-                                                <label class="" for="projectinput2">لوگوی برند</label>
-                                                <br>
-                                                @if (!empty($brand->image))
-                                                <img src="{{ asset(env('BRAND_IMAGES_UPLOAD_PATH') . $brand->image) }}" alt="{{ $brand->name }}" style="width: 27%;height:88px;object-fit: fill;">
-                                                @else
-                                                <div class="alert alert-danger">لوگوی وجود ندارد</div>
-                                                @endif
+                                                <label class="" for="projectinput2">تاریخ ایجاد</label>
+                                                <input class="form-control" type="text" placeholder="تاریخ ایجاد"
+                                                    name="name" type="text"
+                                                    value="{{ verta($brand->created_at)->format('%d  %B   %Y') }}" disabled>
                                             </div>
-
-
                                         </div>
 
                                     </div>

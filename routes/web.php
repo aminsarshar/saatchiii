@@ -56,7 +56,6 @@ Route::get('/admin-panel/dashboard', function () {
 
 Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 
-    Route::resource('brands', BrandController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('attributes', AttributeController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('categories', CategoryController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
     Route::resource('comments', CommentController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
@@ -116,6 +115,12 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('tags', TagController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
 
     Route::get('/trashed_tags', [TagController::class, 'trashed'])->name('tags.trashed_tag')
+        ->middleware(['role_or_permission:super_admin|admin']);
+
+    // Brands
+    Route::resource('brands', BrandController::class)->middleware(['role_or_permission:super_admin|admin|product_management']);
+
+    Route::get('/trashed_brands', [BrandController::class, 'trashed'])->name('brands.trashed_brand')
         ->middleware(['role_or_permission:super_admin|admin']);
 
     // Banners

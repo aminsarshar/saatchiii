@@ -74,6 +74,10 @@
                             <li class="{{ request()->is('admin-panel/management/brands') ? 'active' : '' }}"><a
                                     href="{{ route('admin.brands.index') }}" class="menu-item">لیست برند ها</a>
                             </li>
+                            <li class="{{ request()->is('admin-panel/management/trashed_brands') ? 'active' : '' }}"><a
+                                    href="{{ route('admin.brands.trashed_brand') }}" class="menu-item">لیست برند
+                                    حذف شده</a>
+                            </li>
                             <li class="{{ request()->is('admin-panel/management/brands/create') ? 'active' : '' }}"><a
                                     href="{{ route('admin.brands.create') }}" class="menu-item">ایجاد برند</a>
                             </li>

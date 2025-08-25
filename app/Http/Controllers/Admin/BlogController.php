@@ -128,8 +128,8 @@ class BlogController extends Controller
         $blog->delete();
 
 
-        alert()->success('تگ مورد نظر حذف شد', 'باتشکر');
-        return redirect()->route('admin.banners.index');
+        alert()->success('مقاله مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.blogs.index');
     }
 
     public function trashed()
@@ -137,5 +137,4 @@ class BlogController extends Controller
         $blogs = Blog::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
         return view('admin.blogs.trashed_blog', compact('blogs'));
     }
-
 }

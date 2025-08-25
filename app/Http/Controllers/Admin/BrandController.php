@@ -18,7 +18,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::latest()->paginate(20);
-        return view('admin.brands.index' , compact('brands'));
+        return view('admin.brands.index', compact('brands'));
     }
 
 
@@ -66,7 +66,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return view('admin.brands.show' , compact('brand'));
+        return view('admin.brands.show', compact('brand'));
     }
 
     /**
@@ -77,7 +77,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        return view('admin.brands.edit' , compact('brand'));
+        return view('admin.brands.edit', compact('brand'));
     }
 
     /**
@@ -108,8 +108,18 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+
+        alert()->success('تگ مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.brand.index');
+    }
+
+    public function trashed()
+    {
+        $brands = Brand::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.brands.trashed_brand', compact('brands'));
     }
 }

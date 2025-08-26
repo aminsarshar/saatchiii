@@ -77,9 +77,9 @@
             </div>
         </div>
     @else
-    <div class="card-header d-block w-100" style="justify-content: space-between;align-items: center;">
-        <div class="alert alert-warning">تگ حذف شده ای وجود ندارد</div>
-    </div>
+        <div class="card-header d-block w-100" style="justify-content: space-between;align-items: center;">
+            <div class="alert alert-warning">تگ حذف شده ای وجود ندارد</div>
+        </div>
     @endif
 </div>
 

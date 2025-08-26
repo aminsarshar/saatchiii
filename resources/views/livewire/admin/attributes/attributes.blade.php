@@ -55,8 +55,8 @@
                             <td>
                                 <a class="btn btn-sm btn-outline-warning mr-1"
                                     href="{{ route('admin.attributes.edit', ['attribute' => $attribute->id]) }}"
-                                    style="color: #fcac00" class="p-0" data-original-title=""
-                                    data-toggle="tooltip" data-placement="top" title="ویرایشششش">
+                                    style="color: #fcac00" class="p-0" data-original-title="" data-toggle="tooltip"
+                                    data-placement="top" title="ویرایشششش">
                                     ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
                             </td>

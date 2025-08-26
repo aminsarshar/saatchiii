@@ -4,8 +4,7 @@
             <h4 class="card-title">لیست تراکنش</h4>
         </div>
         <div class="input-group w-50">
-            <input type="text" class="form-control" placeholder="جستجوی تراکنش" aria-label="Amount"
-                wire:model="search">
+            <input type="text" class="form-control" placeholder="جستجوی تراکنش" aria-label="Amount" wire:model="search">
             <div class="input-group-append">
                 <span class="input-group-text">
                     <i class="ft-search"></i>
@@ -65,21 +64,24 @@
                             </td>
 
                             <td>
-                                <span class="badge badge-primary">{{ verta($transaction->created_at)->format('%d  %B   %Y') }}</span>
+                                <span
+                                    class="badge badge-primary">{{ verta($transaction->created_at)->format('%d  %B   %Y') }}</span>
                             </td>
 
                             <td>
                                 <a class="btn btn-sm btn-outline-primary"
-                                href="{{ route('admin.transactions.show', ['transaction' => $transaction->id]) }}">
-                                نمایش <i class="fa fa-eye font-medium-3 mr-2"></i>
-                            </a>
+                                    href="{{ route('admin.transactions.show', ['transaction' => $transaction->id]) }}">
+                                    نمایش <i class="fa fa-eye font-medium-3 mr-2"></i>
+                                </a>
                             </td>
 
                             <td>
-                            <a class="btn btn-sm btn-outline-warning mr-1" href="{{ route('admin.transactions.edit', ['transaction' => $transaction->id]) }}" style="color: #fcac00" class="p-0"
-                                data-original-title="" data-toggle="tooltip" data-placement="top" title="ویرایشششش">
-                                ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
-                            </a>
+                                <a class="btn btn-sm btn-outline-warning mr-1"
+                                    href="{{ route('admin.transactions.edit', ['transaction' => $transaction->id]) }}"
+                                    style="color: #fcac00" class="p-0" data-original-title="" data-toggle="tooltip"
+                                    data-placement="top" title="ویرایشششش">
+                                    ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -90,7 +92,7 @@
 
 
             <style>
-                ul.pagination{
+                ul.pagination {
                     display: flex;
                     justify-content: center
                 }

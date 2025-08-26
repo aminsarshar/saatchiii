@@ -102,10 +102,10 @@
                                 </td>
 
                                 <td>
-                                    <a style="color:rgb(255, 73, 97)" class="btn btn-sm btn-outline-danger mr-1" wire:click="deleteProduct({{ $product->id }})"
-                                        data-original-title="" data-toggle="tooltip" data-placement="top"
-                                        title="حذف">
-                                       حذف <i class="fa fa-trash-o font-medium-3 mr-2"></i>
+                                    <a style="color:rgb(255, 73, 97)" class="btn btn-sm btn-outline-danger mr-1"
+                                        wire:click="deleteProduct({{ $product->id }})" data-original-title=""
+                                        data-toggle="tooltip" data-placement="top" title="حذف">
+                                        حذف <i class="fa fa-trash-o font-medium-3 mr-2"></i>
                                     </a>
                                 </td>
 

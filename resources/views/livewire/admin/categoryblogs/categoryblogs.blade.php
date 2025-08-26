@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex" style="justify-content: space-between;align-items: center;">
                     <div class="card-title-wrap bar-success">
-                        <h4 class="card-title">لیست دسته بندی ({{$categories->count()}})</h4>
+                        <h4 class="card-title">لیست دسته بندی ({{ $categories->count() }})</h4>
                     </div>
                     <div class="input-group w-50">
                         <input type="text" class="form-control" placeholder="جستجوی دسته بندی" aria-label="Amount"

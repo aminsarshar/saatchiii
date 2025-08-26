@@ -55,16 +55,18 @@
 
                             <td>
                                 <a class="btn btn-sm btn-outline-primary"
-                                href="{{ route('admin.coupons.show', ['coupon' => $coupon->id]) }}">
-                                نمایش <i class="fa fa-eye font-medium-3 mr-2"></i>
-                            </a>
+                                    href="{{ route('admin.coupons.show', ['coupon' => $coupon->id]) }}">
+                                    نمایش <i class="fa fa-eye font-medium-3 mr-2"></i>
+                                </a>
                             </td>
 
                             <td>
-                            <a class="btn btn-sm btn-outline-warning mr-1" href="{{ route('admin.coupons.edit', ['coupon' => $coupon->id]) }}" style="color: #fcac00" class="p-0"
-                                data-original-title="" data-toggle="tooltip" data-placement="top" title="ویرایشششش">
-                                ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
-                            </a>
+                                <a class="btn btn-sm btn-outline-warning mr-1"
+                                    href="{{ route('admin.coupons.edit', ['coupon' => $coupon->id]) }}"
+                                    style="color: #fcac00" class="p-0" data-original-title="" data-toggle="tooltip"
+                                    data-placement="top" title="ویرایشششش">
+                                    ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -75,7 +77,7 @@
 
 
             <style>
-                ul.pagination{
+                ul.pagination {
                     display: flex;
                     justify-content: center
                 }

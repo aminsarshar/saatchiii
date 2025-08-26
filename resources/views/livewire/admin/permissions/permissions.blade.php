@@ -4,8 +4,7 @@
             <h4 class="card-title">لیست مجوز ها</h4>
         </div>
         <div class="input-group w-50">
-            <input type="text" class="form-control" placeholder="جستجوی مجوز" aria-label="Amount"
-                wire:model="search">
+            <input type="text" class="form-control" placeholder="جستجوی مجوز" aria-label="Amount" wire:model="search">
             <div class="input-group-append">
                 <span class="input-group-text">
                     <i class="ft-search"></i>
@@ -48,8 +47,8 @@
                             <td>
                                 <a class="btn btn-sm btn-outline-warning mr-1"
                                     href="{{ route('admin.permissions.edit', ['permission' => $permission->id]) }}"
-                                    style="color: #fcac00" class="p-0" data-original-title=""
-                                    data-toggle="tooltip" data-placement="top" title="ویرایش">
+                                    style="color: #fcac00" class="p-0" data-original-title="" data-toggle="tooltip"
+                                    data-placement="top" title="ویرایش">
                                     ویرایش <i class="fa fa-pencil font-medium-3 mr-2"></i>
                                 </a>
                             </td>

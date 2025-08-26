@@ -2,7 +2,7 @@
     @if ($users->isNotEmpty())
         <div class="card-header d-flex" style="justify-content: space-between;align-items: center;">
             <div class="card-title-wrap bar-success">
-                <h4 class="card-title">لیست کاربران حذف شده ({{$users->count()}})</h4>
+                <h4 class="card-title">لیست کاربران حذف شده ({{ $users->count() }})</h4>
             </div>
             <div class="input-group w-50">
                 <input type="text" class="form-control" placeholder="جستجوی کاربر" aria-label="Amount"
@@ -106,9 +106,9 @@
             </div>
         </div>
     @else
-    <div class="card-header d-block w-100" style="justify-content: space-between;align-items: center;">
-        <div class="alert alert-warning">کاربر حذف شده ای وجود ندارد</div>
-    </div>
+        <div class="card-header d-block w-100" style="justify-content: space-between;align-items: center;">
+            <div class="alert alert-warning">کاربر حذف شده ای وجود ندارد</div>
+        </div>
     @endif
 </div>
 @section('script')

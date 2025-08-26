@@ -2,7 +2,7 @@
     @if ($blogs->isNotEmpty())
         <div class="card-header d-flex" style="justify-content: space-between;align-items: center;">
             <div class="card-title-wrap bar-success">
-                <h4 class="card-title">لیست مقالات ({{$blogs->count()}})</h4>
+                <h4 class="card-title">لیست مقالات ({{ $blogs->count() }})</h4>
             </div>
 
             <div class="input-group w-50">

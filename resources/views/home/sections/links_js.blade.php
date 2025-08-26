@@ -21,6 +21,139 @@
 <script src="{{ asset('assets/rating.js') }}"></script>
 
 
+<script>
+    $('.province-select').change(function() {
+
+        var provinceID = $(this).val();
+
+        if (provinceID) {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/get-province-cities-list') }}?province_id=" + provinceID,
+                success: function(res) {
+                    if (res) {
+                        $(".city-select").empty();
+
+                        $.each(res, function(key , city) {
+                            console.log(city);
+                            $(".city-select").append('<option value="' + city.id + '">' +
+                                city.name + '</option>');
+                        });
+
+                    } else {
+                        $(".city-select").empty();
+                    }
+                }
+            });
+        } else {
+            $(".city-select").empty();
+        }
+    });
+</script>
+<script>
+    $('#address-input').val( $('#address-select').val() );
+
+    $('#address-select').change(function() {
+        $('#address-input').val($(this).val());
+    });
+            $('.province-select').change(function() {
+
+                var provinceID = $(this).val();
+
+                if (provinceID) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ url('/get-province-cities-list') }}?province_id=" + provinceID,
+                        success: function(res) {
+                            if (res) {
+                                $(".city-select").empty();
+
+                                $.each(res, function(key, city) {
+                                    console.log(city);
+                                    $(".city-select").append('<option value="' + city.id + '">' +
+                                        city.name + '</option>');
+                                });
+
+                            } else {
+                                $(".city-select").empty();
+                            }
+                        }
+                    });
+                } else {
+                    $(".city-select").empty();
+                }
+            });
+
+        </script>
+
+
+    <script>
+        function filter() {
+
+            let sortBy = $('#sort-by').val();
+            if (sortBy == "default") {
+                $('#filter-sort-by').prop('disabled', true);
+            } else {
+                $('#filter-sort-by').val(sortBy);
+            }
+
+            let search = $('#search-input').val();
+            if (search == "") {
+                $('#filter-search').prop('disabled', true);
+            } else {
+                $('#filter-search').val(search);
+            }
+
+            $('#filter-form').submit();
+        }
+
+        $('#filter-form').on('submit', function(event) {
+            event.preventDefault();
+            let currentUrl = '{{ url()->current() }}';
+            let url = currentUrl + '?' + decodeURIComponent($(this).serialize())
+            $(location).attr('href', url);
+        });
+
+        $('.variation-select').on('change', function() {
+            let variation = JSON.parse(this.value);
+            let variationPriceDiv = $('.variation-price-' + $(this).data('id'));
+
+            variationPriceDiv.empty();
+
+            if (variation.is_sale) {
+                let spanSale = $('<span />', {
+                    class: 'new',
+                    text: toPersianNum(number_format(variation.sale_price)) + ' تومان'
+                });
+                let spanPrice = $('<span />', {
+                    class: 'old',
+                    text: toPersianNum(number_format(variation.price)) + ' تومان'
+                });
+
+                variationPriceDiv.append(spanSale);
+                variationPriceDiv.append(spanPrice);
+            } else {
+                let spanPrice = $('<span />', {
+                    class: 'new',
+                    text: toPersianNum(number_format(variation.price)) + ' تومان'
+                });
+                variationPriceDiv.append(spanPrice);
+            }
+
+            $('.quantity-input').attr('data-max', variation.quantity);
+            $('.quantity-input').val(1);
+
+        });
+
+        $('#pagination li a').map(function() {
+            let decodeUrl = decodeURIComponent($(this).attr('href'));
+            if ($(this).attr('href') !== undefined) {
+                $(this).attr('href', decodeUrl);
+            }
+        });
+    </script>
+
+
 
 
 <script>

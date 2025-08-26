@@ -6,8 +6,6 @@
 
 
 @section('content')
-
-
     <!-- home-slider -->
     @include('home.sections.home-slider')
     <!-- end home-slider -->
@@ -62,9 +60,8 @@
     @include('home.sections.products-one-modal')
     <!-- end product box one modal -->
 
-    
+
     <!-- start product box two modal -->
     @include('home.sections.products-two-modal')
     <!-- end product box two modal -->
-
 @endsection

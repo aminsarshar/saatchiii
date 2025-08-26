@@ -1,8 +1,5 @@
 @extends('home.layouts.home')
-<link
-rel="stylesheet"
-href="{{asset('assets/css/home.css')}}"
-/>
+<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @section('title')
     صفحه ای درباره ما
 @endsection

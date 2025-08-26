@@ -110,7 +110,7 @@ href="{{asset('assets/css/home.css')}}"
                     <li class="breadcrumb-item"><a href="{{route('home.index')}}" class="font-14 text-muted">خانه</a></li>
                     <li class="breadcrumb-item"><a href="{{route('home.shop')}}" class="font-14 text-muted">فروشگاه</a></li>
                     <li class="breadcrumb-item"><a href="#" class="font-14 text-muted">دسته بندی ها</a></li>
-                   
+
                 </ol>
             </nav>
         </div>
@@ -689,7 +689,7 @@ href="{{asset('assets/css/home.css')}}"
                                                         {{$product->name}}
                                                     </h6>
                                                 </a>
-                                                   
+
                                                     <h6 class="title-en text-muted text-overflow-2">
                                                         {{$product->category->name}}
                                                     </h6>
@@ -899,7 +899,7 @@ href="{{asset('assets/css/home.css')}}"
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <img src="{{ asset('/core/public/upload/files/products/images/' . $product->primary_image) }}" alt="" class="img-fluid">
-                                  
+
                                 </div>
                                 <div class="swiper-slide">
                                     <img src="{{ asset('/core/public/upload/files/products/images/' . $product->primary_image) }}" alt="" class="img-fluid">

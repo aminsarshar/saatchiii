@@ -1,8 +1,5 @@
 @extends('home.layouts.home')
-<link
-rel="stylesheet"
-href="{{asset('assets/css/home.css')}}"
-/>
+<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
 @section('title')
     صفحه ای تماس با ما
 @endsection
@@ -10,7 +7,6 @@ href="{{asset('assets/css/home.css')}}"
 
 
 @section('content')
-
     <!-- bread croumb -->
     <div class="content">
         <div class="container-fluid">
@@ -49,12 +45,14 @@ href="{{asset('assets/css/home.css')}}"
                     <div class="row gy-3 my-3">
                         <div class="col-md-4">
                             <style>
-                                .contact-box{
-                                    transition: transform 0.2s; /* ترانزیشن برای تغییر transform در 0.2 ثانیه */
+                                .contact-box {
+                                    transition: transform 0.2s;
+                                    /* ترانزیشن برای تغییر transform در 0.2 ثانیه */
                                 }
 
-                                .contact-box:hover{
-                                    transform: scale(1.05); /* تکوندن کارت با افزایش اندازه */
+                                .contact-box:hover {
+                                    transform: scale(1.05);
+                                    /* تکوندن کارت با افزایش اندازه */
                                 }
                             </style>
                             <div class="contact-box  p-4 bg-light shadow-inner">
@@ -121,90 +119,73 @@ href="{{asset('assets/css/home.css')}}"
                             پایین به ما بگو!</p>
                         <div class="row justify-content-center">
                             <div class="col-md-8">
-                                <form id="contact-form" action="{{route('home.contact-us.form')}}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-floating mb-3 form-group">
-                                            <input
-                                             type="email"
-                                             class="form-control"
-                                             id="floatingInputEmail"
-                                             placeholder="ایمیل خود را وارد کنید"
-                                             value="{{ old('email') }}"
-                                             name="email"
-                                             >
-                                             @error('email')
-                                             <p class="input-error-validation">
-                                                 <strong>{{ $message }}</strong>
-                                             </p>
-                                             @enderror
+                                <form id="contact-form" action="{{ route('home.contact-us.form') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-floating mb-3 form-group">
+                                                <input type="email" class="form-control" id="floatingInputEmail"
+                                                    placeholder="ایمیل خود را وارد کنید" value="{{ old('email') }}"
+                                                    name="email">
+                                                @error('email')
+                                                    <p class="input-error-validation">
+                                                        <strong>{{ $message }}</strong>
+                                                    </p>
+                                                @enderror
 
-                                            <label for="floatingInputEmail">ایمیل خود را وارد
-                                                کنید</label>
+                                                <label for="floatingInputEmail">ایمیل خود را وارد
+                                                    کنید</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-floating mb-3 form-group">
+                                                <input type="text" class="form-control" id="floatingInputName"
+                                                    placeholder="نام خود را وارد کنید" value="{{ old('name') }}"
+                                                    name="name">
+
+                                                @error('name')
+                                                    <p class="input-error-validation">
+                                                        <strong>{{ $message }}</strong>
+                                                    </p>
+                                                @enderror
+                                                <label for="floatingInputName">نام خود را وارد کنید مثلا : امین
+                                                    سرشار</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-floating mb-3 form-group">
+                                                <input type="text" class="form-control" id="floatingInputName"
+                                                    placeholder="نام خود را وارد کنید" value="{{ old('subject') }}"
+                                                    name="subject">
+
+                                                @error('subject')
+                                                    <p class="input-error-validation">
+                                                        <strong>{{ $message }}</strong>
+                                                    </p>
+                                                @enderror
+                                                <label for="floatingInputName">موضوع پیام را وارد کنید مثلا : خدمات</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-floating">
+                                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" value="{{ old('text') }}"
+                                                    name="text" style="height: 150px"></textarea>
+
+                                                @error('text')
+                                                    <p class="input-error-validation">
+                                                        <strong>{{ $message }}</strong>
+                                                    </p>
+                                                @enderror
+                                                <label for="floatingTextarea2">متن پیام!</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit">ثبت</button>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-floating mb-3 form-group">
-                                            <input
-                                             type="text"
-                                             class="form-control"
-                                             id="floatingInputName"
-                                             placeholder="نام خود را وارد کنید"
-                                             value="{{ old('name') }}"
-                                             name="name"
-
-                                                >
-
-                                            @error('name')
-                                                <p class="input-error-validation">
-                                                    <strong>{{ $message }}</strong>
-                                                </p>
-                                            @enderror
-                                            <label for="floatingInputName">نام خود را وارد کنید مثلا : امین سرشار</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3 form-group">
-                                            <input
-                                             type="text"
-                                             class="form-control"
-                                             id="floatingInputName"
-                                             placeholder="نام خود را وارد کنید"
-                                             value="{{ old('subject') }}"
-                                             name="subject"
-
-                                                >
-
-                                            @error('subject')
-                                                <p class="input-error-validation">
-                                                    <strong>{{ $message }}</strong>
-                                                </p>
-                                            @enderror
-                                            <label for="floatingInputName">موضوع پیام را وارد کنید مثلا : خدمات</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                id="floatingTextarea2" value="{{ old('text') }}"
-                                                name="text" style="height: 150px"></textarea>
-
-                                            @error('text')
-                                                <p class="input-error-validation">
-                                                    <strong>{{ $message }}</strong>
-                                                </p>
-                                            @enderror
-                                            <label for="floatingTextarea2">متن پیام!</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit">ثبت</button>
-                                    </div>
-                                </div>
-                            </form>
-                            {!!  GoogleReCaptchaV3::render(['contact_us_id'=>'contact_us']) !!}
+                                </form>
+                                {!! GoogleReCaptchaV3::render(['contact_us_id' => 'contact_us']) !!}
                             </div>
                         </div>
                     </div>
@@ -213,7 +194,7 @@ href="{{asset('assets/css/home.css')}}"
         </div>
     </div>
     <!-- end main-data -->
-                {{-- <div class="col-lg-7 col-md-6">
+    {{-- <div class="col-lg-7 col-md-6">
                     <div class="contact-from contact-shadow">
                         <form id="contact-form" action="{{route('home.contact-us.form')}}" method="post">
                             @csrf
@@ -257,5 +238,4 @@ href="{{asset('assets/css/home.css')}}"
 
                     </div>
                 </div> --}}
-
 @endsection

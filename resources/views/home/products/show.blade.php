@@ -4,7 +4,7 @@
     صفحه ای فروشگاه
 @endsection
 
-
+@section('content')
     <!-- bread croumb -->
     <div class="content">
         <div class="container-fluid">

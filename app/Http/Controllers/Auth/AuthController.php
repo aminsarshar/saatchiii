@@ -28,6 +28,7 @@ class AuthController extends Controller
         } catch (\Exception $ex) {
             return redirect()->route('login');
 
+
         }
 
         $user = User::where('email' , $socialite_user->getEmail())->first();

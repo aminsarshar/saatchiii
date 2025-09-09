@@ -1,84 +1,11 @@
 @extends('home.layouts.home')
-<link rel="stylesheet" href="{{asset('assets/css/style-1.css')}}">
+<link rel="stylesheet" href="{{asset('assets/js/plugin/countdown/countdown.css')}}">
+{{-- <link rel="stylesheet" href="{{asset('assets/css/style-1.css')}}"> --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<script src="{{asset('assets/js/home.js')}}"></script>
-<script src="{{asset('assets/js/plugins.js')}}"></script>
-<script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-@section('title')
-    صفحه ای آدرس ها
-@endsection
 
-@section('script')
-<script>
-    $('.province-select').change(function() {
-
-        var provinceID = $(this).val();
-
-        if (provinceID) {
-            $.ajax({
-                type: "GET",
-                url: "{{ url('/get-province-cities-list') }}?province_id=" + provinceID,
-                success: function(res) {
-                    if (res) {
-                        $(".city-select").empty();
-
-                        $.each(res, function(key , city) {
-                            console.log(city);
-                            $(".city-select").append('<option value="' + city.id + '">' +
-                                city.name + '</option>');
-                        });
-
-                    } else {
-                        $(".city-select").empty();
-                    }
-                }
-            });
-        } else {
-            $(".city-select").empty();
-        }
-    });
-</script>
-<script>
-    $('#address-input').val( $('#address-select').val() );
-
-    $('#address-select').change(function() {
-        $('#address-input').val($(this).val());
-    });
-            $('.province-select').change(function() {
-
-                var provinceID = $(this).val();
-
-                if (provinceID) {
-                    $.ajax({
-                        type: "GET",
-                        url: "{{ url('/get-province-cities-list') }}?province_id=" + provinceID,
-                        success: function(res) {
-                            if (res) {
-                                $(".city-select").empty();
-
-                                $.each(res, function(key, city) {
-                                    console.log(city);
-                                    $(".city-select").append('<option value="' + city.id + '">' +
-                                        city.name + '</option>');
-                                });
-
-                            } else {
-                                $(".city-select").empty();
-                            }
-                        }
-                    });
-                } else {
-                    $(".city-select").empty();
-                }
-            });
-
-        </script>
-
-@endsection
 
 @section('content')
 
@@ -90,8 +17,7 @@
                 <div class="col-lg-9">
                     <div class="content-box" style="padding:40px 20px;">
                         <p>
-
-                            <button class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <button class="address_btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                               ایجاد آدرس
                             </button>
                           </p>
@@ -175,7 +101,7 @@
 
                                     <div class=" col-lg-12 col-md-12">
 
-                                        <button class="cart-btn-2" type="submit"> ثبت آدرس
+                                        <button class="address_btn" type="submit"> ثبت آدرس
                                         </button>
                                     </div>
 
@@ -204,8 +130,13 @@
                                             <div class="ui-box-item-desc">
                                                 <div class="orders">
                                                     <div class="order-item">
+                                                        <div class="order-item-status-item">
+                                                            @if($addresses->isEmpty())
+                                                            <div class="alert alert-warning" style="margin: 10px">
+                                                             آدرسی ثبت نشده
+                                                            </div>
+                                                            @else
                                                         <div class="order-item-status flex-nowrap">
-                                                            <div class="order-item-status-item">
                                                                 @foreach ($addresses as $address)
                                                                 <div>
                                                                     <address>
@@ -237,23 +168,11 @@
 
                                                                     </address>
 
-                                                                    <style>
-                                                                        .address_p{
-                                                                            padding-bottom: 11px;
-                                                                        }
-
-                                                                        .editbtn{
-                                                                            background: white !important;
-                                                                        }
-
-                                                                        .editbtn:hover{
-                                                                            color: rgb(255, 140, 0) !important;
-                                                                        }
-                                                                    </style>
 
 
 
-                                                                    <a href="#" class="editbtn" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{$address->id}}" aria-expanded="false" aria-controls="collapseEdit">
+
+                                                                    <a href="#" style="color: white !important" class="address_btn" data-bs-toggle="collapse" data-bs-target="#collapseEdit-{{$address->id}}" aria-expanded="false" aria-controls="collapseEdit">
                                                                         <i class="fa-solid fa-pen"></i>
                                                                         ویرایش آدرس
                                                                     </a>
@@ -353,7 +272,7 @@
 
                                                                             <div class=" col-lg-12 col-md-12">
 
-                                                                                <button class="cart-btn-2" type="submit" style="background-color: #FFC107;
+                                                                                <button class="address_btn" type="submit" style="background-color: #FFC107;
                                                                                 color: white;
                                                                                 margin-bottom: 40px;"> ویرایش آدرس
                                                                                 </button>
@@ -369,8 +288,9 @@
                                                                 </div>
 
                                                                 @endforeach
+                                                                @endif
                                                             </div>
-                                                     
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -386,5 +306,16 @@
     </div>
     <!-- end dashboard -->
 </div>
+
+<style>
+    .address_btn{
+     background: linear-gradient(to right, #c77dff, #9d4edd);
+    color: white;
+    border: navajowhite;
+    padding: 7px;
+    margin-top: 22px;
+    border-radius: 7px;
+                }
+</style>
 
 @endsection

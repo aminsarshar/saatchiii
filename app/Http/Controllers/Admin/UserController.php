@@ -4,18 +4,50 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use App\Http\Requests\Admin\Users\UpdateUsersRequest;
 
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(7);
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index');
+    }
+
+    public function create()
+    {
+        return view('admin.users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $file = $request->file('avatar');
+        $avatar = '';
+        if (!empty($file)) {
+            $avatar = time() . "." . $file->getClientOriginalExtension();
+            $file->move('admin/images/users', $avatar);
+        }
+        User::query()->create([
+            'avatar' => $avatar,
+            'name' => $request->name,
+            'email' => $request->email,
+            'cellphone' => $request->cellphone,
+            'password' => Hash::make($request->password),
+
+        ]);
+
+        alert()->success('کاربر با موفقیت ایجاد شد!', 'موفق');
+        return redirect(route('admin.users.index'));
+        // Display an error toast with no title
+
     }
 
     public function edit(User $user)
@@ -39,7 +71,7 @@ class UserController extends Controller
 
             $user->syncRoles($request->role);
 
-            $permissions = $request->except('_token', 'cellphone', 'role', 'name', '_method');
+            $permissions = $request->except('_token', 'cellphone', 'name', 'role',  'email', '_method');
             $user->syncPermissions($permissions);
 
             DB::commit();
@@ -51,5 +83,20 @@ class UserController extends Controller
 
         alert()->success('کاربر مورد نظر ویرایش شد', 'باتشکر');
         return redirect()->route('admin.users.index');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+
+        alert()->success('کاربر مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.users.index');
+    }
+
+    public function trashed()
+    {
+        $users = User::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.users.trashed_user', compact('users'));
     }
 }

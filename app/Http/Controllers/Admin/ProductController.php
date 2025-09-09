@@ -14,6 +14,8 @@ use App\Models\ProductVariation;
 use CreateProductVariationsTable;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\Admin\ProductEditRequest;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ProductVariationController;
@@ -51,29 +53,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'brand_id' => 'required',
-            'is_active' => 'required',
-            'type' => 'required',
-            'tag_ids' => 'required',
-            'description' => 'required',
-            'primary_image' => 'required|mimes:jpg,jpeg,png,svg',
-            'images' => 'required',
-            'images.*' => 'mimes:jpg,jpeg,png,svg',
-            'category_id' => 'required',
-            'attribute_ids' => 'required',
-            'attribute_ids.*' => 'required',
-            'variation_values' => 'required',
-            'variation_values.*.*' => 'required',
-            'variation_values.price.*' => 'integer',
-            'variation_values.quantity.*' => 'integer',
-            'delivery_amount' => 'required|integer',
-            'delivery_amount_per_product' => 'nullable|integer',
-        ]);
         try {
             DB::beginTransaction();
 
@@ -91,8 +72,10 @@ class ProductController extends Controller
                 'type' => $request->type,
                 'delivery_amount' => $request->delivery_amount,
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
+
             ]);
 
+            // dd($product);
             foreach ($fileNameImages['fileNameImages'] as $fileNameImage) {
                 ProductImage::create([
                     'product_id' => $product->id,
@@ -159,27 +142,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductEditRequest $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'brand_id' => 'required|exists:brands,id',
-            'is_active' => 'required',
-            'tag_ids' => 'required',
-            'tag_ids.*' => 'exists:tags,id',
-            'description' => 'required',
-            'attribute_values' => 'required',
-            'variation_values' => 'required',
-            'variation_values.*.price' => 'required|integer',
-            'variation_values.*.quantity' => 'required|integer',
-            'variation_values.*.sale_price' => 'nullable|integer',
-            'variation_values.*.date_on_sale_from' => 'nullable|date',
-            'variation_values.*.date_on_sale_to' => 'nullable|date',
-            'delivery_amount' => 'required|integer',
-            'delivery_amount_per_product' => 'nullable|integer',
-        ]);
-
         try {
             DB::beginTransaction();
 
@@ -189,6 +153,7 @@ class ProductController extends Controller
                 'brand_id' => $request->brand_id,
                 'description' => $request->description,
                 'is_active' => $request->is_active,
+                'type' => $request->type,
                 'delivery_amount' => $request->delivery_amount,
                 'delivery_amount_per_product' => $request->delivery_amount_per_product,
             ]);
@@ -218,15 +183,27 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+
+        alert()->success('محصول مورد نظر حذف شد', 'باتشکر');
+        return redirect()->route('admin.products.index');
     }
+
+    public function trashed()
+    {
+        $products = Product::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.products.trashed_product', compact('products'));
+    }
+
+
 
     public function editCategory(Request $request, Product $product)
     {
         $categories = Category::where('parent_id', '!=', 0)->get();
-        return view('admin.products.edit_category', compact('product' , 'categories'));
+        return view('admin.products.edit_category', compact('product', 'categories'));
     }
 
     public function updateCategory(Request $request, Product $product)
@@ -234,8 +211,8 @@ class ProductController extends Controller
         // dd($request->all());
         $request->validate([
             'category_id' => 'required',
-            'attribute_ids' => 'required',
-            'attribute_ids.*' => 'required',
+            // 'attribute_ids' => 'required',
+            // 'attribute_ids.*' => 'required',
             'variation_values' => 'required',
             'variation_values.*.*' => 'required',
             'variation_values.price.*' => 'integer',
@@ -248,12 +225,12 @@ class ProductController extends Controller
                 'category_id' => $request->category_id
             ]);
 
-            $productAttributeController = new ProductAttributeController();
-            $productAttributeController->change($request->attribute_ids, $product);
+            // $productAttributeController = new ProductAttributeController();
+            // $productAttributeController->change($request->attribute_ids, $product);
 
             $category = Category::find($request->category_id);
             $productVariationController = new ProductVariationController();
-            $productVariationController->change($request->variation_values, $category->attributes()->wherePivot('is_variation', 1)->first()->id, $product);
+            $productVariationController->store($request->variation_values, $category->attributes()->wherePivot('is_variation', 1)->first()->id, $product);
 
             DB::commit();
         } catch (\Exception $ex) {

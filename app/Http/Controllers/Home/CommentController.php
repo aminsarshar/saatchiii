@@ -53,14 +53,14 @@ class CommentController extends Controller
                 DB::commit();
             } catch (\Exception $ex) {
                 DB::rollBack();
-                alert()->error('مشکل در ویرایش محصول', $ex->getMessage())->persistent('حله');
+                alert()->error('مشکل در ویرایش محصول', $ex->getMessage());
                 return redirect()->back();
             }
 
             alert()->success('نظر ارزشمند شما با موفقیت برای این محصول ثبت شد', 'باتشکر');
             return redirect()->back();
         } else {
-            alert()->warning('دقت کنید', 'برای ثبت نظر نیاز هست در ابتدا وارد سایت شوید')->persistent('حله');
+            alert()->warning('دقت کنید', 'برای ثبت نظر نیاز هست در ابتدا وارد سایت شوید');
             return redirect()->back();
         }
     }

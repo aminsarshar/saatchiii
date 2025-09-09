@@ -6,18 +6,23 @@ use App\Models\Coupon;
 use App\Models\City;
 use App\Models\Province;
 
-function generateFileName($name)
-{
-    $year = Carbon::now()->year;
-    $month = Carbon::now()->month;
-    $day = Carbon::now()->day;
-    $hour = Carbon::now()->hour;
-    $minute = Carbon::now()->minute;
-    $second = Carbon::now()->second;
-    $microsecond = Carbon::now()->microsecond;
-    return $year . '_' . $month . '_' . $day . '_' . $hour . '_' . $minute . '_' . $second . '_' . $microsecond . '_' . $name;
+
+if(!function_exists('generateFileName')){
+
+    function generateFileName($name)
+    {
+        $year = Carbon::now()->year;
+        $month = Carbon::now()->month;
+        $day = Carbon::now()->day;
+        $hour = Carbon::now()->hour;
+        $minute = Carbon::now()->minute;
+        $second = Carbon::now()->second;
+        $microsecond = Carbon::now()->microsecond;
+        return $year . '_' . $month . '_' . $day . '_' . $hour . '_' . $minute . '_' . $second . '_' . $microsecond . '_' . $name;
+    }
 }
 
+if(!function_exists('convertShamsiToGregorianDate')){
 function convertShamsiToGregorianDate($date)
 {
     if ($date == null) {
@@ -28,10 +33,13 @@ function convertShamsiToGregorianDate($date)
 
     $arrayGergorianDate = verta()->jalaliToGregorian($shamsiDateSplit[0], $shamsiDateSplit[1], $shamsiDateSplit[2]);
 
-    return implode("-", $arrayGergorianDate) . " " . $shamsiDateSplit[3];
+    return implode("-", $arrayGergorianDate);
+    // return implode("-", $arrayGergorianDate) . " " . $shamsiDateSplit[3];
+
+}
 }
 
-
+if(!function_exists('cartTotalSaleAmount')){
 function cartTotalSaleAmount()
 {
     $cartTotalSaleAmount = 0;
@@ -43,7 +51,9 @@ function cartTotalSaleAmount()
 
     return $cartTotalSaleAmount;
 }
+}
 
+if(!function_exists('cartTotalDeliveryAmount')){
 function cartTotalDeliveryAmount()
 {
     $cartTotalDeliveryAmount = 0;
@@ -53,7 +63,9 @@ function cartTotalDeliveryAmount()
 
     return $cartTotalDeliveryAmount;
 }
+}
 
+if(!function_exists('cartTotalAmount')){
 function cartTotalAmount()
 {
     if (session()->has('coupon')) {
@@ -67,7 +79,9 @@ function cartTotalAmount()
         return \Cart::getTotal() + cartTotalDeliveryAmount();
     }
 }
+}
 
+if(!function_exists('checkCoupon')){
 function checkCoupon($code)
 {
     $coupon = Coupon::where('code', $code)->where('expired_at', '>', Carbon::now())->first();
@@ -92,15 +106,19 @@ function checkCoupon($code)
 
     return ['success' => 'کد تخفیف برای شما ثبت شد'];
 }
+}
 
 
-
+if(!function_exists('province_name')){
 function province_name($provinceId)
 {
     return Province::findOrFail($provinceId)->name;
 }
+}
 
+if(!function_exists('city_name')){
 function city_name($cityId)
 {
     return City::findOrFail($cityId)->name;
+}
 }

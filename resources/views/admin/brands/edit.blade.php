@@ -25,10 +25,10 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="is_active">وضعیت</label>
-                        <select class="form-control" id="is_active" name="is_active">
-                            <option value="1" {{ $brand->getRawOriginal('is_active') ? 'selected' : '' }}>فعال</option>
-                            <option value="0" {{ $brand->getRawOriginal('is_active') ? 'selected' : '' }} >غیرفعال</option>
+                        <label for="status">وضعیت</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="1" {{ $brand->getRawOriginal('status') ? 'selected' : '' }}>فعال</option>
+                            <option value="0" {{ $brand->getRawOriginal('status') ? 'selected' : '' }} >غیرفعال</option>
                         </select>
                     </div>
                 </div>

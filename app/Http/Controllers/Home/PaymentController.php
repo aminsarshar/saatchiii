@@ -50,6 +50,7 @@ class PaymentController extends Controller
                 return redirect()->to($payGatewayResult['success']);
             }
         }
+        
 
         if ($request->payment_method == 'zarinpal') {
             $zarinpalGateway = new Zarinpal();
@@ -77,7 +78,7 @@ class PaymentController extends Controller
                 return redirect()->back();
             } else {
                 alert()->success($payGatewayResult['success'], 'با تشکر');
-                return redirect()->route('home.cart.payment_ok');
+                return redirect()->route('home.index');
             }
         }
 
@@ -144,19 +145,5 @@ class PaymentController extends Controller
             'coupon_amount' => session()->has('coupon') ? session()->get('coupon.amount') : 0,
             'paying_amount' => cartTotalAmount()
         ];
-    }
-
-    public function pay_ok()
-    {
-
-
-        return view('home.cart' , compact('payGatewayResult' , 'payGateway'));
-
-    }
-
-    public function pay_not_ok()
-    {
-        return view('home.cart');
-
     }
 }

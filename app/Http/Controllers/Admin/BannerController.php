@@ -39,7 +39,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'image' => 'required|mimes:jpg,jpeg,png,svg,webp',
-            'priority' => 'required|integer',
+            'title' => 'required',
             'type' => 'required'
         ]);
 
@@ -61,6 +61,7 @@ class BannerController extends Controller
         alert()->success('بنر مورد نظر ایجاد شد', 'باتشکر');
         return redirect()->route('admin.banners.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -95,7 +96,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'image' => 'nullable|mimes:jpg,jpeg,png,svg,webp',
-            'priority' => 'required|integer',
+            'title' => 'required',
             'type' => 'required'
         ]);
 
@@ -130,7 +131,14 @@ class BannerController extends Controller
     {
         $banner->delete();
 
-        alert()->success('بنر مورد نظر حذف شد', 'باتشکر');
+
+        alert()->success('تگ مورد نظر حذف شد', 'باتشکر');
         return redirect()->route('admin.banners.index');
+    }
+
+    public function trashed()
+    {
+        $banners = Banner::query()->where('deleted_at', '!=', null)->onlyTrashed()->paginate(10);
+        return view('admin.banners.trashed_banner', compact('banners'));
     }
 }

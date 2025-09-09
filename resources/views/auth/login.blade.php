@@ -1,217 +1,82 @@
 @extends('home.layouts.home')
-
-
-
-@section('title')
-    صفحه اصلی
-@endsection
-
-@section('script')
-
-{{-- <script>
-    let loginToken;
-    // $('#checkOTPForm').hide();
-
-
-    $('#loginForm').submit(function(event){
-        console.log( $('#cellphoneInput').val() );
-        event.preventDefault();
-
-        $.post("{{ url('/login') }}",
-        {
-            '_token' : "{{ csrf_token() }}",e
-            'cellphone' : $('#cellphoneInput').val()
-
-        } , function(response , status){
-            console.log(response , status);
-            loginToken = response.login_token;
-
-
-
-            $('#loginForm').fadeOut();
-            $('#checkOTPForm').fadeIn();
-
-        }).fail(function(response){
-            console.log(response.responseJSON);
-            $('#cellphoneInput').addClass('mb-1');
-            $('#cellphoneInputError').fadeIn();
-            $('#cellphoneInputErrorText').html(response.responseJSON.errors.cellphone[0]);
-        })
-    });
-
-    $('#checkOTPForm').submit(function(event){
-            event.preventDefault();
-
-            $.post("{{ url('/check-otp') }}",
-            {
-                '_token' : "{{ csrf_token() }}",
-                'otp' : $('#checkOTPInput').val(),
-                'login_token' : loginToken
-
-            } , function(response , status){
-                console.log(response , status);
-                $(location).attr('href' , "{{ route('home.index') }}");
-
-            }).fail(function(response){
-                console.log(response.responseJSON);
-                $('#checkOTPInput').addClass('mb-1');
-                $('#checkOTPInputError').fadeIn();
-                $('#checkOTPInputErrorText').html(response.responseJSON.errors.otp[0]);
-            })
-        });
-
-
-
-</script> --}}
-
-@endsection
-
 @section('content')
+    <div class="login-register-area pt-100 pb-100" style="direction: rtl;padding-top:100px;padding-bottom:100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto" style="margin-right: auto;margin-left: auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+
+                        </div>
+                        <div class="tab-content" style="margin-top: 120px;margin-bottom: 120px;">
+
+                            <div id="lg1" class="tab-pane active" style="margin-top: -112px;">
+
+                                <div class="login-form-container" style="background: white">
+                                    <a class="active" data-toggle="tab" href="#lg1">
+                                        <h4 style="text-align: center;padding-bottom: 30px;color:#6666ff">ورود به حساب کاربری</h4>
+                                    </a>
+                                    <div class="login-register-form">
+                                        <form action="{{ route('login') }}" method="post">
+                                            @csrf
+                                            <input type="email" class="form-control" placeholder="ایمیل"
+                                                @error('email')
+                                            style="border: 1px solid #ff0000 !important"
+                                            @enderror
+                                                name="email" value="{{ old('email') }}">
+                                            @error('email')
+                                                <div class="input-error-validation">
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                            @enderror
+
+                                            <input type="password" class="form-control" placeholder="رمز عبور"
+                                                @error('password')
+                                            style="border: 1px solid #ff0000 !important"
+                                            @enderror
+                                                name="password" value="{{ old('password') }}">
+                                            @error('password')
+                                                <div class="input-error-validation">
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                            @enderror
+
+                                            <div style="text-align: right;margin-bottom: 30px;">
+                                                <input name="remember" type="checkbox" style="width: 30px !important">
+                                                <span>مرا بخاطر بسپار</span>
+                                            </div>
+                                            @error('remember')
+                                                <div class="input-error-validation">
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                            @enderror
+                                            <div class="button-box d-flex justify-content-between">
+                                                <button type="submit">ورود</button>
+                                            </div>
+
+                                            <div style="text-align:right;margin:20px">
+                                                <a href="{{route('register')}}">حساب کاربری ندارید؟ عضویت</a>
+                                            </div>
 
 
-        <div class="form-box" style="margin-top: 19px;height: 566px;">
-          <div class="form-tab">
-            <ul
-              class="nav nav-pills nav-fill nav-border-anim"
-              role="tablist"
-            >
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  id="signin-tab"
-                  data-toggle="tab"
-                  href="#signin"
-                  role="tab"
-                  aria-controls="signin"
-                  aria-selected="true"
-                  >ورود</a
-                >
-              </li>
+                                            <div class="social mt-3">
+                                                <a title="ورود با گوگل"
+                                                    href="{{ route('provider.login', ['provider' => 'google']) }}"class="bi bi-google"
+                                                    style="color: #EA4335"></a>
+                                                <a href="" class="bi bi-facebook" style="color: #1877F2"></a>
+                                                <a href="" class="bi bi-github" style="color: #4078c0"></a>
+                                            </div>
+                                        </form>
 
-            </ul>
-            <div class="tab-content" id="tab-content-5">
-              <div
-                class="tab-pane fade show active"
-                id="signin"
-                role="tabpanel"
-                aria-labelledby="signin-tab"
-              >
 
-              <form action="{{route('login')}}" method="post">
-                @csrf
-                <div class="form-group">
-                    <label for="email">ایمیل</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      value="{{old('name')}}"
-                      placeholder="ایمیل"
+                                    </div>
+                                </div>
+                            </div>
 
-                    />
-                    @error('email')
-                    <div class="input-error-validation">
-                        <strong>{{$message}}</strong>
+                        </div>
                     </div>
-
-                    @enderror
-                  </div>
-                  <!-- End .form-group -->
-
-
-                  <div class="form-group">
-                    <label for="password">رمز عبور</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      name="password"
-                      value="{{old('password')}}"
-                      placeholder="رمز عبوز"
-
-                    />
-                    @error('password')
-                    <div class="input-error-validation">
-                        <strong>{{$message}}</strong>
-                    </div>
-
-                    @enderror
-                  </div>
-                  <!-- End .form-group -->
-
-              <div class="form-footer">
-                <button type="submit" class="btn btn-outline-primary-2" style="margin-right:1px !important">
-                  <span>ورود</span>
-                  <i class="icon-long-arrow-left"></i>
-
-                </button>
-
-
-
-                <a href="{{route('register')}}" class="btn btn-outline-primary-2" style="color: white !important;background: #6666ff !important;">
-
-                  <span>ثبت نام</span>
-                  <i class="icon-long-arrow-left"></i>
-
-                </a>
-              </div>
-
-              <style>
-                .btn-outline-primary-2{
-                    margin-right: 184px !important;
-
-                }
-
-                @media only screen and (max-width: 500px)
-                 {
-                    .btn-outline-primary-2{
-                    margin-right: 1px !important;
-                }
-
-                 }
-
-              </style>
-              <!-- End .form-footer -->
-            </form>
-            <div class="form-choice" style="margin-top: -12px !important;">
-              <p class="text-center">یا ورود با</p>
-              <div class="row">
-                <div class="col-sm-6">
-                  <a href="{{route('provider.login' , ['provider' => 'google'])}}" class="btn btn-login btn-g">
-                    <i class="icon-google"></i>
-                    حساب گوگل
-                  </a>
                 </div>
-
-                <div class="col-sm-6">
-                    <a href="{{route('loginsms')}}" class="btn btn-login btn-g">
-                        <i class="fa-solid fa-comment-sms"></i>
-                       رمز یکبار مصرف
-                    </a>
-                  </div>
-
-
-
-                <!-- End .form-choice -->
-              </div>
-
-              <!-- .End .tab-pane -->
             </div>
-            <!-- End .tab-content -->
-          </div>
-          <!-- End .form-tab -->
         </div>
-        <!-- End .form-box -->
-      </div>
-        </div>
-
-
+    </div>
 @endsection
-
-
-
-
-
- {{-- برای ورود با گوگل  --}}
-
-
-

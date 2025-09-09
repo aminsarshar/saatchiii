@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-    edit categories
+    ویرایش دسته بندی
 @endsection
 
 @section('script')
@@ -70,7 +70,6 @@
             </div>
             <hr>
 
-            @include('admin.sections.errors')
 
             <form action="{{ route('admin.categories.update', ['category' => $category->id]) }}" method="POST">
                 @csrf

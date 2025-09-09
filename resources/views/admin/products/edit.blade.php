@@ -30,7 +30,11 @@
             });
         });
 
+
+
     </script>
+
+
 @endsection
 
 @section('content')
@@ -75,8 +79,8 @@
                     <div class="form-group col-md-3">
                         <label for="is_active">وضعیت</label>
                         <select class="form-control" id="is_active" name="is_active">
-                            <option value="1" {{ $product->getRawOriginal('is_active') ? 'selected' : '' }}>فعال</option>
-                            <option value="0" {{ $product->getRawOriginal('is_active') ? 'selected' : '' }}>غیرفعال</option>
+                            <option value="1" {{($product->is_active == '1') ? 'selected' : ''}}>فعال</option>
+                            <option value="0" {{($product->is_active == '0') ? 'selected' : ''}}>غیرفعال</option>
                         </select>
                     </div>
 
@@ -91,6 +95,16 @@
                                     {{ $tag->name }}
                                 </option>
                             @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="description">نوع محصول</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="0" disabled>انتخاب کنید</option>
+                            <option value="1" {{ ($product->type == 1) ? 'selected' : '' }}>عادی</option>
+                            <option value="2" {{($product->type == 2) ? 'selected' : ''}} >تخفیف خورده</option>
+                            <option value="3" {{($product->type == 3) ? 'selected' : ''}} >تخفیف روزانه</option>
                         </select>
                     </div>
 

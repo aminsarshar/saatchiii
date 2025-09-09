@@ -12,10 +12,10 @@ class Category extends Model
     protected $table = "categories";
     protected $guarded = [];
 
-    public function getIsActiveAttribute($is_active)
-    {
-        return $is_active ? 'فعال' : 'غیرفعال' ;
-    }
+    // public function getIsActiveAttribute($is_active)
+    // {
+    //     return $is_active ? 'فعال' : 'غیرفعال' ;
+    // }
 
     public function parent()
     {
@@ -33,7 +33,7 @@ class Category extends Model
     {
         return $this->belongsToMany(Attribute::class , 'attribute_category');
     }
-    
+
 
 
     public function products()

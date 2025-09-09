@@ -1,191 +1,183 @@
 @extends('home.layouts.home')
-<link
-rel="stylesheet"
-href="{{asset('assets/loginsms/css/home.css')}}"
-/>
+{{-- <link rel="stylesheet" href="{{ asset('assets/loginsms/css/home.css') }}" /> --}}
 @section('title')
-    صفحه ای وزود
+    صفحه ای ورود
 @endsection
 
 @section('script')
+    {{-- <script src="{{ asset('assets/loginsms/js/jquery-1.12.4.min.js') }}"></script> --}}
 
-<script src="{{ asset('assets/loginsms/js/jquery-1.12.4.min.js') }}"></script>
-<script src="{{ asset('assets/loginsms/js/plugins.js') }}"></script>
-<script src="{{ asset('assets/loginsms/js/home.js') }}"></script>
-<script>
-    let loginToken;
-    $('#checkOTPForm').hide();
-    $('#resendOTPButton').hide();
+    {{-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> --}}
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/loginsms/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/loginsms/js/home.js') }}"></script>
+    <script>
+        let loginToken;
+        $('#checkOTPForm').hide();
+        $('#resendOTPButton').hide();
 
-    $('#loginForm').submit(function(event){
-        // console.log( $('#cellphoneInput').val() );
-        event.preventDefault();
+        $('#loginForm').submit(function(event) {
+            console.log($('#cellphoneInput').val());
+            event.preventDefault();
 
-        $.post("{{ url('/loginsms') }}",
-        {
-            '_token' : "{{ csrf_token() }}",
-            'cellphone' : $('#cellphoneInput').val()
+            $.post("{{ url('/loginsms') }}", {
+                '_token': "{{ csrf_token() }}",
+                'cellphone': $('#cellphoneInput').val()
 
-        } , function(response , status){
-            console.log(response , status);
-            loginToken = response.login_token;
+            }, function(response, status) {
+                console.log(response, status);
+                loginToken = response.login_token;
 
-            swal({
-                icon : 'success',
-                text: 'رمز یکبار مصرف برای شما ارسال شد',
-                button : 'حله!',
-                timer : 2000
-            });
+                swal({
+                    icon: 'success',
+                    text: 'رمز یکبار مصرف برای شما ارسال شد',
+                    button: 'حله!',
+                    timer: 2000
+                });
 
-            $('#loginForm').fadeOut();
-            $('#checkOTPForm').fadeIn();
-            timer();
+                $('#loginForm').fadeOut();
+                $('#checkOTPForm').fadeIn();
+                timer();
 
-        }).fail(function(response){
-            console.log(response.responseJSON);
-            $('#cellphoneInput').addClass('mb-1');
-            $('#cellphoneInputError').fadeIn();
-            $('#cellphoneInputErrorText').html(response.responseJSON.errors.cellphone[0]);
-        })
-    });
+            }).fail(function(response) {
+                console.log(response.responseJSON);
+                $('#cellphoneInput').addClass('mb-1');
+                $('#cellphoneInputError').fadeIn();
+                $('#cellphoneInputErrorText').html(response.responseJSON.errors.cellphone[0]);
+            })
+        });
 
-    $('#checkOTPForm').submit(function(event){
-        event.preventDefault();
+        $('#checkOTPForm').submit(function(event) {
+            event.preventDefault();
 
-        $.post("{{ url('/check-otp') }}",
-        {
-            '_token' : "{{ csrf_token() }}",
-            'otp' : $('#checkOTPInput').val(),
-            'login_token' : loginToken
+            $.post("{{ url('/check-otp') }}", {
+                '_token': "{{ csrf_token() }}",
+                'otp': $('#checkOTPInput').val(),
+                'login_token': loginToken
 
-        } , function(response , status){
-            console.log(response , status);
-            $(location).attr('href' , "{{ route('home.index') }}");
+            }, function(response, status) {
+                console.log(response, status);
+                $(location).attr('href', "{{ route('home.index') }}");
 
-        }).fail(function(response){
-            console.log(response.responseJSON);
-            $('#checkOTPInput').addClass('mb-1');
-            $('#checkOTPInputError').fadeIn();
-            $('#checkOTPInputErrorText').html(response.responseJSON.errors.otp[0]);
-        })
-    });
+            }).fail(function(response) {
+                console.log(response.responseJSON);
+                $('#checkOTPInput').addClass('mb-1');
+                $('#checkOTPInputError').fadeIn();
+                $('#checkOTPInputErrorText').html(response.responseJSON.errors.otp[0]);
+            })
+        });
 
-    $('#resendOTPButton').click(function(event){
-        event.preventDefault();
+        $('#resendOTPButton').click(function(event) {
+            event.preventDefault();
 
-        $.post("{{ url('/resend-otp') }}",
-        {
-            '_token' : "{{ csrf_token() }}",
-            'login_token' : loginToken
+            $.post("{{ url('/resend-otp') }}", {
+                '_token': "{{ csrf_token() }}",
+                'login_token': loginToken
 
-        } , function(response , status){
-            console.log(response , status);
-            loginToken = response.login_token;
+            }, function(response, status) {
+                console.log(response, status);
+                loginToken = response.login_token;
 
-            swal({
-                icon : 'success',
-                text: 'رمز یکبار مصرف برای شما ارسال شد',
-                button : 'حله!',
-                timer : 2000
-            });
+                swal({
+                    icon: 'success',
+                    text: 'رمز یکبار مصرف برای شما ارسال شد',
+                    button: 'حله!',
+                    timer: 2000
+                });
 
-            $('#resendOTPButton').fadeOut();
-            timer();
-            $('#resendOTPTime').fadeIn();
+                $('#resendOTPButton').fadeOut();
+                timer();
+                $('#resendOTPTime').fadeIn();
 
-        }).fail(function(response){
-            console.log(response.responseJSON);
-            swal({
-                icon : 'error',
-                text: 'مشکل در ارسال دوباره رمز یکبار مصرف، مجددا تلاش کنید',
-                button : 'حله!',
-                timer : 2000
-            });
-        })
-    });
+            }).fail(function(response) {
+                console.log(response.responseJSON);
+                swal({
+                    icon: 'error',
+                    text: 'مشکل در ارسال دوباره رمز یکبار مصرف، مجددا تلاش کنید',
+                    button: 'حله!',
+                    timer: 2000
+                });
+            })
+        });
 
-    function timer() {
-        let time = "1:01";
-        let interval = setInterval(function() {
-            let countdown = time.split(':');
-            let minutes = parseInt(countdown[0], 10);
-            let seconds = parseInt(countdown[1], 10);
-            --seconds;
-            minutes = (seconds < 0) ? --minutes : minutes;
-            if (minutes < 0) {
-                clearInterval(interval);
-                $('#resendOTPTime').hide();
-                $('#resendOTPButton').fadeIn();
-            };
-            seconds = (seconds < 0) ? 59 : seconds;
-            seconds = (seconds < 10) ? '0' + seconds : seconds;
-            //minutes = (minutes < 10) ?  minutes : minutes;
-            $('#resendOTPTime').html(minutes + ':' + seconds);
-            time = minutes + ':' + seconds;
-        }, 1000);
-    }
-
-</script>
+        function timer() {
+            let time = "1:01";
+            let interval = setInterval(function() {
+                let countdown = time.split(':');
+                let minutes = parseInt(countdown[0], 10);
+                let seconds = parseInt(countdown[1], 10);
+                --seconds;
+                minutes = (seconds < 0) ? --minutes : minutes;
+                if (minutes < 0) {
+                    clearInterval(interval);
+                    $('#resendOTPTime').hide();
+                    $('#resendOTPButton').fadeIn();
+                };
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                //minutes = (minutes < 10) ?  minutes : minutes;
+                $('#resendOTPTime').html(minutes + ':' + seconds);
+                time = minutes + ':' + seconds;
+            }, 1000);
+        }
+    </script>
 @endsection
 
 @section('content')
+    <div class="login-register-area pt-100 pb-100" style="direction: rtl;padding-top:100px;padding-bottom:100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 ml-auto mr-auto" style="margin-right: auto;margin-left: auto">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
 
+                        </div>
+                        <div class="tab-content" style="margin-top: 120px;margin-bottom: 120px;">
 
+                            <div id="lg1" class="tab-pane active" style="margin-top: -112px;">
 
-<div class="login-register-area pt-100 pb-100" style="direction: rtl;">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-md-12 ml-auto mr-auto">
-                <div class="login-register-wrapper">
-                    <div class="login-register-tab-list nav">
+                                <div class="login-form-container" style="background: white">
+                                    <a class="active" data-toggle="tab" href="#lg1">
+                                        <h4 style="text-align: center;padding-bottom: 30px;color:#6666ff"> ورود با شماره
+                                            تماس </h4>
+                                    </a>
+                                    <div class="login-register-form">
+                                        <form id="loginForm">
+                                            <input id="cellphoneInput" placeholder="شماره تلفن همراه" type="text">
 
-                    </div>
-                    <div class="tab-content" style="margin-top: 120px;margin-bottom: 120px;">
-
-                        <div id="lg1" class="tab-pane active" style="margin-top: -112px;">
-
-                            <div class="login-form-container" style="background: white">
-                                <a class="active" data-toggle="tab" href="#lg1">
-                                    <h4 style="text-align: center;padding-bottom: 30px;color:#6666ff"> ورود با شماره تماس </h4>
-                                </a>
-                                <div class="login-register-form">
-                                    <form id="loginForm">
-                                        <input id="cellphoneInput" placeholder="شماره تلفن همراه" type="text">
-
-                                        <div id="cellphoneInputError" class="input-error-validation">
-                                            <strong id="cellphoneInputErrorText"></strong>
-                                        </div>
-
-                                        <div class="button-box d-flex justify-content-between">
-                                            <button type="submit">دریافت کد</button>
-                                        </div>
-                                    </form>
-
-                                    <form id="checkOTPForm">
-                                        <input id="checkOTPInput" placeholder="رمز یکبار مصرف" type="text">
-
-                                        <div id="checkOTPInputError" class="input-error-validation">
-                                            <strong id="checkOTPInputErrorText"></strong>
-                                        </div>
-
-                                        <div class="button-box d-flex justify-content-between">
-                                            <button type="submit">ورود</button>
-                                            <div>
-                                                <button id="resendOTPButton" type="submit">ارسال مجدد</button>
-                                                <span id="resendOTPTime"></span>
+                                            <div id="cellphoneInputError" class="input-error-validation">
+                                                <strong id="cellphoneInputErrorText"></strong>
                                             </div>
-                                        </div>
-                                    </form>
 
+                                            <div class="button-box d-flex justify-content-between">
+                                                <button type="submit">دریافت کد</button>
+                                            </div>
+                                        </form>
+
+                                        <form id="checkOTPForm">
+                                            <input id="checkOTPInput" placeholder="رمز یکبار مصرف" type="text">
+
+                                            <div id="checkOTPInputError" class="input-error-validation">
+                                                <strong id="checkOTPInputErrorText"></strong>
+                                            </div>
+
+                                            <div class="button-box d-flex justify-content-between">
+                                                <button type="submit">ورود</button>
+                                                <div>
+                                                    <button id="resendOTPButton" type="submit">ارسال مجدد</button>
+                                                    <span id="resendOTPTime"></span>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 @endsection

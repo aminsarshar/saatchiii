@@ -6,99 +6,9 @@ href="{{asset('assets/css/home.css')}}"
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @section('title')
-    صفحه ای لیست علاقه مندی ها
+پروفایل کاربری-علاقه مندی ها
 @endsection
 
-@section('script')
-
-<script>
-    window.toPersianNum = function (num, dontTrim) {
-
-var i = 0,
-
-dontTrim = dontTrim || false,
-
-num = dontTrim ? num.toString() : num.toString().trim(),
-len = num.length,
-
-res = '',
-pos,
-
-persianNumbers = typeof persianNumber == 'undefined' ?
-    ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
-    persianNumbers;
-
-for (; i < len; i++)
-if ((pos = persianNumbers[num.charAt(i)]))
-    res += pos;
-else
-    res += num.charAt(i);
-
-return res;
-}
-
-window.number_format = function (number, decimals, dec_point, thousands_point) {
-
-if (number == null || !isFinite(number)) {
-throw new TypeError("number is not valid");
-}
-
-if (!decimals) {
-var len = number.toString().split('.').length;
-decimals = len > 1 ? len : 0;
-}
-
-if (!dec_point) {
-dec_point = '.';
-}
-
-if (!thousands_point) {
-thousands_point = ',';
-}
-
-number = parseFloat(number).toFixed(decimals);
-
-number = number.replace(".", dec_point);
-
-var splitNum = number.split(dec_point);
-splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
-number = splitNum.join(dec_point);
-
-return number;
-}
-
-$('.variation-select').on('change' , function(){
-        let variation = JSON.parse(this.value);
-        let variationPriceDiv = $('.variation-price-' + $(this).data('id'));
-        variationPriceDiv.empty();
-
-        if(variation.is_sale){
-            let spanSale = $('<span />' , {
-                class : 'new',
-                text : toPersianNum(number_format(variation.sale_price)) + ' تومان'
-            });
-            let spanPrice = $('<del />' , {
-                class : 'old',
-                text : toPersianNum(number_format(variation.price)) + ' تومان'
-            });
-
-            variationPriceDiv.append(spanSale);
-            variationPriceDiv.append(spanPrice);
-        }else{
-            let spanPrice = $('<span />' , {
-                class : 'new',
-                text : toPersianNum(number_format(variation.price)) + ' تومان'
-            });
-            variationPriceDiv.append(spanPrice);
-        }
-
-        $('.quantity-input').attr('max' , variation.quantity);
-        $('.quantity-input').val(1);
-
-    });
-</script>
-
-@endsection
 
 @section('content')
 
@@ -125,6 +35,11 @@ $('.variation-select').on('change' , function(){
                                         </div>
                                         <div class="ui-box-item-desc">
                                             <div class="product-list-row">
+                                                @if($wishlist->isEmpty())
+                                                <div class="alert alert-warning" style="margin: 10px">
+                                                    لیست علاقه مندی های شما خالی می باشد
+                                                </div>
+                                                @else
                                                 @foreach ($wishlist as $item)
                                                 <div class="product-row">
                                                     <a href="{{ route('home.products.show' , ['product' => $item->product->slug]) }}">
@@ -192,7 +107,7 @@ $('.variation-select').on('change' , function(){
                                                     </a>
                                                 </div>
                                                 @endforeach
-
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

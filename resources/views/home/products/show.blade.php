@@ -4,194 +4,7 @@
     صفحه ای فروشگاه
 @endsection
 
-@section('script')
-<script>
-        window.toPersianNum = function (num, dontTrim) {
-
-var i = 0,
-
-    dontTrim = dontTrim || false,
-
-    num = dontTrim ? num.toString() : num.toString().trim(),
-    len = num.length,
-
-    res = '',
-    pos,
-
-    persianNumbers = typeof persianNumber == 'undefined' ?
-        ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
-        persianNumbers;
-
-for (; i < len; i++)
-    if ((pos = persianNumbers[num.charAt(i)]))
-        res += pos;
-    else
-        res += num.charAt(i);
-
-return res;
-}
-
-window.number_format = function (number, decimals, dec_point, thousands_point) {
-
-if (number == null || !isFinite(number)) {
-    throw new TypeError("number is not valid");
-}
-
-if (!decimals) {
-    var len = number.toString().split('.').length;
-    decimals = len > 1 ? len : 0;
-}
-
-if (!dec_point) {
-    dec_point = '.';
-}
-
-if (!thousands_point) {
-    thousands_point = ',';
-}
-
-number = parseFloat(number).toFixed(decimals);
-
-number = number.replace(".", dec_point);
-
-var splitNum = number.split(dec_point);
-splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
-number = splitNum.join(dec_point);
-
-return number;
-}
-
-$('.variation-select').on('change' , function(){
-            let variation = JSON.parse(this.value);
-            let variationPriceDiv = $('.variation-price');
-            variationPriceDiv.empty();
-
-            if(variation.is_sale){
-                let spanSale = $('<span />' , {
-                    class : 'new',
-                    text : toPersianNum(number_format(variation.sale_price)) + ' تومان'
-                });
-                let spanPrice = $('<del />' , {
-                    id : 'old',
-                    text : toPersianNum(number_format(variation.price)) + ' تومان'
-                });
-
-                variationPriceDiv.append(spanSale);
-                variationPriceDiv.append(spanPrice);
-            }else{
-                let spanPrice = $('<span />' , {
-                    class : 'new',
-                    text : toPersianNum(number_format(variation.price)) + ' تومان'
-                });
-                variationPriceDiv.append(spanPrice);
-            }
-
-            $('.quantity-input').attr('max' , variation.quantity);
-            $('.quantity-input').val(1);
-
-        });
-</script>
-
-<script>
-    window.toPersianNum = function (num, dontTrim) {
-
-var i = 0,
-
-dontTrim = dontTrim || false,
-
-num = dontTrim ? num.toString() : num.toString().trim(),
-len = num.length,
-
-res = '',
-pos,
-
-persianNumbers = typeof persianNumber == 'undefined' ?
-    ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
-    persianNumbers;
-
-for (; i < len; i++)
-if ((pos = persianNumbers[num.charAt(i)]))
-    res += pos;
-else
-    res += num.charAt(i);
-
-return res;
-}
-
-window.number_format = function (number, decimals, dec_point, thousands_point) {
-
-if (number == null || !isFinite(number)) {
-throw new TypeError("number is not valid");
-}
-
-if (!decimals) {
-var len = number.toString().split('.').length;
-decimals = len > 1 ? len : 0;
-}
-
-if (!dec_point) {
-dec_point = '.';
-}
-
-if (!thousands_point) {
-thousands_point = ',';
-}
-
-number = parseFloat(number).toFixed(decimals);
-
-number = number.replace(".", dec_point);
-
-var splitNum = number.split(dec_point);
-splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
-number = splitNum.join(dec_point);
-
-return number;
-}
-
-$('.variation-select').on('change' , function(){
-        let variation = JSON.parse(this.value);
-        let variationPriceDiv = $('.variation-price-' + $(this).data('id'));
-        variationPriceDiv.empty();
-
-        if(variation.is_sale){
-            let spanSale = $('<span />' , {
-                class : 'new',
-                text : toPersianNum(number_format(variation.sale_price)) + ' تومان'
-            });
-            let spanPrice = $('<del />' , {
-                class : 'old',
-                text : toPersianNum(number_format(variation.price)) + ' تومان'
-            });
-
-            variationPriceDiv.append(spanSale);
-            variationPriceDiv.append(spanPrice);
-        }else{
-            let spanPrice = $('<span />' , {
-                class : 'new',
-                text : toPersianNum(number_format(variation.price)) + ' تومان'
-            });
-            variationPriceDiv.append(spanPrice);
-        }
-
-        $('.quantity-input').attr('max' , variation.quantity);
-        $('.quantity-input').val(1);
-
-    });
-</script>
-
-@endsection
-
 @section('content')
-<style>
-    .old{
-    font-size: 18px !important;
-    color: #a1a1a1 !important;
-    padding-right: 5px !important;
-    }
-
-    
-</style>
-
     <!-- bread croumb -->
     <div class="content">
         <div class="container-fluid">
@@ -233,7 +46,7 @@ $('.variation-select').on('change' , function(){
                             <div class="swiper-pagination d-none d-lg-block"></div>
                         </div>
                         <div thumbsSlider="" class="swiper product-gallery-thumb img-margin" style="height: 83px;">
-                        
+
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <img class="img-fluid" src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" />
@@ -255,7 +68,7 @@ $('.variation-select').on('change' , function(){
                         .product-gallery .swiper-button-next{
                             top: 59% !important;
                         }
-                       
+
 
                       @media only screen and (max-width: 500px) {
                       .img-margin {
@@ -283,7 +96,7 @@ $('.variation-select').on('change' , function(){
                         .swiper-zoom-container{padding-top:50px}
 
 
-                        
+
                     </style>
                     <div class="col-lg-5" style="margin-top:55px">
                         <div class="product-meta">
@@ -582,7 +395,7 @@ $('.variation-select').on('change' , function(){
                                             تکمیلی</a></button>
                                 </li>
 
-                                       
+
                                 <li class="nav-item">
                                     <button class=" waves-effect waves-light" id="productDesc" data-bs-toggle="tab"
                                         data-bs-target="#productDesc-pane" role="tab" type="button"
@@ -835,7 +648,7 @@ $('.variation-select').on('change' , function(){
                                                 <div class="col-sm-10">
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar p-2 bg-white shadow-box rounded-circle">
-                                                            <img src="{{ asset('home/images/users_avatar/'.$comment->avatar) == null ? asset('home/images/users_default/user_profile.png') : asset('home/images/users_avatar/' . $comment->avatar) }}" alt=""
+                                                            <img src="{{auth()->user()->avatar == null ? asset('home/images/users_default/images.jfif') : asset('home/images/users_avatar/'.auth()->user()->avatar) }}" alt=""
                                                                 class="img-fluid rounded-circle">
                                                         </div>
                                                         <div class="d-flex flex-wrap align-items-center ms-2">
@@ -877,7 +690,7 @@ $('.variation-select').on('change' , function(){
                                                         </div>
                                                         <div class="negitive rounded-4 mt-3 py-md-0 py-3">
                                                             <div class="d-flex align-items-center flex-wrap">
-                                                                <h6 class="font-14">نقاط صعف</h6>
+                                                                <h6 class="font-14">نقاط ضعف</h6>
                                                                 <nav class="navbar navbar-expand negitive-nav">
                                                                     <ul class="navbar-nav flex-wrap">
 

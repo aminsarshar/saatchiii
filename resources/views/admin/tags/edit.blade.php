@@ -1,37 +1,53 @@
 @extends('admin.layouts.admin')
-
 @section('title')
-    edit tags
+    ویرایش تگ
 @endsection
-
 @section('content')
+    <section id="hidden-label-form-layouts">
 
-    <!-- Content Row -->
-    <div class="row">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <h4 class="card-title">ویرایش تگ</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
 
-        <div class="col-xl-12 col-md-12 mb-4 p-4 bg-white">
-            <div class="mb-4 text-center text-md-right">
-            <h5 class="font-weight-bold">ویرایش تگ {{ $tag->name }}</h5>
-            </div>
-            <hr>
+                            <form action="{{ route('admin.tags.update', ['tag' => $tag->id]) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="name">نام تگ</label>
+                                        <input @error('name') style="border: 1px solid red;" @enderror
+                                            @error('name') placeholder="نام تگ الزامی است" @enderror
+                                            class="form-control" name="name" type="text" value="{{ $tag->name }}">
+                                        @error('name')
+                                            <p class="text-danger my-2">{{ $message }}</p>
+                                        @enderror
+                                    </div>
 
-            @include('admin.sections.errors')
+                                </div>
 
-            <form action="{{ route('admin.tags.update' , ['tag' => $tag->id]) }}" method="POST">
-                @csrf
-                @method('put')
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="name">نام</label>
-                        <input class="form-control" id="name" name="name" type="text" value="{{ $tag->name }}">
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-danger mr-1">
+                                        <a class="text-white" href="{{ route('admin.tags.index') }}"><i
+                                                class="icon-trash"></i> لغو</a>
+                                    </button>
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="icon-note"></i> ویرایش
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <button class="btn btn-outline-primary mt-5" type="submit">ویرایش</button>
-                <a href="{{ route('admin.tags.index') }}" class="btn btn-dark mt-5 mr-3">بازگشت</a>
-            </form>
         </div>
 
-    </div>
-
+    </section>
 @endsection

@@ -38,6 +38,37 @@ class Order extends Model
         return $paymentType;
     }
 
+    // public function getPaymentStageAttribute($paymentStage)
+    // {
+    //     switch($paymentStage){
+
+    //         case '1' :
+    //             $paymentStage = 'در انتظار بررسی';
+    //             break;
+
+    //         case '2' :
+    //             $paymentStage = 'در حال انجام';    
+    //             break;
+    //         case '3' :
+    //             $paymentStage = 'تکمیل شده';
+    //             break;
+
+    //         case '4' :
+    //             $paymentStage = 'لغو شده';
+    //             break;
+
+    //         // case 'inprogress' :
+    //         //     $paymentStage = 'در حال تکمیل سفارش';
+    //         //     break;
+
+    //         // case 'completed' :
+    //         //     $paymentStage = 'تکمیل شده';
+    //         //     break;
+    //     }
+    //     return $paymentStage;
+    // }
+    
+
     public function getPaymentStatusAttribute($paymentStatus)
     {
         switch($paymentStatus){

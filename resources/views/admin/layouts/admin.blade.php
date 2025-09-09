@@ -1,81 +1,46 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" class="loading">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-  <title>پنل مدیریت - @yield('title')</title>
-
-  <!-- Custom styles for this template-->
-  <link href="{{ asset('/css/admin.css') }}" rel="stylesheet">
-  @yield('style')
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description"
+        content="Convex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Convex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>پنل مدیریت - @yield('title')</title>
+    @include('admin.sections.links_css')
+    @livewireStyles
 </head>
 
-<body id="page-top">
-
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    @include('admin.sections.sidebar')
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
-      <div id="content">
-
-        <!-- Topbar -->
-        @include('admin.sections.topbar')
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          @yield('content')
-
+<body data-col="2-columns" class=" 2-columns ">
+    <div class="wrapper">
+        @include('admin.sections.header')
+        @include('admin.sections.sidebar')
+        <div class="main-panel">
+            <div class="main-content">
+                <div class="content-wrapper">
+                    <div class="container-fluid">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      @include('admin.sections.footer')
-      <!-- End of Footer -->
-
+        @include('admin.sections.footer')
     </div>
-    <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+    @include('admin.sections.aside')
 
-  <!-- Scroll to Top Button-->
-  @include('admin.sections.scroll_top')
-
-  <!-- JavaScript-->
-<script src="{{ asset('/js/admin.js') }}"></script>
+    <!-- BEGIN VENDOR JS-->
+    @livewireScripts
 
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    @yield('script')
 
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+    @include('admin.sections.links_js')
 
-@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
-
-
-@yield('script')
 
 </body>
 

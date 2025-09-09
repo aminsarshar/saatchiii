@@ -109,7 +109,8 @@
                             </div>
                             <div class="swiper-slide">
                                 <div class="item text-center">
-                                    <img src="assets/image/kasbokar.png" width="100" class="img-fluid" alt="">
+                                    <img src="assets/image/kasbokar.png" width="100" class="img-fluid"
+                                        alt="">
                                 </div>
                             </div>
                         </div>
@@ -161,213 +162,110 @@
     </div>
 </footer>
 
-    <!-- cart canvas -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cart canvas">
-        <div class="offcanvas-header border-bottom border-1 border-muted">
-            <h5 class="offcanvas-title">سبد خرید</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="row">
-                @if(\Cart::isEmpty())
-                   <div class="alert alert-danger">سبد خرید شما خالی میباشد</div>
-                @else
-
-
+<!-- cart canvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas" aria-labelledby="cart canvas">
+    <div class="offcanvas-header border-bottom border-1 border-muted">
+        <h5 class="offcanvas-title">سبد خرید</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="row">
+            @if (\Cart::isEmpty())
+                <div class="alert alert-danger">سبد خرید شما خالی میباشد</div>
+            @else
                 @foreach (\Cart::getContent() as $item)
-                <div class="col-12">
-                    <div class="row align-items-center">
-                        <div class="col-11">
-                            <a href="{{ route('home.products.show' , ['product' => $item->associatedModel->slug]) }}">
-                                <div
-                                    class="product-row bg-white d-flex align-items-center justify-content-between rounded-4 shadow-md">
-                                    <div class="image">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->associatedModel->primary_image) }}" class="img-fluid" width="100" alt="">
-                                    </div>
-                                    <div class="desc">
-                                        <h6 class="font-14 title text-overflow">{{$item->name}}</h6>
-                                        <div class="price d-flex flex-column justify-content-end mt-2">
-                                            <div class="text-end">
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">{{$item->quantity}}</span>
-                                                    {{number_format($item->price)}} تومان
-                                                  </span>
+                    <div class="col-12">
+                        <div class="row align-items-center">
+                            <div class="col-11">
+                                <a
+                                    href="{{ route('home.products.show', ['product' => $item->associatedModel->slug]) }}">
+                                    <div
+                                        class="product-row bg-white d-flex align-items-center justify-content-between rounded-4 shadow-md">
+                                        <div class="image">
+                                            <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->associatedModel->primary_image) }}"
+                                                class="img-fluid" width="100" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <h6 class="font-14 title text-overflow">{{ $item->name }}</h6>
+                                            <div class="price d-flex flex-column justify-content-end mt-2">
+                                                <div class="text-end">
+                                                    <span class="cart-product-info">
+                                                        <span class="cart-product-qty">{{ $item->quantity }}</span>
+                                                        {{ number_format($item->price) }} تومان
+                                                    </span>
 
-                                                  <div style="direction: rtl">
+                                                    <div style="direction: rtl">
 
-                                                    @if($item->attributes->is_sale)
-                                                        <p style="font-size: 12px ; color:red">
-                                                            {{ $item->attributes->persent_sale }}%
-                                                            تخفیف
+                                                        @if ($item->attributes->is_sale)
+                                                            <p style="font-size: 12px ; color:red">
+                                                                {{ $item->attributes->persent_sale }}%
+                                                                تخفیف
+                                                            </p>
+                                                        @endif
+
+                                                        <p class="mb-0" style="font-size: 12px">
+                                                            {{ \App\Models\Attribute::find($item->attributes->attribute_id)->name }}
+                                                            :
+                                                            {{ $item->attributes->value }}
                                                         </p>
-                                                    @endif
-
-                                                    <p class="mb-0" style="font-size: 12px">
-                                                        {{ \App\Models\Attribute::find($item->attributes->attribute_id)->name }}
-                                                        :
-                                                        {{ $item->attributes->value }}
-                                                    </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="text-end">
-                                                <span
-                                                    class="text-muted font-14 text-decoration-line-through"></span>
+                                                <div class="text-end">
+                                                    <span
+                                                        class="text-muted font-14 text-decoration-line-through"></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-1 ps-0">
-                            <a href="{{route('home.cart.remove' , ['rowId' => $item->id])}}" data-hint="حذف از سبد" class="hint--right">
-                                <i class="bi bi-x-circle-fill text-danger fs-4"></i>
-                            </a>
+                                </a>
+                            </div>
+                            <div class="col-1 ps-0">
+                                <a href="{{ route('home.cart.remove', ['rowId' => $item->id]) }}"
+                                    data-hint="حذف از سبد" class="hint--right">
+                                    <i class="bi bi-x-circle-fill text-danger fs-4"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
                 @endforeach
 
 
 
-                @endif
+            @endif
 
+        </div>
+        <div class="cart-price">
+            <div class="cart-price-count" style="text-align: center">
+                <span>مجموع :</span>
+                <span> {{ number_format(cartTotalAmount()) }} تومان</span>
             </div>
-            <div class="cart-price">
-                <div class="cart-price-count" style="text-align: center">
-                    <span>مجموع :</span>
-                    <span> {{ number_format( cartTotalAmount() ) }} تومان</span>
-                </div>
-                <div class="cart-price-btn" style="text-align:center;margin-top:12px">
-                    <a href="{{route('home.cart.index')}}" class="btn-main">مشاهده سبد خرید</a>
-                    <a href="{{route('home.orders.checkout')}}" class="btn-outline">تسویه حساب</a>
-                </div>
+            <div class="cart-price-btn" style="text-align:center;margin-top:12px">
+                <a href="{{ route('home.cart.index') }}" class="btn-main">مشاهده سبد خرید</a>
+                <a href="{{ route('home.orders.checkout') }}" class="btn-outline">تسویه حساب</a>
             </div>
         </div>
     </div>
-    <!-- end cart canvas -->
+</div>
+<!-- end cart canvas -->
 
-    <!-- login modal -->
-    <div class="modal fade auth" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-5">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="loginModalLabel">ورود به سایت</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                    <div class="modal-body">
-                        <form action="{{route('login')}}" method="post">
-                            @csrf
-                            <div class="form-floating mb-3">
-                                <input name="email" type="text" class="form-control float-input" id="floatingInput"
-                                value="{{old('email')}}"placeholder="تلفن همراه / ایمیل">
-                                <label for="floatingInput">تلفن همره / ایمیل</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control float-input" id="floatingPassword"
-                                value="{{old('password')}}"placeholder="کلمه عبور">
-                                <label for="floatingPassword">کلمه عبور</label>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                <div class="form-group">
-                                    <a href="{{route('loginsms')}}" class="text-primary">ورود با رمز یکبار مصرف</a>
-                                </div>
-                                <div class="form-group">
-                                    <a href="" class="text-primary">فراموشی رمز عبور</a>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit"
-                                    class="btn main-color-three-bg border-0 rounded-pill w-100 text-white waves-effect waves-light">ورود</button>
-                            </div>
-                        </form>
-                        <div class="divider">
-                            <span>یا</span>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <a href="{{route('register')}}">عضو نیستی؟ ثبت نام در فروشگاه</a>
-                        </div>
-                    </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- end login modal -->
+<livewire:auth.login.login />
 
 
-    <!-- go top top -->
-    <div class="progress-wrap d-lg-block d-none">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
-        </svg>
-    </div>
-    <!-- end go top top -->
+<!-- go top top -->
+<div class="progress-wrap d-lg-block d-none">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+</div>
+<!-- end go top top -->
 
-    <!-- contact us floating -->
-    <div id="btncollapzion" class=" btn_collapzion"></div>
-    <div class="" id="contactOverlay"></div>
-    <!-- end contact us floating -->
+<!-- contact us floating -->
+<div id="btncollapzion" class=" btn_collapzion"></div>
+<div class="" id="contactOverlay"></div>
+<!-- end contact us floating -->
 
-        <!-- Plugins JS File -->
-        <script src="{{asset('assets/js/jquery.min.js')}}"></script>
-        <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('assets/plugin/waves/waves.min.js')}}"></script>
-        <script src="{{asset('assets/plugin/swiper/swiper-bundle.min.js')}}"></script>
-        <script src="{{asset('assets/plugin/timer/timer.js')}}"></script>
-        <script src="{{asset('assets/plugin/hint-css/hint-css.js')}}"></script>
-        <script src="{{asset('assets/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
-        <script src="{{asset('assets/js/app.js')}}"></script>
-        <script src="{{asset('assets/js/jquery-app.js')}}"></script>
+@include('home.sections.links_js')
 
-        <!-- ===== start new update 3.2.0 -->
-        <script src="{{asset('assets/plugin/go-to-top/script.js')}}"></script>
-        <script src="{{asset('assets/plugin/rasta-contact/script.js')}}"></script>
+</body>
 
-        <link rel="stylesheet" href="{{asset('assets/plugin/go-to-top/style.css')}}">
-        <link rel="stylesheet" href="{{asset('assets/plugin/rasta-contact/style.css')}}">
-
-        <script src="{{asset('assets/rating.js')}}"></script>
-
-
-
-
-
-
-        <script>
-            //// config floating contact
-            $('#btncollapzion').Collapzion({
-                _child_attribute: [{
-                        'label': 'پشتیبانی تلفنی',
-                        'url': 'tel:0930555555555',
-                        'icon': 'bi bi-telephone'
-                    },
-                    {
-                        'label': 'پشتیبانی تلگرام',
-                        'url': 'https://tlgrm.me',
-                        'icon': 'bi bi-telegram'
-                    },
-                    {
-                        'label': 'پشتیبانی واتس آپ',
-                        'url': 'https://wa.me/444444444',
-                        'icon': 'bi-whatsapp'
-                    },
-
-                ],
-            });
-        </script>
-    <script src="{{asset('assets/js/rating.js')}}"></script>
-    <script src="{{asset('assets/js/wow.js')}}"></script>
-
-
-    <script>
-        new WOW().init();
-    </script>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-  </body>
 </html>
-
-

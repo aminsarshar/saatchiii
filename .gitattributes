@@ -1,9 +1,11 @@
-# Detect PHP and Blade properly
+# Force GitHub Linguist to detect only PHP/Blade
 *.php linguist-detectable=true
 *.blade.php linguist-detectable=true
 
-# Ignore compiled assets
-/public/css/* linguist-vendored
+# Ignore all CSS files everywhere
+*.css linguist-vendored
+
+# Ignore JS build files
 /public/js/* linguist-vendored
 /public/build/* linguist-vendored
 
@@ -11,7 +13,7 @@
 /vendor/* linguist-vendored
 /node_modules/* linguist-vendored
 
-# Ignore lock and configs
+# Ignore common build configs
 *.lock linguist-vendored
 package.json linguist-vendored
 webpack.mix.js linguist-vendored

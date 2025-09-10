@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="{{ asset('assets/plugin/go-to-top/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugin/rasta-contact/style.css') }}">
 
-<script src="{{ asset('assets/rating.js') }}"></script>
 
 
 <script>

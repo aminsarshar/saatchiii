@@ -16,7 +16,6 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('home/assets/js/rating.js') }}"></script>
-    <script src="{{ asset('assets/js/rating.js') }}"></script>
     <script src="{{ asset('assets/js/wow.js') }}"></script>
     {{-- <script src="{{asset('admin/vendors/js/sweetalert2.min.js')}}"></script> --}}
 

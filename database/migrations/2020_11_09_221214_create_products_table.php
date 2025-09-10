@@ -34,7 +34,7 @@ class CreateProductsTable extends Migration
             $table->string('daily_timer');
             $table->unsignedInteger('delivery_amount')->default(0);
             $table->unsignedInteger('delivery_amount_per_product')->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
 
         });

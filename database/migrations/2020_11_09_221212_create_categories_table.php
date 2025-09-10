@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(1);
             $table->string('icon')->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

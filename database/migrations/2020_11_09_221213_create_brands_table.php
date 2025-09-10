@@ -20,7 +20,7 @@ class CreateBrandsTable extends Migration
             $table->string('image');
             $table->string('slug')->unique()->nullable();
             $table->integer('status')->default(1);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

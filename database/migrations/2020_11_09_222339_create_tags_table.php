@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->id();
 
             $table->string('name');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,11 +1,18 @@
-* text=auto eol=lf
+# Detect PHP and Blade properly
+*.php linguist-detectable=true
+*.blade.php linguist-detectable=true
 
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
+# Ignore compiled assets
+/public/css/* linguist-vendored
+/public/js/* linguist-vendored
+/public/build/* linguist-vendored
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# Ignore vendor and node_modules
+/vendor/* linguist-vendored
+/node_modules/* linguist-vendored
+
+# Ignore lock and configs
+*.lock linguist-vendored
+package.json linguist-vendored
+webpack.mix.js linguist-vendored
+vite.config.js linguist-vendored

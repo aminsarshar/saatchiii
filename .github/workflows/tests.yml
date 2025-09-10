@@ -44,4 +44,4 @@ jobs:
         run: php artisan key:generate
 
       - name: Execute tests
-        run: /usr/bin/bash -e /home/runner/work/_temp/39ea37d8-055d-48e0-af3a-6eaccb2d8f69.sh
+        run: php artisan test

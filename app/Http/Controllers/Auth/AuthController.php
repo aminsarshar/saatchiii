@@ -18,6 +18,7 @@ class AuthController extends Controller
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->redirect();
+        alert()->success(' شما موفقیت آمیز بود.', 'تشکر')->persistent('حله');
     }
 
 
@@ -27,12 +28,10 @@ class AuthController extends Controller
             $socialite_user = Socialite::driver($provider)->user();
         } catch (\Exception $ex) {
             return redirect()->route('login');
-
-
         }
 
-        $user = User::where('email' , $socialite_user->getEmail())->first();
-        if(!$user){
+        $user = User::where('email', $socialite_user->getEmail())->first();
+        if (!$user) {
             $user = User::create([
                 'name' => $socialite_user->getName(),
                 'provider_name' => $provider,
@@ -42,20 +41,18 @@ class AuthController extends Controller
                 'email_verified_at' => Carbon::now()
             ]);
             $user->assignRole('user');
-            alert()->success(' شما موفقیت آمیز بود.','تشکر')->persistent('حله');
-
-
+            alert()->success(' شما موفقیت آمیز بود.', 'تشکر')->persistent('حله');
         }
 
-        auth()->login($user , $remember = true);
-        alert()->success('ورود شما موفقیت آمیز بود.','تشکر')->persistent('حله');
+        auth()->login($user, $remember = true);
+        alert()->success('ورود شما موفقیت آمیز بود.', 'تشکر')->persistent('حله');
 
         return redirect()->route('home.index');
     }
 
     public function loginsms(request $request)
     {
-        if($request->method() == 'GET'){
+        if ($request->method() == 'GET') {
 
             return view('auth.loginsms');
         }
@@ -85,11 +82,9 @@ class AuthController extends Controller
             $user->notify(new OTPSms($OTPCode));
 
             return response(['login_token' => $loginToken], 200);
-
         } catch (\Exception $ex) {
             return response(['errors' => $ex->getMessage()], 422);
         }
-
     }
 
     public function checkOtp(Request $request)
@@ -104,8 +99,7 @@ class AuthController extends Controller
 
             if ($user->otp == $request->otp) {
                 auth()->login($user, $remember = true);
-                alert()->success('ورود با موفقیت انجام شد','تشکر')->persistent('حله');
-
+                alert()->success('ورود با موفقیت انجام شد', 'تشکر')->persistent('حله');
             } else {
                 return response(['errors' => ['otp' => ['کد تاییدیه نادرست است']]], 422);
             }

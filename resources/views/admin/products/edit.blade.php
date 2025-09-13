@@ -4,38 +4,6 @@
     edit products
 @endsection
 
-@section('script')
-    <script>
-        $('#brandSelect').selectpicker({
-            'title': 'انتخاب برند'
-        });
-        $('#tagSelect').selectpicker({
-            'title': 'انتخاب تگ'
-        });
-
-        let variations = @json($productVariations);
-        variations.forEach(variation => {
-            $(`#variationDateOnSaleFrom-${variation.id}`).MdPersianDateTimePicker({
-                targetTextSelector: `#variationInputDateOnSaleFrom-${variation.id}`,
-                englishNumber: true,
-                enableTimePicker: true,
-                textFormat: 'yyyy-MM-dd HH:mm:ss',
-            });
-
-            $(`#variationDateOnSaleTo-${variation.id}`).MdPersianDateTimePicker({
-                targetTextSelector: `#variationInputDateOnSaleTo-${variation.id}`,
-                englishNumber: true,
-                enableTimePicker: true,
-                textFormat: 'yyyy-MM-dd HH:mm:ss',
-            });
-        });
-
-
-
-    </script>
-
-
-@endsection
 
 @section('content')
 

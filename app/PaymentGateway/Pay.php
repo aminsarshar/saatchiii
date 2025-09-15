@@ -4,26 +4,75 @@ namespace App\PaymentGateway;
 
 class Pay extends Payment
 {
-    public function send($amounts, $addressId)
-    {
-        $api = 'test';
-        $amount = $amounts['paying_amount'] . '0';
-        $redirect = route('home.payment_verify' , ['gatewayName' => 'pay']);
-        $result = $this->sendRequest($api, $amount, $redirect);
-        $result = json_decode($result);
-        if ($result->status) {
 
-            $createOrder = parent::createOrder($addressId, $amounts, $result->token, 'pay');
-            if (array_key_exists('error', $createOrder)) {
-                return $createOrder;
-            }
-            // dd('csdcsd');
-            $go = "https://pay.ir/pg/$result->token";
-            return ['success' => $go];
-        } else {
-            return ['error' => $result->errorMessage];
-        }
+    public function send($amounts, $addressId)
+{
+    $api = 'YOUR_API_KEY'; // به جای test، کلید اصلی رو بذار
+    $amount = $amounts['paying_amount'] * 10; // به ریال
+    $redirect = route('home.payment_verify', ['gatewayName' => 'pay']);
+
+    $postData = [
+        "api" => $api,
+        "amount" => $amount,
+        "redirect" => $redirect,
+    ];
+
+    $ch = curl_init("https://pay.ir/pg/send");
+curl_setopt($ch, CURLOPT_USERAGENT, 'Pay.ir Rest Api v1');
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json'
+]);
+
+// برای تست SSL چک نشه (روی سرور واقعی پیشنهاد نمی‌شه)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+$result = curl_exec($ch);
+
+    $err = curl_error($ch);
+    curl_close($ch);
+
+    if ($err) {
+        return ['error' => "cURL Error #:" . $err];
     }
+
+    $result = json_decode($result);
+
+    if (isset($result->status) && $result->status == 1) {
+        $createOrder = parent::createOrder($addressId, $amounts, $result->token, 'pay');
+        if (array_key_exists('error', $createOrder)) {
+            return $createOrder;
+        }
+
+        return ['success' => "https://pay.ir/pg/$result->token"];
+    } else {
+        return ['error' => $result->errorMessage ?? "خطا در اتصال به درگاه Pay.ir"];
+    }
+}
+
+    // public function send($amounts, $addressId)
+    // {
+    //     $api = 'test';
+    //     $amount = $amounts['paying_amount'] . '0';
+    //     $redirect = route('home.payment_verify' , ['gatewayName' => 'pay']);
+    //     $result = $this->sendRequest($api, $amount, $redirect);
+    //     $result = json_decode($result);
+    //     if ($result->status) {
+
+    //         $createOrder = parent::createOrder($addressId, $amounts, $result->token, 'pay');
+    //         if (array_key_exists('error', $createOrder)) {
+    //             return $createOrder;
+    //         }
+    //         // dd('csdcsd');
+    //         $go = "https://pay.ir/pg/$result->token";
+    //         return ['success' => $go];
+    //     } else {
+    //         return ['error' => $result->errorMessage];
+    //     }
+    // }
 
     public function verify($token , $status)
     {

@@ -136,7 +136,7 @@
                                                              آدرسی ثبت نشده
                                                             </div>
                                                             @else
-                                                        <div class="order-item-status flex-nowrap">
+                                                        <div class="order-item-status" style="display: block !important">
                                                                 @foreach ($addresses as $address)
                                                                 <div>
                                                                     <address>

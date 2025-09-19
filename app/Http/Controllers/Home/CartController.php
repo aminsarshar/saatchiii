@@ -139,7 +139,7 @@ class CartController extends Controller
 
     public function usersProfileIndex()
     {
-        $orders = Order::where('user_id' , auth()->id())->paginate(8);
+        $orders = Order::where('user_id' , auth()->id())->orderBy('created_at', 'desc')->paginate(8);
         $transactions = Transaction::where('user_id' , auth()->id())->find(10);
         // $products = Product::get();
 

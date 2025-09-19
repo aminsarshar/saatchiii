@@ -47,6 +47,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody class="text-center">
+
                                                         @foreach ($orders as $key => $order)
                                                             @php
                                                                 $transactions = App\Models\Transaction::where(
@@ -57,15 +58,17 @@
                                                             @endphp
                                                             <tr>
                                                                 <td> {{ $orders->firstItem() + $key }} </td>
-                                                                <td>
-                                                                    <button type="button" class="btn btn-primary"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#exampleModal-{{ $order->id }}">
-                                                                        مشاهده محصول
-                                                                    </button>
-
-
-                                                                </td>
+                                                                @foreach ($order->orderItems as $item)
+                                                                    <td>
+                                                                        <a href="{{ route('home.products.show', ['product' => $item->product->slug]) }}"
+                                                                            style="width: 100px">
+                                                                            <img style="width: 100px !important"
+                                                                                class="w-full"
+                                                                                src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->product->primary_image) }}"
+                                                                                alt="">
+                                                                        </a>
+                                                                    </td>
+                                                                @endforeach
                                                                 <td> {{ verta($order->created_at)->format('%d %B، %Y') }}
                                                                 <td> {{ $transactions->ref_id }}</td>
                                                                 </td>

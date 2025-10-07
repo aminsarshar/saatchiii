@@ -38,10 +38,12 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|mimes:jpg,jpeg,png,svg,webp',
+            'image' => 'required|mimes:jpg,jpeg,png,svg,webp,gif',
             'title' => 'required',
             'type' => 'required'
         ]);
+
+        // dd($request->all());
 
         $fileNameImage = generateFileName($request->image->getClientOriginalName());
         $request->image->move(public_path(env('BANNER_IMAGES_UPLOAD_PATH')), $fileNameImage);
@@ -95,7 +97,7 @@ class BannerController extends Controller
     public function update(Request $request, Banner $banner)
     {
         $request->validate([
-            'image' => 'nullable|mimes:jpg,jpeg,png,svg,webp',
+            'image' => 'nullable|mimes:jpg,jpeg,png,svg,webp,gif',
             'title' => 'required',
             'type' => 'required'
         ]);

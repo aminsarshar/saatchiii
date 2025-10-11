@@ -100,6 +100,7 @@ class ProductController extends Controller
             return redirect()->back();
         }
 
+
         alert()->success('محصول مورد نظر ایجاد شد', 'باتشکر');
         return redirect()->route('admin.products.index');
     }

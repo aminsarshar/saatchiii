@@ -426,7 +426,7 @@
                                         <div class="read-more-wrap">
                                             <h2 class="title gold mb-2">معرفی محصول</h2>
                                             <p>
-                                                {{$product->description}}
+                                                {{!! $product->description !!}}
                                             </p>
                                             <!-- متن بیشتر -->
                                             <div class="read-more-target">
@@ -443,7 +443,7 @@
                                         <!-- والد بیشتر ، کمتر ، تمام متن توضیحات باید داخل این تگ قرار بگیرند -->
                                         <div class="read-more-wrap">
                                             <h2 class="title gold mb-2">توضیحاتی درباره : {{$product->name}}</h2>
-                                            <p>{{$product->description}}</p>
+                                            <p>{{!! $product->description !!}}</p>
                                             <!-- متن بیشتر -->
                                             <div class="read-more-target">
                                                 <p> </p>

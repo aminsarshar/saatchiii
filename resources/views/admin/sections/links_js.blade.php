@@ -127,6 +127,60 @@ jquery.czMore-latest
         $("#czContainer").czMore();
 
 </script>
+@isset($attributes)
+ <script>
+        $('#attributeSelect').selectpicker({
+            'title': 'انتخاب ویژگی'
+        });
+
+        $('#attributeSelect').on('changed.bs.select', function() {
+            let attributesSelected = $(this).val();
+            let attributes = @json($attributes);
+
+            let attributeForFilter = [];
+
+            attributes.map((attribute) => {
+                $.each(attributesSelected , function(i,element){
+                    if( attribute.id == element ){
+                        attributeForFilter.push(attribute);
+                    }
+                });
+            });
+
+            $("#attributeIsFilterSelect").find("option").remove();
+            $("#variationSelect").find("option").remove();
+            attributeForFilter.forEach((element)=>{
+                let attributeFilterOption = $("<option/>" , {
+                    value : element.id,
+                    text : element.name
+                });
+
+                let variationOption = $("<option/>" , {
+                    value : element.id,
+                    text : element.name
+                });
+
+                $("#attributeIsFilterSelect").append(attributeFilterOption);
+                $("#attributeIsFilterSelect").selectpicker('refresh');
+
+                $("#variationSelect").append(variationOption);
+                $("#variationSelect").selectpicker('refresh');
+            });
+
+
+        });
+
+        $("#attributeIsFilterSelect").selectpicker({
+            'title': 'انتخاب ویژگی'
+        });
+
+        $("#variationSelect").selectpicker({
+            'title': 'انتخاب متغیر'
+        });
+
+    </script>
+@endisset
+
 
 @isset($productVariations)
 <script>

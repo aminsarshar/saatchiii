@@ -46,7 +46,7 @@
                                                 <option disabled selected>دسته بندی</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }} -
-                                                        {{ $category->parent->name }}
+                                                        {{-- {{ $category->parent->name }} --}}
                                                     </option>
                                                 @endforeach
                                             </select>

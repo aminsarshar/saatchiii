@@ -25,23 +25,23 @@
                 </div>
                 <div class="swiper py-3" id="swiper-box">
                     <div class="swiper-wrapper">
-                        @foreach ($product_normal_mens as $product_normal_men)
+                        @foreach ($products as $product)
                             <div class="swiper-slide wow animate__animated animate__fadeInRight" style="">
                                 <div class="product-box-item bg-white">
                                     <div class="hover">
                                         <div class="hover-btn">
 
-                                            <a href="{{ route('home.compare.add', ['product' => $product_normal_men]) }}"
+                                            <a href="{{ route('home.compare.add', ['product' => $product]) }}"
                                                 data-hint="مقایسه محصول" class="hint--right"><i
                                                     class="bi bi-arrow-left-right"></i></a>
 
                                             @auth
-                                                @if ($product_normal_men->checkUserWishlist(auth()->id()))
-                                                    <a href="{{ route('home.wishlist.remove', ['product' => $product_normal_men->id]) }}"
+                                                @if ($product->checkUserWishlist(auth()->id()))
+                                                    <a href="{{ route('home.wishlist.remove', ['product' => $product->id]) }}"
                                                         data-hint="افزوده شده" class="hint--right"
                                                         style="background: red"><i class="bi bi-heart"></i></a>
                                                 @else
-                                                    <a href="{{ route('home.wishlist.add', ['product' => $product_normal_men->id]) }}"
+                                                    <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"
                                                         data-hint="افزودن به علاقه مندی" class="hint--right"><i
                                                             class="bi bi-heart"></i></a>
                                                 @endif
@@ -49,9 +49,9 @@
                                             @endauth
 
 
-                                            <a href="#productModal-{{ $product_normal_men->id }}"
+                                            <a href="#productModal-{{ $product->id }}"
                                                 data-hint="مشاهده سریع" class="hint--right" data-bs-toggle="modal"
-                                                data-bs-target="#productModal-{{ $product_normal_men->id }}"><i
+                                                data-bs-target="#productModal-{{ $product->id }}"><i
                                                     class="bi bi-eye"></i></a>
                                         </div>
                                         <div class="hover-color">
@@ -68,12 +68,12 @@
 
 
                                     <a
-                                        href="{{ route('home.products.show', ['product' => $product_normal_men->slug]) }}">
+                                        href="{{ route('home.products.show', ['product' => $product->slug]) }}">
                                         <div class="image text-center">
-                                            <img src="{{ asset('/upload/files/products/images/' . $product_normal_men->primary_image) }}"
+                                            <img src="{{ asset('/upload/files/products/images/' . $product->primary_image) }}"
                                                 alt="" class="img-fluid one-image">
                                             {{-- hover image --}}
-                                            @foreach ($product_normal_men->images as $image)
+                                            @foreach ($product->images as $image)
                                                 <img src="{{ asset('/upload/files/products/images/' . $image->image) }}"
                                                     alt="" class="img-fluid two-image">
                                             @endforeach
@@ -81,34 +81,34 @@
                                         <div class="desc">
                                             <div class="title">
                                                 <h6 class="title-fa def-color fw-bold text-overflow-2">
-                                                    {{ $product_normal_men->name }}
+                                                    {{ $product->name }}
                                                 </h6>
                                                 <h6 class="title-en text-muted text-overflow-2">
-                                                    {{ $product_normal_men->category->name }}
+                                                    {{ $product->category->name }}
                                                 </h6>
                                             </div>
                                             <div class="foot d-flex justify-content-between align-items-center">
                                                 <form action="{{ route('home.cart.add') }}" method="POST">
                                                     <input type="hidden" name="product_id"
-                                                        value="{{ $product_normal_men->id }}">
+                                                        value="{{ $product->id }}">
                                                     @csrf
-                                                    @if ($product_normal_men->quantity_check)
+                                                    @if ($product->quantity_check)
                                                         @php
-                                                            if ($product_normal_men->sale_check) {
+                                                            if ($product->sale_check) {
                                                                 $variationProductSelected =
-                                                                    $product_normal_men->sale_check;
+                                                                    $product->sale_check;
                                                             } else {
                                                                 $variationProductSelected =
-                                                                    $product_normal_men->price_check;
+                                                                    $product->price_check;
                                                             }
                                                         @endphp
                                                         <div class="pro-details-size-color text-right">
                                                             <div class="pro-details-size w-50" style="display: none">
-                                                                <span>{{ App\Models\Attribute::find($product_normal_men->variations->first()->attribute_id)->name }}</span>
+                                                                <span>{{ App\Models\Attribute::find($product->variations->first()->attribute_id)->name }}</span>
                                                                 <select name="variation"
                                                                     class="form-control variation-select"
                                                                     style="display: none">
-                                                                    @foreach ($product_normal_men->variations()->where('quantity', '>', 0)->get() as $variation)
+                                                                    @foreach ($product->variations()->where('quantity', '>', 0)->get() as $variation)
                                                                         <option
                                                                             value="{{ json_encode($variation->only(['id', 'quantity', 'is_sale', 'sale_price', 'price'])) }}"
                                                                             {{ $variationProductSelected->id == $variation->id ? 'selected' : '' }}>
@@ -122,27 +122,27 @@
 
                                                         <form action="{{ route('home.cart.add') }}" method="POST">
                                                             <input type="hidden" name="product_id"
-                                                                value="{{ $product_normal_men->id }}">
+                                                                value="{{ $product->id }}">
                                                             @csrf
-                                                            @if ($product_normal_men->quantity_check)
+                                                            @if ($product->quantity_check)
                                                                 @php
-                                                                    if ($product_normal_men->sale_check) {
+                                                                    if ($product->sale_check) {
                                                                         $variationProductSelected =
-                                                                            $product_normal_men->sale_check;
+                                                                            $product->sale_check;
                                                                     } else {
                                                                         $variationProductSelected =
-                                                                            $product_normal_men->price_check;
+                                                                            $product->price_check;
                                                                     }
                                                                 @endphp
                                                                 <div class="pro-details-size-color text-right">
                                                                     <div class="pro-details-size w-50"
                                                                         style="display: none">
-                                                                        <span>{{ App\Models\Attribute::find($product_normal_men->variations->first()->attribute_id)->name }}</span>
+                                                                        <span>{{ App\Models\Attribute::find($product->variations->first()->attribute_id)->name }}</span>
                                                                         <select name="variation"
                                                                             class="form-control variation-select"
-                                                                            data-id="{{ $product_normal_men->id }}"
+                                                                            data-id="{{ $product->id }}"
                                                                             style="    width: 160px;">
-                                                                            @foreach ($product_normal_men->variations()->where('quantity', '>', 0)->get() as $variation)
+                                                                            @foreach ($product->variations()->where('quantity', '>', 0)->get() as $variation)
                                                                                 <option
                                                                                     value="{{ json_encode($variation->only(['id', 'quantity', 'is_sale', 'sale_price', 'price'])) }}"
                                                                                     {{ $variationProductSelected->id == $variation->id ? 'selected' : '' }}>
@@ -188,21 +188,21 @@
                                                                     <div class="pro-details-wishlist"
                                                                         style="display: none">
                                                                         @auth
-                                                                            @if ($product_normal_men->checkUserWishlist(auth()->id()))
+                                                                            @if ($product->checkUserWishlist(auth()->id()))
                                                                                 <a
-                                                                                    href="{{ route('home.wishlist.remove', ['product' => $product_normal_men->id]) }}"><i
+                                                                                    href="{{ route('home.wishlist.remove', ['product' => $product->id]) }}"><i
                                                                                         class="fas fa-heart"
                                                                                         style="color:red"></i>
                                                                                 </a>
                                                                             @else
                                                                                 <a
-                                                                                    href="{{ route('home.wishlist.add', ['product' => $product_normal_men->id]) }}"><i
+                                                                                    href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                                                         class="sli sli-heart"></i>
                                                                                 </a>
                                                                             @endif
                                                                         @else
                                                                             <a
-                                                                                href="{{ route('home.wishlist.add', ['product' => $product_normal_men->id]) }}"><i
+                                                                                href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
                                                                                     class="sli sli-heart"></i>
                                                                             </a>
                                                                         @endauth
@@ -227,12 +227,12 @@
                                                     @endif
                                                 </form>
 
-                                                @if ($product_normal_men->quantity_check)
-                                                    @if ($product_normal_men->sale_check)
+                                                @if ($product->quantity_check)
+                                                    @if ($product->sale_check)
                                                         <div class="price d-flex flex-column justify-content-end">
                                                             <div>
                                                                 <span class="fw-bold font-18 def-color">
-                                                                    {{ number_format($product_normal_men->quantity_check->sale_price) }}
+                                                                    {{ number_format($product->quantity_check->sale_price) }}
                                                                 </span>
                                                                 <svg class="mr-1 " width="14" height="16"
                                                                     viewBox="0 0 14 16" fill="none"
@@ -246,14 +246,14 @@
                                                                 class="d-flex justify-content-center align-items-center">
                                                                 <span
                                                                     class="text-muted font-14 text-decoration-line-through">
-                                                                    {{ number_format($product_normal_men->quantity_check->price) }}
+                                                                    {{ number_format($product->quantity_check->price) }}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     @else
                                                         <div>
                                                             <span class="fw-bold font-18 def-color">
-                                                                {{ number_format($product_normal_men->quantity_check->price) }}
+                                                                {{ number_format($product->quantity_check->price) }}
                                                             </span>
                                                             <svg class="mr-1 " width="14" height="16"
                                                                 viewBox="0 0 14 16" fill="none"

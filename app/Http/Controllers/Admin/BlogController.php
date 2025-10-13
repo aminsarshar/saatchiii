@@ -32,7 +32,7 @@ class BlogController extends Controller
     public function create()
     {
 
-        $categories = CategoryBlog::where('parent_id', '!=', 0)->get();
+        $categories = CategoryBlog::where('parent_id', '=', 0)->get();
         return view('admin.blogs.create', compact('categories'));
     }
 
@@ -55,16 +55,18 @@ class BlogController extends Controller
         $blogImageController = new BlogImageController();
         $file_name_image_primary =  $blogImageController->upload($request->primary_image);
         //    $file_name_image_primary = generateFileName( $request->primary_image->getClientOriginalName());
-        Blog::create([
+        $blog = Blog::create([
             'title' => $request->title,
             'slug' => $request->slug,
-            'category_id' => $request->category_id,
+            // 'category_id' => $request->category_id,
             'description' => $request->description,
             'primary_image' => $file_name_image_primary,
             'user_id' => Auth::user()->id,
             'is_active' => $request->is_active,
 
         ]);
+
+        dd($blog);
 
         alert()->success('مقاله مورد نظر ایجاد شد', 'باتشکر');
         return redirect()->route('admin.blogs.index');

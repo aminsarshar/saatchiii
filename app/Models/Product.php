@@ -16,7 +16,7 @@ class Product extends Model
     protected $table = "products";
     protected $guarded = [];
     protected $appends = ['quantity_check', 'sale_check', 'price_check'];
-
+    public $timestamps = true;
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -159,7 +159,8 @@ class Product extends Model
         return $this->hasMany()->where('user_id', $userId)->exists();
     }
 
-    public function scopeIsActive($query, $is_active) {
+    public function scopeIsActive($query, $is_active)
+    {
         $query->where('is_active', $is_active);
     }
 }

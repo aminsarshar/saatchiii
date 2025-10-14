@@ -25,14 +25,16 @@
                 </div>
                 <div class="swiper py-3" id="swiper-box">
                     <div class="swiper-wrapper">
+                        @foreach ($brands as $brand)
                         <div class="swiper-slide">
                             <a href="">
                                 <div class="image text-center">
-                                    <img src="assets/image/brand1-1.png" class="img-fluid" alt="">
+                                    <img src="{{ asset('/upload/files/brand/images/' . $brand->image) }}" class="img-fluid" alt="">
                                 </div>
                             </a>
                         </div>
-                        <div class="swiper-slide">
+                        @endforeach
+                        {{-- <div class="swiper-slide">
                             <a href="">
                                 <div class="image text-center">
                                     <img src="assets/image/brand1-2.png" class="img-fluid" alt="">
@@ -66,7 +68,7 @@
                                     <img src="assets/image/brand1-6.png" class="img-fluid" alt="">
                                 </div>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next d-sm-flex d-none" style="margin-top: -60px"></div>

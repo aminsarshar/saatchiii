@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Blog;
+use App\Models\Brand;
 use App\Models\Banner;
 use App\Models\Product;
-use App\Models\ProductVariation;
 // use App\Models\Carbon;
 use App\Models\Setting;
-use App\Models\ContactUs;
-use TimeHunter\LaravelGoogleReCaptchaV3\Validations\GoogleReCaptchaV3ValidationRule;
 use App\Models\Category;
-use App\Models\Blog;
-use Carbon\Carbon;
+use App\Models\ContactUs;
+use Illuminate\Http\Request;
+use App\Models\ProductVariation;
+use App\Http\Controllers\Controller;
+use TimeHunter\LaravelGoogleReCaptchaV3\Validations\GoogleReCaptchaV3ValidationRule;
 
 
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
         $product_daily_offers = Product::isActive(1)->where('type', 1)->get()->take(15);
         $products_special_offers = Product::isActive(1)->where('type', 2)->get()->take(15);
         $blog = Blog::isActive(1)->get()->take(20);
+        $brands = Brand::get()->take(6);
 
         return view('home.index', compact(
             'sliders',
@@ -36,7 +38,8 @@ class HomeController extends Controller
             'product_normal_womens',
             'product_daily_offers',
             'products',
-            'blog'
+            'blog',
+            'brands'
         ));
     }
 

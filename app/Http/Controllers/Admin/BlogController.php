@@ -58,7 +58,7 @@ class BlogController extends Controller
         $blog = Blog::create([
             'title' => $request->title,
             'slug' => $request->slug,
-            // 'category_id' => $request->category_id,
+            'category_id' => $request->category_id,
             'description' => $request->description,
             'primary_image' => $file_name_image_primary,
             'user_id' => Auth::user()->id,
@@ -66,7 +66,6 @@ class BlogController extends Controller
 
         ]);
 
-        dd($blog);
 
         alert()->success('مقاله مورد نظر ایجاد شد', 'باتشکر');
         return redirect()->route('admin.blogs.index');

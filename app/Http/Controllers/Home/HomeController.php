@@ -25,7 +25,7 @@ class HomeController extends Controller
         $sliders = Banner::isActive(1)->where('type', 'sliders')->get();
         $products = Product::isActive(1)->get()->take(15);
         $product_normal_mens = Product::isActive(1)->where('category_id', '17', '15')->where('type', 1)->get()->take(15);
-        $product_normal_womens = Product::isActive(1)->where('category_id', '22')->where('type', 1)->get()->take(15);
+        $product_normal_womens = Product::isActive(1)->where('category_id', '2')->get()->take(15);
         $product_daily_offers = Product::isActive(1)->where('type', 1)->get()->take(15);
         $products_special_offers = Product::isActive(1)->where('type', 2)->get()->take(15);
         $blog = Blog::isActive(1)->get()->take(20);

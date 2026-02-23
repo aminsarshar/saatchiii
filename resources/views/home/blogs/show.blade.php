@@ -53,78 +53,28 @@ href="{{asset('assets/css/home.css')}}"
                             </div>
                         </div>
                         <div class="item-box bg-white shadow-box">
+                            @php
+                                $parentCategories = App\Models\CategoryBlog::where('parent_id', 0)->get();
+                                // $parentCategories = App\Models\Category::where('is_active' , 1)->get();
+                            @endphp
                             <div class="title">
                                 <h6 class="font-14">دسته بندی</h6>
                             </div>
                             <div class="desc">
                                 <form action="">
+                                    @foreach ($parentCategories as $parentCategory)
                                     <a href="">
                                         <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="box-icon"><i class="bi bi-tag"></i></div>
-                                                <span>تکنولوژی</span>
+                                                <span>{{ $parentCategory->name }}</span>
                                             </div>
                                             <div>
                                                 <span class="fw-bold font-16">(3)</span>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
-                                                <span>سرگرمی</span>
-                                            </div>
-                                            <div>
-                                                <span class="fw-bold font-16">(3)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
-                                                <span><label for="colorCheck1"
-                                                        class="form-check-label">فروشندگی</label></span>
-                                            </div>
-                                            <div>
-                                                <span class="fw-bold font-16">(3)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
-                                                <span>فروشگاهی</span>
-                                            </div>
-                                            <div>
-                                                <span class="fw-bold font-16">(3)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
-                                                <span>آموزشی</span>
-                                            </div>
-                                            <div>
-                                                <span class="fw-bold font-16">(3)</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="">
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="box-icon"><i class="bi bi-tag"></i></div>
-                                                <span>برنامه نویسی</span>
-                                            </div>
-                                            <div>
-                                                <span class="fw-bold font-16">(3)</span>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    @endforeach
                                 </form>
                             </div>
                         </div>
@@ -196,7 +146,7 @@ href="{{asset('assets/css/home.css')}}"
                                             <div class="item">
                                                 <div class="title d-grid gap-2">
                                                     <h6 class="font-12 text-muted fw-normal">دسته بندی ها</h6>
-                                                    <h6 class="font-16">مقالات و اخبار</h6>
+                                                    <h6 class="font-16">{{$blogs->category->parent->name}} - {{$blogs->category->name}}</h6>
                                                 </div>
                                             </div>
                                         </li>
@@ -233,13 +183,7 @@ href="{{asset('assets/css/home.css')}}"
                                 <div
                                     class="blog-desc-short font-14 bg-light p-4 shadow-box text-justify rounded-4 my-3">
                                     <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                                        گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                                        برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای
-                                        کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
-                                        جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
-                                        ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می
-                                        توان امید داشت که تمام …
+                                        {{$blogs->title}}
                                     </p>
                                 </div>
                             </div>

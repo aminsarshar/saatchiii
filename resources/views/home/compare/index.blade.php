@@ -1,5 +1,5 @@
 @extends('home.layouts.home')
-<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" />
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}" /> --}}
 @section('title')
     صفحه ای مقایسه
 @endsection
@@ -49,7 +49,7 @@
                                         @foreach ($products as $product)
                                             <td class="pro-desc">
                                                 <p class="text-right">
-                                                    {{ $product->description }}
+                                                    {{!! $product->description !!}}
                                                 </p>
                                             </td>
                                         @endforeach
@@ -118,4 +118,10 @@
         </div>
     </div>
     <!-- compare main wrapper end -->
+
+    <style>
+        .body{
+            background: white !important
+        }
+    </style>
 @endsection

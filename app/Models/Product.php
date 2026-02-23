@@ -151,6 +151,7 @@ class Product extends Model
     {
         return $this->hasMany(Wishlist::class)->where('user_id', $userId)->exists();
     }
+    
 
 
     public function checkUserCompare($userId)

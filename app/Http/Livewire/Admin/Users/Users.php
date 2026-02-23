@@ -27,19 +27,28 @@ class Users extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = [
-        'destroyUser',
-        'refreshComponent' => '$refresh'
+        'destroyUser',      // دریافت event از JS یا Alpine
+        '$refresh',         // می‌تواند مستقیماً refresh کنه
     ];
 
-    public function deleteUser($id)
+    // وقتی کاربر روی دکمه حذف کلیک می‌کند
+    public function deleteUser(int $id)
     {
-        $this->dispatchBrowserEvent('deleteUser', ['id' => $id]);
+        // dispatchBrowserEvent در v3 همونطور کار می‌کند
+        $this->dispatchBrowserEvent('deleteUser', [
+            'id' => $id,
+        ]);
     }
 
-    public function destroyUser($id)
+    // حذف واقعی کاربر
+    public function destroyUser(int $id)
     {
         User::destroy($id);
-        $this->emit('refreshComponent');
+        $this->dispatchBrowserEvent('userDeleted', [
+            'message' => 'کاربر با موفقیت حذف شد.'
+        ]);
+
+        $this->emitSelf('$refresh'); // رفرش همان کامپوننت
     }
 
     public function render()

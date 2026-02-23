@@ -47,7 +47,7 @@ class Order extends Model
     //             break;
 
     //         case '2' :
-    //             $paymentStage = 'در حال انجام';    
+    //             $paymentStage = 'در حال انجام';
     //             break;
     //         case '3' :
     //             $paymentStage = 'تکمیل شده';
@@ -67,7 +67,7 @@ class Order extends Model
     //     }
     //     return $paymentStage;
     // }
-    
+
 
     public function getPaymentStatusAttribute($paymentStatus)
     {
@@ -102,6 +102,11 @@ class Order extends Model
         return $this->belongsTo(UserAddress::class);
     }
 
+        public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
-    
+
+
 }

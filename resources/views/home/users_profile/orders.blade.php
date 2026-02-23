@@ -36,69 +36,54 @@
                                             <div class="desc p-0 shadow-none">
                                                 <div class="responsive-table p-0">
                                                     <table class="table main-table rounded-0">
-                                                        <thead class="text-bg-dark bg-opacity-75 text-center">
-                                                            <tr>
-                                                                <th>#</th>
-                                                                <th>محصول سفارش</th>
-                                                                <th>تاریخ ثبت سفارش</th>
-                                                                <th>شماره سفارش</th>
-                                                                <th>وضعیت پرداخت</th>
-                                                                <th>وضعیت سفارش</th>
-                                                                <th>مبلغ پرداختی</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody class="text-center">
-
-                                                            @foreach ($orders as $key => $order)
-                                                                @php
-                                                                    $transactions = App\Models\Transaction::where(
-                                                                        'user_id',
-                                                                        auth()->id(),
-                                                                    )->find($order->id);
-
-                                                                @endphp
-                                                                <tr>
-                                                                    <td> {{ $orders->firstItem() + $key }} </td>
-                                                                    @foreach ($order->orderItems as $item)
-                                                                        <td>
-                                                                            <a href="{{ route('home.products.show', ['product' => $item->product->slug]) }}"
-                                                                                style="width: 100px">
-                                                                                <img style="width: 100px !important"
-                                                                                    class="w-full"
-                                                                                    src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->product->primary_image) }}"
-                                                                                    alt="">
-                                                                            </a>
-                                                                        </td>
-                                                                    @endforeach
-                                                                    <td> {{ verta($order->created_at)->format('%d %B، %Y') }}
-                                                                    <td> {{ $transactions->ref_id }}</td>
-                                                                    </td>
-                                                                    <td>{{ $order->status }}</td>
-                                                                    <td>
-                                                                        @if ($order->payment_stage == 'waiting')
-                                                                            <div class="btn btn-warning text-white">در
-                                                                                انتظار بررسی</div>
-                                                                        @elseif($order->payment_stage == 'inprogress')
-                                                                            <div class="btn btn-primary">در حال انجام</div>
-                                                                        @elseif($order->payment_stage == 'completed')
-                                                                            <div class="btn btn-success">تکمیل شده</div>
-                                                                        @elseif($order->payment_stage == 'canceled')
-                                                                            <div class="btn btn-danger">لغو شده</div>
-                                                                        @endif
-                                                                    </td>
-                                                                    <td>
-                                                                        {{ number_format($order->paying_amount) }}
-                                                                        تومان
-                                                                    </td>
-                                                                    {{-- <td><a href="#" data-toggle="modal"
-                                                                            data-target="#ordersDetiles-{{ $order->id }}"
-                                                                            class="check-btn sqr-btn "> نمایش جزئیات </a> --}}
-                                                                    <!-- Button trigger modal -->
-                                                                </tr>
-                                                            @endforeach
-
-
-                                                        </tbody>
+                                                     <thead class="text-bg-dark bg-opacity-75 text-center">
+    <tr>
+        <th>#</th>
+        <th>محصول سفارش</th>
+        <th>تاریخ ثبت سفارش</th>
+        <th>شماره سفارش</th>
+        <th>وضعیت پرداخت</th>
+        <th>وضعیت سفارش</th>
+        <th>مبلغ پرداختی</th>
+        <th>فاکتور</th> {{-- ستون جدید --}}
+    </tr>
+</thead>
+<tbody class="text-center">
+    @foreach ($orders as $key => $order)
+        <tr>
+            <td> {{ $orders->firstItem() + $key }} </td>
+            @foreach ($order->orderItems as $item)
+                <td>
+                    <a href="{{ route('home.products.show', ['product' => $item->product->slug]) }}" style="width: 100px">
+                        <img style="width: 100px !important" class="w-full"
+                             src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->product->primary_image) }}" alt="">
+                    </a>
+                </td>
+            @endforeach
+            <td> {{ verta($order->created_at)->format('%d %B، %Y') }} </td>
+            <td> {{ $order->ref_id }} </td>
+            <td>{{ $order->status }}</td>
+            <td>
+                @if ($order->payment_stage == 'waiting')
+                    <div class="btn btn-warning text-white">در انتظار بررسی</div>
+                @elseif($order->payment_stage == 'inprogress')
+                    <div class="btn btn-primary">در حال انجام</div>
+                @elseif($order->payment_stage == 'completed')
+                    <div class="btn btn-success">تکمیل شده</div>
+                @elseif($order->payment_stage == 'canceled')
+                    <div class="btn btn-danger">لغو شده</div>
+                @endif
+            </td>
+            <td>{{ number_format($order->paying_amount) }} تومان</td>
+            <td>
+<a href="{{ route('home.orders.invoice', $order->id) }}"
+   class="btn btn-sm btn-warning" target="_blank">
+   فاکتور PDF
+</a>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
 
                                                     </table>
                                                 </div>

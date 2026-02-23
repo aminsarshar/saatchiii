@@ -23,7 +23,7 @@ public function search(Request $request , Product $products)
     $query = $request->input('query');
     // انجام عملیات جستجو بر اساس $query
     // مثلاً از مدل‌ها و دیتابیس برای جستجو استفاده کنید
-    $products = Product::where('name', 'like', "%$query%")->get();
+    $products = Product::where('name', 'like', "%$query%")->where('deleted_at', null)->get();
 
     return view('search.results', ['results' => $products] , compact('attributes' , 'variation' , 'products'));
 }

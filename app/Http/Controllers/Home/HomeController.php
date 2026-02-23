@@ -23,11 +23,11 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Banner::isActive(1)->where('type', 'sliders')->get();
-        $products = Product::isActive(1)->get()->take(15);
-        $product_normal_mens = Product::isActive(1)->where('category_id', '17', '15')->where('type', 1)->get()->take(15);
-        $product_normal_womens = Product::isActive(1)->where('category_id', '2')->get()->take(15);
-        $product_daily_offers = Product::isActive(1)->where('type', 1)->get()->take(15);
-        $products_special_offers = Product::isActive(1)->where('type', 2)->get()->take(15);
+        $products = Product::isActive(1)->where('deleted_at', null)->get()->take(15);
+        $product_normal_mens = Product::isActive(1)->where('category_id', '17', '15')->where('type', 1)->where('deleted_at', null)->get()->take(15);
+        $product_normal_womens = Product::isActive(1)->where('category_id', '2')->where('deleted_at', null)->get()->take(15);
+        $product_daily_offers = Product::isActive(1)->where('type', 1)->where('deleted_at', null)->get()->take(15);
+        $products_special_offers = Product::isActive(1)->where('type', 2)->where('deleted_at', null)->get()->take(15);
         $blog = Blog::isActive(1)->get()->take(20);
         $brands = Brand::get()->take(6);
 
@@ -101,7 +101,7 @@ class HomeController extends Controller
     {
 
 
-        $products_special_offers = Product::where('is_active', 1)->where('type', 2)->filter()->search()->paginate(12);
+        $products_special_offers = Product::where('is_active', 1)->where('type', 2)->where('deleted_at', null)->filter()->search()->paginate(12);
 
 
         return view('home.special-offer', compact('products_special_offers'));

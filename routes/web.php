@@ -195,7 +195,9 @@ Route::prefix('profile')->name('home.')->group(function () {
     Route::get('/', [UserProfileController::class, 'index'])->name('users_profile.index');
     Route::get('/comments', [HomeCommentController::class, 'usersProfileIndex'])->name('comments.users_profile.index');
     Route::get('/wishlist', [WishlistController::class, 'usersProfileIndex'])->name('wishlist.users_profile.index');
-
+    // ← اضافه کردن روت فاکتور PDF
+    Route::get('/orders/{order}/invoice', [UserProfileController::class, 'invoice'])
+        ->name('orders.invoice'); 
 
     Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
     Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');

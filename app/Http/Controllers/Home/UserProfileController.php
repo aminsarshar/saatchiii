@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Home;
 
-use auth;
-use App\Models\City;
-use App\Models\User;
-use App\Models\Product;
-use App\Models\Order;
-use App\Models\Province;
-use App\Models\Wishlist;
-use App\Models\UserAddress;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\City;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Province;
+use App\Models\User;
+use App\Models\UserAddress;
+use App\Models\Wishlist;
+use auth;
+use Barryvdh\DomPDF\Facade\Pdf; // ← حتماً اینو اضافه کن
+use Illuminate\Http\Request;
 
 
 
@@ -71,4 +72,33 @@ class UserProfileController extends Controller
         return redirect()->route('home.users_profile.index');
     }
 
+
+    public function invoice($orderId)
+    {
+        // پیدا کردن سفارش کاربر
+        $order = Order::with('orderItems.product')
+                      ->where('user_id', auth()->id())
+                      ->findOrFail($orderId);
+
+        try {ث
+            // ساخت PDF
+            $pdf = Pdf::loadView('home.users_profile.invoice_pdf', compact('order'))
+                      ->setPaper('a4', 'portrait');
+
+            $filename = 'Invoice-' . ($order->ref_id ?? $order->id) . '.pdf';
+
+            // دانلود مستقیم PDF بدون ریدایرکت
+            return response()->streamDownload(
+                fn() => print($pdf->output()),
+                $filename
+            );
+
+        } catch (\Exception $e) {
+            // نمایش خطای ساده
+            return back()->with('error', 'امکان ایجاد PDF وجود ندارد: ' . $e->getMessage());
+        }
+    }
 }
+
+
+

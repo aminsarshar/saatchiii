@@ -8,7 +8,7 @@ href="{{asset('assets/css/home.css')}}"
 @endsection
 
 @section('script')
-    <script>
+    {{-- <script>
         function filter() {
 
             let sortBy = $('#sort-by').val();
@@ -73,6 +73,31 @@ href="{{asset('assets/css/home.css')}}"
             }
         });
 
+    </script> --}}
+
+    <script>
+        $('#filter-form').on('submit', function(event) {
+    event.preventDefault();
+
+    let url = new URL(window.location.href);
+    let params = new URLSearchParams(url.search);
+
+    // گرفتن مقادیر فرم
+    let formData = $(this).serializeArray();
+
+    formData.forEach(function(item) {
+        if (item.value !== "") {
+            params.set(item.name, item.value);
+        } else {
+            params.delete(item.name);
+        }
+    });
+
+    // ریست صفحه هنگام فیلتر جدید
+    params.delete('page');
+
+    window.location.href = url.pathname + '?' + params.toString();
+});
     </script>
 @endsection
 

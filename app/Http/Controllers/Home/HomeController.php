@@ -53,8 +53,7 @@ class HomeController extends Controller
 
     public function contactUs()
     {
-        $setting = Setting::findOrFail(1);
-        return view('home.contact-us', compact('setting'));
+        return view('home.contact-us');
     }
 
     public function contactUsForm(Request $request)

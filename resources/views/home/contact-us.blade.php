@@ -55,7 +55,7 @@
                                     /* تکوندن کارت با افزایش اندازه */
                                 }
                             </style>
-                            <div class="contact-box  p-4 bg-light shadow-inner">
+                            {{-- <div class="contact-box  p-4 bg-light shadow-inner">
                                 <div class="icon text-center">
                                     <i class="bi bi-chat-dots fs-1"></i>
                                 </div>
@@ -109,7 +109,7 @@
                                 <div class="link mt-3">
                                     <a href="" class="btn border-0 main-color-one-bg waves-effect waves-light">بزن
                                         بریم</a>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             پایین به ما بگو!</p>
                         <div class="row justify-content-center">
                             <div class="col-md-8">
-                                <form id="contact-form" action="{{ route('home.contact-us.form') }}" method="post">
+                                <form id="contact-form" action="{{ route('home.contact-us') }}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                {!! GoogleReCaptchaV3::render(['contact_us_id' => 'contact_us']) !!}
+                                {{-- {!! GoogleReCaptchaV3::render(['contact_us_id' => 'contact_us']) !!} --}}
                             </div>
                         </div>
                     </div>

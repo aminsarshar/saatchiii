@@ -211,7 +211,7 @@ Route::get('/get-province-cities-list', [AddressController::class, 'getProvinceC
 
 Route::get('/about-us', [HomeController::class, 'aboutUs'])->name('home.about-us');
 Route::get('/contact-us', [HomeController::class, 'contactUs'])->name('home.contact-us');
-Route::post('/contact-us-form', [HomeController::class, 'contactUsForm'])->name('home.contact-us.form');
+Route::post('/contact-us-form', [HomeController::class, 'contactUsForm'])->name('home.contact-us-form');
 Route::get('/shop', [HomeController::class, 'shop'])->name('home.shop');
 Route::get('/error404', [HomeController::class, 'error404'])->name('home.error404');
 
